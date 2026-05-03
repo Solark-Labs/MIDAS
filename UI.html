@@ -1,0 +1,1907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>MIDAS v4.0 — Patent Showcase · App 202641054304</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════
+   MIDAS v4 — CYBER-INDUSTRIAL DESIGN SYSTEM
+   App 202641054304 · CBR 35905 · Chennai, 2026
+═══════════════════════════════════════════════ */
+:root{
+  --bg:#010c18;--s1:#061422;--s2:#0b1e32;--s3:#112840;--s4:#173452;
+  --b0:rgba(0,180,220,.04);--b1:rgba(0,180,220,.09);--b2:rgba(0,180,220,.18);--b3:rgba(0,180,220,.32);
+  --acc:#00d4ff;--acc2:#00e676;--amb:#ffb300;--red:#ff3355;--pur:#7c4dff;
+  --ora:#ff6422;--sky:#4fc3f7;--pink:#ff4081;--teal:#1de9b6;
+  --t1:#cce8ff;--t2:#5a90b0;--t3:#1e4060;
+  --fh:'Rajdhani',sans-serif;--fo:'Orbitron',sans-serif;--fm:'JetBrains Mono',monospace;
+  --r:6px;--rx:10px;
+  --glow-c:0 0 20px rgba(0,212,255,.15);
+  --glow-g:0 0 20px rgba(0,230,118,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{font-size:13px;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--t1);font-family:var(--fm);overflow-x:hidden;min-height:100vh}
+
+/* ── Grid background ── */
+body::before{content:'';position:fixed;inset:0;
+  background-image:linear-gradient(rgba(0,180,220,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(0,180,220,.018) 1px,transparent 1px);
+  background-size:48px 48px;pointer-events:none;z-index:0}
+/* ── Scanlines ── */
+body::after{content:'';position:fixed;inset:0;
+  background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,212,255,.003) 3px,rgba(0,212,255,.003) 4px);
+  pointer-events:none;z-index:9998}
+
+/* ═══ NAV ═══════════════════════════════════ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:600;
+  height:52px;background:rgba(1,12,24,.97);backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--b2);
+  display:flex;align-items:center;padding:0 1rem;gap:.6rem;
+}
+.nav-logo{
+  font-family:var(--fo);font-size:1.1rem;font-weight:900;color:var(--acc);
+  letter-spacing:.18em;text-shadow:0 0 24px rgba(0,212,255,.5);flex-shrink:0;
+  padding:4px 10px;border:1px solid var(--b2);border-radius:4px;background:rgba(0,212,255,.04);
+}
+.nav-ver{font-family:var(--fm);font-size:.54rem;color:var(--t3);letter-spacing:.06em;padding:2px 5px;border:1px solid var(--b1);border-radius:3px;flex-shrink:0}
+.nav-tabs{display:flex;gap:1px;flex:1;overflow-x:auto;scrollbar-width:none;padding:0 4px}
+.nav-tabs::-webkit-scrollbar{display:none}
+.ntab{
+  padding:5px 10px;border-radius:3px;font-family:var(--fh);font-size:.76rem;font-weight:600;
+  letter-spacing:.06em;color:var(--t3);cursor:pointer;border:none;background:transparent;
+  transition:all .15s;white-space:nowrap;text-transform:uppercase;
+}
+.ntab:hover{color:var(--t2)}
+.ntab.on{background:rgba(0,212,255,.08);color:var(--acc);border:1px solid var(--b2)}
+.nav-status-bar{display:flex;align-items:center;gap:.5rem;flex-shrink:0;margin-left:auto}
+.status-pill{
+  padding:4px 10px;border-radius:14px;font-family:var(--fm);font-size:.58rem;
+  font-weight:500;letter-spacing:.08em;cursor:pointer;transition:all .25s;border:1px solid;
+}
+.sp-c{color:var(--acc2);border-color:rgba(0,230,118,.3);background:rgba(0,230,118,.06)}
+.sp-h{color:var(--amb);border-color:rgba(255,179,0,.3);background:rgba(255,179,0,.06)}
+.sp-l{color:var(--red);border-color:rgba(255,51,85,.3);background:rgba(255,51,85,.06);animation:lpulse 1s infinite}
+@keyframes lpulse{0%,100%{box-shadow:none}50%{box-shadow:0 0 12px rgba(255,51,85,.35)}}
+.plan-pill{padding:3px 8px;border-radius:10px;font-family:var(--fm);font-size:.56rem;font-weight:600;cursor:pointer;border:1px solid}
+.pp-a{color:var(--sky);border-color:rgba(79,195,247,.3);background:rgba(79,195,247,.07)}
+.pp-b{color:var(--acc2);border-color:rgba(0,230,118,.3);background:rgba(0,230,118,.06)}
+.pp-c{color:var(--pur);border-color:rgba(124,77,255,.3);background:rgba(124,77,255,.07)}
+.pp-d{color:var(--amb);border-color:rgba(255,179,0,.3);background:rgba(255,179,0,.06)}
+
+/* ═══ LAYOUT ══════════════════════════════════ */
+main{position:relative;z-index:1;padding-top:52px}
+.pg{display:none;padding:1.2rem 1.1rem 3rem;max-width:1400px;margin:0 auto}
+.pg.on{display:block}
+
+/* ═══ TYPOGRAPHY ══════════════════════════════ */
+.ht{font-family:var(--fh);font-size:1.7rem;font-weight:700;letter-spacing:.06em;line-height:1;margin-bottom:.2rem}
+.ht span{color:var(--acc)}
+.hs{font-family:var(--fm);font-size:.6rem;color:var(--t3);letter-spacing:.07em;margin-bottom:1.2rem}
+.label{font-family:var(--fm);font-size:.56rem;text-transform:uppercase;letter-spacing:.1em;color:var(--t3)}
+.section-header{
+  display:flex;align-items:center;gap:.7rem;margin-bottom:1rem;padding-bottom:.6rem;
+  border-bottom:1px solid var(--b1);
+}
+.sh-tag{font-family:var(--fo);font-size:.55rem;letter-spacing:.12em;color:var(--acc);padding:2px 7px;border:1px solid var(--b2);border-radius:3px}
+
+/* ═══ CARDS ═══════════════════════════════════ */
+.card{background:var(--s1);border:1px solid var(--b1);border-radius:var(--r);padding:.9rem;transition:border-color .2s}
+.card:hover{border-color:var(--b2)}
+.card-inset{background:#010c18;border:1px solid var(--b1);border-radius:5px;padding:.75rem}
+
+/* ═══ GRIDS ═══════════════════════════════════ */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem}
+.g5{display:grid;grid-template-columns:repeat(5,1fr);gap:.8rem}
+.g6{display:grid;grid-template-columns:repeat(6,1fr);gap:.8rem}
+@media(max-width:1100px){.g6,.g5{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:700px){.g3,.g2{grid-template-columns:1fr}}
+
+/* ═══ KPI CARDS ═══════════════════════════════ */
+.kpi{background:var(--s1);border:1px solid var(--b1);border-radius:var(--r);padding:.8rem 1rem;position:relative;overflow:hidden}
+.kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.kpi-c::before{background:linear-gradient(90deg,var(--acc),transparent)}
+.kpi-g::before{background:linear-gradient(90deg,var(--acc2),transparent)}
+.kpi-a::before{background:linear-gradient(90deg,var(--amb),transparent)}
+.kpi-r::before{background:linear-gradient(90deg,var(--red),transparent)}
+.kpi-p::before{background:linear-gradient(90deg,var(--pur),transparent)}
+.kpi-o::before{background:linear-gradient(90deg,var(--ora),transparent)}
+.kpi-val{font-family:var(--fh);font-size:1.8rem;font-weight:700;letter-spacing:.04em;line-height:1.1}
+.kpi-lbl{font-family:var(--fm);font-size:.54rem;text-transform:uppercase;letter-spacing:.1em;color:var(--t3);margin-top:2px}
+.kpi-sub{font-family:var(--fm);font-size:.6rem;color:var(--t2);margin-top:4px}
+
+/* ═══ CHIPS ═══════════════════════════════════ */
+.chip{display:inline-block;padding:1px 6px;border-radius:3px;font-family:var(--fm);font-size:.58rem;font-weight:500;letter-spacing:.04em;white-space:nowrap}
+.ch-c{background:rgba(0,212,255,.08);color:var(--acc);border:1px solid rgba(0,212,255,.2)}
+.ch-g{background:rgba(0,230,118,.07);color:var(--acc2);border:1px solid rgba(0,230,118,.18)}
+.ch-a{background:rgba(255,179,0,.08);color:var(--amb);border:1px solid rgba(255,179,0,.2)}
+.ch-r{background:rgba(255,51,85,.08);color:var(--red);border:1px solid rgba(255,51,85,.2)}
+.ch-p{background:rgba(124,77,255,.08);color:var(--pur);border:1px solid rgba(124,77,255,.2)}
+.ch-o{background:rgba(255,100,34,.08);color:var(--ora);border:1px solid rgba(255,100,34,.2)}
+.ch-sky{background:rgba(79,195,247,.08);color:var(--sky);border:1px solid rgba(79,195,247,.2)}
+.ch-gray{background:var(--s2);color:var(--t2);border:1px solid var(--b1)}
+.ch-teal{background:rgba(29,233,182,.08);color:var(--teal);border:1px solid rgba(29,233,182,.2)}
+
+/* ═══ PROGRESS BARS ═══════════════════════════ */
+.pbar{height:2px;background:var(--s3);border-radius:2px;overflow:hidden;margin-top:5px}
+.pbar-f{height:100%;border-radius:2px;transition:width .8s ease}
+.pbar-thick{height:4px;background:var(--s3);border-radius:2px;overflow:hidden}
+
+/* ═══ LOG ═════════════════════════════════════ */
+.log{background:#010810;border:1px solid var(--b1);border-radius:5px;padding:8px 10px;
+  font-family:var(--fm);font-size:.64rem;line-height:1.8;color:#4ade80;
+  min-height:50px;max-height:180px;overflow-y:auto;}
+.log .dim{color:var(--t3)}.log .hi{color:var(--acc)}.log .warn{color:var(--amb)}
+.log .err{color:var(--red)}.log .ok{color:var(--acc2)}.log .pay{color:var(--pur)}.log .m{color:var(--amb)}
+.log .inv{color:var(--teal)}
+
+/* ═══ LIVE DOT ════════════════════════════════ */
+.live-dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--acc2);animation:blink 1.2s infinite;margin-right:4px;vertical-align:middle}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+
+/* ═══ BUTTONS ════════════════════════════════ */
+.btn{padding:7px 16px;border-radius:4px;font-family:var(--fh);font-size:.85rem;font-weight:600;
+  letter-spacing:.05em;cursor:pointer;border:none;transition:all .16s;
+  display:inline-flex;align-items:center;gap:5px;text-transform:uppercase}
+.btn-p{background:var(--acc);color:#000}.btn-p:hover{background:#00bfde;transform:translateY(-1px)}
+.btn-g{background:var(--acc2);color:#000}.btn-g:hover{background:#00cc60}
+.btn-ghost{background:transparent;color:var(--t1);border:1px solid var(--b2)}.btn-ghost:hover{border-color:var(--acc);color:var(--acc)}
+.btn-pur{background:var(--pur);color:#fff}
+.btn-sm{padding:4px 10px;font-size:.72rem}
+
+/* ═══ INPUT / SELECT ══════════════════════════ */
+input[type=text],input[type=search],select{
+  background:var(--s2);border:1px solid var(--b2);color:var(--t1);
+  border-radius:4px;padding:6px 9px;font-family:var(--fm);font-size:.7rem;outline:none;
+  transition:border-color .2s;width:100%;
+}
+input[type=text]:focus,input[type=search]:focus,select:focus{border-color:var(--acc)}
+input[type=range]{width:100%;accent-color:var(--acc);cursor:pointer;height:3px}
+.rng-group{margin-bottom:.7rem}
+.rng-group label{font-family:var(--fm);font-size:.58rem;text-transform:uppercase;letter-spacing:.08em;color:var(--t3);display:flex;justify-content:space-between;margin-bottom:3px}
+.rng-group label span{color:var(--acc);font-size:.66rem}
+
+/* ═══ TABLE ══════════════════════════════════ */
+.tbl{width:100%;border-collapse:collapse;font-size:.72rem}
+.tbl th{padding:7px 10px;background:var(--s2);font-family:var(--fm);font-size:.56rem;
+  text-transform:uppercase;letter-spacing:.09em;color:var(--t3);font-weight:500}
+.tbl th:first-child{text-align:left}
+.tbl td{padding:7px 10px;border-bottom:1px solid var(--b1);font-family:var(--fm)}
+.tbl td:first-child{text-align:left;color:var(--t2)}
+.tbl tr:hover td{background:rgba(255,255,255,.012)}
+.tbl tr.tot td{border-top:2px solid var(--b2);font-weight:700;color:var(--t1);background:var(--s2)}
+.tbl tr.net td{border-top:2px solid rgba(0,230,118,.4);background:rgba(0,230,118,.03)}
+.tbl td.pos{color:var(--acc2);font-weight:600}
+.tbl td.neg{color:var(--red)}
+.tbl td.neu{color:var(--t2)}
+.tbl td.hl{color:var(--amb);font-weight:700}
+
+/* ═══ ORDER CARD ══════════════════════════════ */
+.ocard{background:var(--s2);border:1px solid var(--b1);border-radius:5px;
+  padding:7px 9px;font-size:.68rem;animation:fadein .2s ease;
+  border-left:3px solid var(--b2);margin-bottom:4px}
+@keyframes fadein{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+.oc-id{font-family:var(--fm);font-size:.55rem;color:var(--acc);margin-bottom:2px;word-break:break-all}
+.oc-inv{font-family:var(--fm);font-size:.52rem;color:var(--teal);margin-bottom:2px}
+.oc-row{display:flex;gap:3px;flex-wrap:wrap;margin-top:3px;align-items:center}
+.ocard.oc-intra{border-left-color:var(--acc2)}
+.ocard.oc-inter{border-left-color:var(--pur)}
+.ocard.oc-peer{border-left-color:var(--sky)}
+.ocard.oc-ret{border-left-color:var(--amb)}
+.ocard.oc-split{border-left-color:var(--ora)}
+.ocard.oc-heavy{border-left-color:var(--red)}
+.ocard.oc-del{border-left-color:var(--acc2);opacity:.7}
+
+/* ═══ PIPELINE STEPS ══════════════════════════ */
+.pstep{display:grid;grid-template-columns:26px 1fr;gap:9px;padding:8px 0;border-bottom:1px solid var(--b1)}
+.pstep:last-child{border-bottom:none}
+.pnum{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--fm);font-size:.6rem;flex-shrink:0;transition:all .3s}
+.pn-w{background:var(--s2);color:var(--t3);border:1px solid var(--b2)}
+.pn-r{background:rgba(0,212,255,.12);color:var(--acc);border:1px solid rgba(0,212,255,.4);animation:pring .8s infinite}
+.pn-d{background:rgba(0,230,118,.1);color:var(--acc2);border:1px solid rgba(0,230,118,.3)}
+.pn-s{background:rgba(255,179,0,.09);color:var(--amb);border:1px solid rgba(255,179,0,.2)}
+@keyframes pring{0%,100%{box-shadow:0 0 5px rgba(0,212,255,.2)}50%{box-shadow:0 0 12px rgba(0,212,255,.45)}}
+.pt{font-size:.8rem;font-weight:600;font-family:var(--fh);margin-bottom:1px}
+.ps{font-size:.68rem;color:var(--t2);line-height:1.5}
+
+/* ═══ PLAN CARDS ══════════════════════════════ */
+.plan-card{background:var(--s1);border:1px solid var(--b1);border-radius:var(--rx);
+  padding:1.2rem;transition:all .22s;cursor:pointer;position:relative;overflow:hidden}
+.plan-card:hover{border-color:var(--b3);transform:translateY(-2px)}
+.plan-card.active{border-color:var(--acc);box-shadow:0 0 22px rgba(0,212,255,.1)}
+.plan-card.disabled{opacity:.45;pointer-events:none}
+.plan-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.pc-a::before{background:var(--sky)}
+.pc-b::before{background:var(--acc2)}
+.pc-c::before{background:var(--pur)}
+.pc-d::before{background:linear-gradient(90deg,var(--amb),var(--ora))}
+.plan-tag{display:inline-block;padding:2px 8px;border-radius:3px;font-family:var(--fm);font-size:.56rem;font-weight:600;letter-spacing:.07em;margin-bottom:.7rem;text-transform:uppercase}
+.plan-name{font-family:var(--fh);font-size:1.4rem;font-weight:700;letter-spacing:.05em;margin-bottom:.25rem}
+.plan-price{font-family:var(--fo);font-size:1.9rem;font-weight:700;letter-spacing:.03em;line-height:1;margin-bottom:.15rem}
+.plan-desc{font-size:.72rem;color:var(--t2);line-height:1.55;margin-bottom:.8rem}
+.plan-feat{display:flex;flex-direction:column;gap:.3rem;margin-bottom:.9rem}
+.pf{display:flex;gap:.4rem;align-items:flex-start;font-size:.7rem}
+.pf-on{color:var(--t1)}.pf-off{color:var(--t3)}
+.pf-on::before{content:'✓';color:var(--acc2);font-size:.6rem;margin-top:1px;flex-shrink:0}
+.pf-off::before{content:'—';color:var(--t3);font-size:.6rem;margin-top:1px;flex-shrink:0}
+.plan-roi{background:var(--s2);border-radius:4px;padding:.6rem;margin-top:.5rem;font-size:.7rem;border:1px solid var(--b1)}
+.add-on-badge{background:rgba(255,179,0,.1);border:1px solid rgba(255,179,0,.3);color:var(--amb);
+  border-radius:4px;padding:6px 10px;font-size:.68rem;margin-bottom:.6rem;line-height:1.5}
+
+/* ═══ STRESS CARDS ═══════════════════════════ */
+.scard{border-radius:var(--rx);padding:1rem;border:1px solid;cursor:pointer;transition:all .22s}
+.sc-c{border-color:rgba(0,230,118,.15);background:rgba(0,230,118,.02)}
+.sc-h{border-color:rgba(255,179,0,.15);background:rgba(255,179,0,.02)}
+.sc-l{border-color:rgba(255,51,85,.15);background:rgba(255,51,85,.02)}
+.sc-c.on{border-color:rgba(0,230,118,.45);background:rgba(0,230,118,.07)}
+.sc-h.on{border-color:rgba(255,179,0,.45);background:rgba(255,179,0,.07)}
+.sc-l.on{border-color:rgba(255,51,85,.45);background:rgba(255,51,85,.07)}
+
+/* ═══ TRACE SEGMENTS ══════════════════════════ */
+.tseg{display:inline-block;padding:3px 8px;border-radius:3px;font-family:var(--fm);font-size:.7rem;line-height:1}
+.ts-p{background:rgba(0,212,255,.1);color:#67e8f9;border:1px solid rgba(0,212,255,.2)}
+.ts-t{background:rgba(0,230,118,.08);color:#4ade80;border:1px solid rgba(0,230,118,.18)}
+.ts-z{background:rgba(124,77,255,.1);color:#c4b5fd;border:1px solid rgba(124,77,255,.2)}
+.ts-w{background:rgba(255,179,0,.08);color:#fbbf24;border:1px solid rgba(255,179,0,.18)}
+.ts-m{background:rgba(255,100,34,.08);color:#fb923c;border:1px solid rgba(255,100,34,.18)}
+.ts-inv{background:rgba(29,233,182,.08);color:var(--teal);border:1px solid rgba(29,233,182,.2)}
+.ts-sep{color:var(--t3);padding:0 2px;font-family:var(--fm)}
+
+/* ═══ TREE GRAPH ══════════════════════════════ */
+#tree-canvas{width:100%;background:#010810;border:1px solid var(--b1);border-radius:6px}
+
+/* ═══ RIDER CARDS ═════════════════════════════ */
+.rcard{background:var(--s1);border:1px solid var(--b1);border-radius:var(--r);
+  padding:.8rem;display:flex;gap:.7rem;align-items:flex-start}
+.rcard-av{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-family:var(--fh);font-size:.95rem;font-weight:700;flex-shrink:0;background:var(--s3);border:2px solid var(--b2)}
+.rcard-body{flex:1;min-width:0}
+.rcard-tok{font-family:var(--fm);font-size:.58rem;color:var(--acc);margin-bottom:2px}
+.rcard-meta{font-size:.65rem;color:var(--t2)}
+
+/* ═══ SETTLE ROW ══════════════════════════════ */
+.srow{display:grid;grid-template-columns:74px 90px 70px 70px 80px 80px 80px 1fr;
+  gap:.4rem;align-items:center;background:var(--s1);border:1px solid var(--b1);
+  border-radius:4px;padding:6px 9px;margin-bottom:3px;font-size:.67rem;animation:fadein .3s}
+.srow-hd{background:var(--s2);border-color:var(--b2);font-family:var(--fm);font-size:.55rem;color:var(--t3);text-transform:uppercase;letter-spacing:.07em}
+.smono{font-family:var(--fm);font-size:.62rem}
+
+/* ═══ ABOUT SECTION ═══════════════════════════ */
+.about-hero{
+  padding:2.5rem 1.5rem;text-align:center;
+  background:linear-gradient(135deg,rgba(0,212,255,.04) 0%,rgba(124,77,255,.04) 50%,rgba(0,230,118,.04) 100%);
+  border:1px solid var(--b1);border-radius:var(--rx);margin-bottom:1.2rem;
+  position:relative;overflow:hidden;
+}
+.about-hero::before{
+  content:'202641054304';
+  position:absolute;bottom:-10px;right:-10px;font-family:var(--fo);font-size:4rem;
+  font-weight:900;color:rgba(0,212,255,.035);letter-spacing:.1em;pointer-events:none;
+}
+.about-h{font-family:var(--fo);font-size:clamp(1.4rem,4vw,2.8rem);font-weight:900;
+  letter-spacing:.08em;line-height:.95;margin-bottom:.7rem;
+  background:linear-gradient(135deg,#fff 0%,var(--acc) 40%,var(--acc2) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.about-sub{font-size:.82rem;color:var(--t2);max-width:640px;margin:0 auto;line-height:1.7;font-family:var(--fm)}
+.timeline-item{display:grid;grid-template-columns:90px 1fr;gap:1rem;margin-bottom:.8rem;
+  padding:.8rem;background:var(--s1);border:1px solid var(--b1);border-radius:var(--r);
+  border-left:3px solid var(--acc)}
+.tl-date{font-family:var(--fo);font-size:.6rem;color:var(--acc);font-weight:700;letter-spacing:.08em;padding-top:2px}
+.tl-title{font-family:var(--fh);font-size:.95rem;font-weight:700;margin-bottom:3px}
+.tl-body{font-size:.72rem;color:var(--t2);line-height:1.55}
+.hw-card{background:var(--s1);border:1px solid var(--b1);border-radius:var(--r);padding:1rem;
+  border-top:3px solid;transition:border-color .2s}
+.hw-card:hover{border-color:var(--b2)}
+
+/* ═══ PA ROWS ═════════════════════════════════ */
+.pa-row{display:grid;grid-template-columns:160px 1fr 1fr 60px;gap:.7rem;
+  background:var(--s1);border:1px solid var(--b1);border-radius:var(--r);
+  padding:.8rem;margin-bottom:.4rem}
+.pa-name{font-family:var(--fm);font-size:.65rem;color:var(--acc);font-weight:500}
+.pa-ref{font-size:.6rem;color:var(--t3);margin-top:1px}
+.shield-i{font-size:.67rem;color:var(--acc2);padding:1px 0;display:flex;gap:3px;align-items:flex-start}
+.shield-i::before{content:'✦';color:var(--acc2);font-size:.52rem;flex-shrink:0;margin-top:2px}
+.risk-pill{padding:2px 7px;border-radius:3px;font-family:var(--fm);font-size:.58rem;font-weight:700;text-align:center}
+.risk-l{background:rgba(0,230,118,.07);color:var(--acc2);border:1px solid rgba(0,230,118,.2)}
+.risk-m{background:rgba(255,179,0,.07);color:var(--amb);border:1px solid rgba(255,179,0,.2)}
+
+/* ═══ DIVIDER ═════════════════════════════════ */
+.div{height:1px;background:var(--b1);margin:1.2rem 0}
+
+/* ═══ HERO / CMD ══════════════════════════════ */
+.hero{padding:2rem 1rem 1.5rem;text-align:center}
+.hero-pat{font-family:var(--fm);font-size:.58rem;letter-spacing:.14em;color:var(--acc);margin-bottom:.9rem;
+  display:flex;align-items:center;justify-content:center;gap:6px}
+.hero-pat::before,.hero-pat::after{content:'';flex:1;max-width:50px;height:1px}
+.hero-pat::before{background:linear-gradient(90deg,transparent,var(--acc))}
+.hero-pat::after{background:linear-gradient(90deg,var(--acc),transparent)}
+.hero-h{font-family:var(--fo);font-size:clamp(1.6rem,5vw,3.6rem);font-weight:900;
+  letter-spacing:.07em;line-height:.92;margin-bottom:.8rem;
+  background:linear-gradient(135deg,#e0f4ff 0%,var(--acc) 40%,var(--acc2) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:.82rem;color:var(--t2);max-width:540px;margin:0 auto 1.5rem;line-height:1.7;font-family:var(--fm)}
+
+/* ═══ NOVEL TAG ═══════════════════════════════ */
+.novel{display:inline-block;padding:1px 5px;border-radius:2px;font-family:var(--fm);
+  font-size:.52rem;color:var(--acc2);background:rgba(0,230,118,.07);border:1px solid rgba(0,230,118,.18);margin-left:5px}
+.claim-ref{display:inline-block;padding:1px 4px;border-radius:2px;font-family:var(--fm);
+  font-size:.52rem;color:var(--pur);background:rgba(124,77,255,.08);border:1px solid rgba(124,77,255,.18);margin-left:4px}
+
+/* ═══ SCROLLBAR ═══════════════════════════════ */
+::-webkit-scrollbar{width:3px;height:3px}
+::-webkit-scrollbar-track{background:var(--s1)}
+::-webkit-scrollbar-thumb{background:var(--s3);border-radius:2px}
+
+/* ═══ FOOTER ══════════════════════════════════ */
+footer{border-top:1px solid var(--b1);padding:1rem;text-align:center;
+  font-family:var(--fm);font-size:.55rem;color:var(--t3);line-height:2;position:relative;z-index:1}
+
+/* ═══ RING ANIMATION ══════════════════════════ */
+.ring{display:inline-block;width:7px;height:7px;border-radius:50%;position:relative}
+.ring::after{content:'';position:absolute;inset:-3px;border-radius:50%;border:1.5px solid;animation:rout 1.5s infinite}
+.ring-c{background:var(--acc)}.ring-c::after{border-color:var(--acc)}
+.ring-g{background:var(--acc2)}.ring-g::after{border-color:var(--acc2)}
+@keyframes rout{0%{transform:scale(1);opacity:.8}100%{transform:scale(2.5);opacity:0}}
+
+/* ═══ UTILITY ═════════════════════════════════ */
+.text-c{color:var(--acc)}.text-g{color:var(--acc2)}.text-a{color:var(--amb)}.text-r{color:var(--red)}.text-p{color:var(--pur)}.text-sk{color:var(--sky)}.text-t{color:var(--teal)}
+.mt1{margin-top:1rem}.mb1{margin-bottom:1rem}
+.flex-between{display:flex;align-items:center;justify-content:space-between}
+.flex-gap{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">MIDAS</div>
+  <div class="nav-ver">v4.0</div>
+  <div class="nav-tabs">
+    <button class="ntab on"  onclick="go('cmd')">Command</button>
+    <button class="ntab"     onclick="go('ops')">Operations</button>
+    <button class="ntab"     onclick="go('trace')">Trace Engine</button>
+    <button class="ntab"     onclick="go('tree')">Consol Tree</button>
+    <button class="ntab"     onclick="go('stress')">Stress Modes</button>
+    <button class="ntab"     onclick="go('riders')">Riders</button>
+    <button class="ntab"     onclick="go('settle')">Settlement</button>
+    <button class="ntab"     onclick="go('balance')">Balance Sheet</button>
+    <button class="ntab"     onclick="go('plans')">Plans & ROI</button>
+    <button class="ntab"     onclick="go('patent')">Patent Shield</button>
+    <button class="ntab"     onclick="go('about')">About Us</button>
+  </div>
+  <div class="nav-status-bar">
+    <div class="status-pill sp-c" id="mode-pill" onclick="cycleModeManual()">● CONSOL</div>
+    <div class="plan-pill pp-c" id="plan-pill" onclick="go('plans')">PLAN C</div>
+  </div>
+</nav>
+
+<main>
+
+<!-- ════════════════ COMMAND ════════════════ -->
+<div id="cmd" class="pg on">
+<div class="hero">
+  <div class="hero-pat">App 202641054304 &nbsp;·&nbsp; CBR 35905 &nbsp;·&nbsp; Chennai Patent Office &nbsp;·&nbsp; April 2026</div>
+  <h1 class="hero-h">MULTI-PLATFORM INTEGRATED<br>DELIVERY AGGREGATION SYSTEM</h1>
+  <p class="hero-sub">Live patent demonstration — all modules share a single simulation engine. Every metric, pipeline step, and settlement record generated in real time from one global state.</p>
+  <div class="flex-gap" style="justify-content:center;margin-bottom:1.2rem">
+    <button class="btn btn-p" onclick="go('ops');startSim()">▶ Start Live Demo</button>
+    <button class="btn btn-ghost btn-sm" onclick="go('plans')">Plans & ROI</button>
+    <button class="btn btn-ghost btn-sm" onclick="go('tree')">Consol Tree</button>
+    <button class="btn btn-ghost btn-sm" onclick="go('patent')">Patent Shield</button>
+  </div>
+</div>
+
+<div class="g6 mb1" id="cmd-kpis">
+  <div class="kpi kpi-c"><div class="kpi-val" id="k-total">0</div><div class="kpi-lbl">Orders</div><div class="kpi-sub" id="k-rate">0 /min</div></div>
+  <div class="kpi kpi-g"><div class="kpi-val" id="k-consol">0</div><div class="kpi-lbl">Consolidated</div><div class="kpi-sub" id="k-cpct">0%</div></div>
+  <div class="kpi kpi-a"><div class="kpi-val" id="k-saved">₹0</div><div class="kpi-lbl">Saving ₹</div><div class="kpi-sub">vs baseline</div></div>
+  <div class="kpi kpi-p"><div class="kpi-val" id="k-mrev">₹0</div><div class="kpi-lbl">MIDAS Revenue</div><div class="kpi-sub" id="k-frate">₹1.50/order</div></div>
+  <div class="kpi kpi-g"><div class="kpi-val" id="k-util">0%</div><div class="kpi-lbl">Vehicle Util</div><div class="kpi-sub">vs 10–40% base</div></div>
+  <div class="kpi kpi-r"><div class="kpi-val" id="k-eta">0</div><div class="kpi-lbl">ETA Violations</div><div class="kpi-sub">zero target</div></div>
+</div>
+
+<div class="g3 mb1">
+  <div class="card"><div class="flex-between mb1"><div style="font-family:var(--fh);font-size:1.1rem;color:var(--ora)">SWIGGY</div><span class="chip ch-o">SWG</span></div>
+    <div class="g3" style="gap:.4rem">
+      <div><div class="label">Orders</div><div style="font-family:var(--fh);font-size:1rem" id="ps-ord">0</div></div>
+      <div><div class="label">Saving</div><div style="font-family:var(--fh);font-size:1rem;color:var(--acc2)" id="ps-sav">₹0</div></div>
+      <div><div class="label">Fee</div><div style="font-family:var(--fh);font-size:1rem;color:var(--amb)" id="ps-fee">₹0</div></div>
+    </div><div class="pbar mt1"><div class="pbar-f" id="ps-bar" style="background:var(--ora);width:0%"></div></div>
+  </div>
+  <div class="card"><div class="flex-between mb1"><div style="font-family:var(--fh);font-size:1.1rem;color:var(--sky)">ZEPTO</div><span class="chip ch-sky">ZPT</span></div>
+    <div class="g3" style="gap:.4rem">
+      <div><div class="label">Orders</div><div style="font-family:var(--fh);font-size:1rem" id="pz-ord">0</div></div>
+      <div><div class="label">Saving</div><div style="font-family:var(--fh);font-size:1rem;color:var(--acc2)" id="pz-sav">₹0</div></div>
+      <div><div class="label">Fee</div><div style="font-family:var(--fh);font-size:1rem;color:var(--amb)" id="pz-fee">₹0</div></div>
+    </div><div class="pbar mt1"><div class="pbar-f" id="pz-bar" style="background:var(--sky);width:0%"></div></div>
+  </div>
+  <div class="card"><div class="flex-between mb1"><div style="font-family:var(--fh);font-size:1.1rem;color:var(--acc2)">BLINKIT</div><span class="chip ch-g">BBY</span></div>
+    <div class="g3" style="gap:.4rem">
+      <div><div class="label">Orders</div><div style="font-family:var(--fh);font-size:1rem" id="pb-ord">0</div></div>
+      <div><div class="label">Saving</div><div style="font-family:var(--fh);font-size:1rem;color:var(--acc2)" id="pb-sav">₹0</div></div>
+      <div><div class="label">Fee</div><div style="font-family:var(--fh);font-size:1rem;color:var(--amb)" id="pb-fee">₹0</div></div>
+    </div><div class="pbar mt1"><div class="pbar-f" id="pb-bar" style="background:var(--acc2);width:0%"></div></div>
+  </div>
+</div>
+<div class="card">
+  <div class="flex-gap mb1"><span class="live-dot"></span><span class="label">Live Event Feed — All Modules</span></div>
+  <div class="log" id="global-log">Simulation idle — press ▶ Start Live Demo to begin...</div>
+</div>
+</div>
+
+<!-- ════════════════ OPERATIONS ════════════════ -->
+<div id="ops" class="pg">
+<div class="section-header">
+  <div class="ht">Live <span>Operations Board</span></div>
+  <span class="sh-tag">INTAKE → TRANSIT → DELIVERED</span>
+</div>
+<div class="hs">Orders progress through three stages · DELIVERED is append-only · TraceID + InvoiceID on every card · All label decisions O(1) string operations</div>
+
+<div class="flex-gap mb1" style="flex-wrap:wrap">
+  <button class="btn btn-p btn-sm" onclick="manualOrder()">+ Spawn Order</button>
+  <button class="btn btn-ghost btn-sm" onclick="burstOrders(8)">++ Burst (8)</button>
+  <button class="btn btn-ghost btn-sm" onclick="manualReturn()">+ Return Trip</button>
+  <button class="btn btn-ghost btn-sm" onclick="manualSplit()">+ Split (72kg)</button>
+  <button class="btn btn-ghost btn-sm" onclick="clearOps()">↺ Clear</button>
+  <div style="margin-left:auto;display:flex;gap:.4rem;flex-wrap:wrap">
+    <span class="chip ch-c" id="ops-mode-chip">CONSOLIDATION</span>
+    <span class="chip ch-gray" id="ops-plan-chip">PLAN C</span>
+  </div>
+</div>
+
+<div class="g6 mb1">
+  <div class="kpi kpi-c"><div class="kpi-val" id="o-total" style="font-size:1.4rem">0</div><div class="kpi-lbl">Total</div></div>
+  <div class="kpi kpi-g"><div class="kpi-val" id="o-intra" style="font-size:1.4rem;color:var(--acc2)">0</div><div class="kpi-lbl">Self-Consol</div></div>
+  <div class="kpi" style="border-color:rgba(79,195,247,.15)"><div class="kpi-val" id="o-peer" style="font-size:1.4rem;color:var(--sky)">0</div><div class="kpi-lbl">Peer P2P</div></div>
+  <div class="kpi kpi-p"><div class="kpi-val" id="o-inter" style="font-size:1.4rem;color:var(--pur)">0</div><div class="kpi-lbl">Cross-Tenant</div></div>
+  <div class="kpi kpi-o"><div class="kpi-val" id="o-split" style="font-size:1.4rem;color:var(--ora)">0</div><div class="kpi-lbl">Split Orders</div></div>
+  <div class="kpi kpi-g"><div class="kpi-val" id="o-trips" style="font-size:1.4rem;color:var(--acc2)">0</div><div class="kpi-lbl">Trips Saved</div></div>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.8rem">
+  <div>
+    <div class="flex-between" style="margin-bottom:.4rem"><span class="label" style="color:var(--amb)">INTAKE</span><span class="chip ch-a" id="cnt-i">0</span></div>
+    <div id="col-intake" style="min-height:180px"></div>
+  </div>
+  <div>
+    <div class="flex-between" style="margin-bottom:.4rem"><span class="label" style="color:var(--acc)">IN-TRANSIT</span><span class="chip ch-c" id="cnt-t">0</span></div>
+    <div id="col-transit" style="min-height:180px"></div>
+  </div>
+  <div>
+    <div class="flex-between" style="margin-bottom:.4rem"><span class="label" style="color:var(--acc2)">DELIVERED <span style="color:var(--t3);font-size:.5rem">APPEND-ONLY</span></span><span class="chip ch-g" id="cnt-d">0</span></div>
+    <div id="col-del" style="min-height:180px"></div>
+  </div>
+</div>
+</div>
+
+<!-- ════════════════ TRACE ENGINE ════════════════ -->
+<div id="trace" class="pg">
+<div class="section-header">
+  <div class="ht">Trace ID <span>Engine</span></div>
+  <span class="sh-tag">CLAIM C1 — O(1) MATCHING</span>
+</div>
+<div class="hs">5-field structured identifier · All decisions O(1) string operations · InvoiceID embedded · Search & filter across all active orders · Zero DB queries</div>
+
+<!-- Search bar -->
+<div class="card mb1">
+  <div class="flex-gap" style="gap:.5rem">
+    <div style="flex:1"><input type="search" id="trace-search" placeholder="Search TraceID or InvoiceID..." oninput="filterTraces()"></div>
+    <select id="trace-filter-plat" onchange="filterTraces()" style="width:120px">
+      <option value="">All Platforms</option>
+      <option>SWG</option><option>ZPT</option><option>BBY</option>
+    </select>
+    <select id="trace-filter-label" onchange="filterTraces()" style="width:160px">
+      <option value="">All Labels</option>
+      <option>SELF_CONSOL</option><option>PEER_CONSOL</option><option>CROSS_TENANT</option>
+      <option>RETURN_CONSOL</option><option>HEAVY_WEIGHT</option><option>DIRECT</option>
+    </select>
+    <span class="chip ch-c" id="trace-filter-count">0 results</span>
+  </div>
+</div>
+
+<div class="g2 mb1">
+  <div class="card">
+    <div class="label" style="margin-bottom:.7rem">Build Trace ID</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.6rem;margin-bottom:.8rem">
+      <div><div class="label" style="margin-bottom:2px">Platform</div>
+        <select id="tb-plat" onchange="buildTrace()"><option>SWG</option><option>ZPT</option><option>BBY</option></select></div>
+      <div><div class="label" style="margin-bottom:2px">Zone</div>
+        <select id="tb-zone" onchange="buildTrace()"><option>HYD01</option><option>HYD02</option><option>HYD03</option><option>CHN01</option><option>MUM01</option></select></div>
+      <div><div class="label" style="margin-bottom:2px">Type</div>
+        <select id="tb-type" onchange="buildTrace()"><option value="O">Outbound</option><option value="R">Return</option><option value="S">Split</option></select></div>
+    </div>
+    <div class="rng-group"><label>Weight (kg) <span id="tb-wt-d">12.5</span></label><input type="range" id="tb-wt" min="0.5" max="75" step="0.5" value="12.5" oninput="buildTrace()"></div>
+    <div class="rng-group"><label>City Tier <span id="tb-tier-d">T1 (60s)</span></label><input type="range" id="tb-tier" min="1" max="3" step="1" value="1" oninput="buildTrace()"></div>
+    <div class="label" style="margin-bottom:.4rem;margin-top:.6rem">Generated Identifier</div>
+    <div id="trace-display" style="display:flex;align-items:center;flex-wrap:wrap;gap:2px;margin-bottom:.4rem"></div>
+    <div class="flex-gap" style="margin-bottom:.5rem">
+      <span class="chip" id="tb-label-chip">ELIGIBLE</span>
+      <span style="font-size:.68rem;color:var(--t2)" id="tb-label-desc">Weight ≤ 45kg → parallel pool</span>
+    </div>
+    <div class="log" id="trace-log" style="max-height:120px">...</div>
+  </div>
+  <div class="card">
+    <div class="label" style="margin-bottom:.6rem"><span class="live-dot"></span>Last Sim Order</div>
+    <div id="last-trace-display" style="background:var(--s2);border-radius:5px;padding:.7rem;min-height:70px;margin-bottom:.6rem">
+      <div style="color:var(--t3);font-size:.72rem">Waiting...</div>
+    </div>
+    <div class="label" style="margin-bottom:.4rem">Label Decision Log</div>
+    <div class="log" id="last-trace-log" style="max-height:120px">Waiting...</div>
+  </div>
+</div>
+
+<!-- Trace results table -->
+<div class="card">
+  <div class="flex-between mb1"><span class="label"><span class="live-dot"></span>Active Trace Registry</span><span class="chip ch-gray" id="registry-count">0 entries</span></div>
+  <div id="trace-registry" style="max-height:300px;overflow-y:auto">
+    <div style="color:var(--t3);font-size:.72rem;padding:.4rem">Simulation not running — traces appear here automatically.</div>
+  </div>
+</div>
+</div>
+
+<!-- ════════════════ CONSOLIDATION TREE ════════════════ -->
+<div id="tree" class="pg">
+<div class="section-header">
+  <div class="ht">Consolidation <span>Tree Graph</span></div>
+  <span class="sh-tag">DYNAMIC NODE MAP</span>
+  <span class="novel">Novel</span>
+</div>
+<div class="hs">Live SVG graph — nodes represent orders · Edges show consolidation links · Colour = platform · Bold edge = SPAN_ID handover</div>
+
+<div class="flex-gap mb1">
+  <button class="btn btn-p btn-sm" onclick="addTreeNode()">+ Add Order Node</button>
+  <button class="btn btn-ghost btn-sm" onclick="addPeerLink()">+ Peer Consolidation</button>
+  <button class="btn btn-ghost btn-sm" onclick="addCrossTenantLink()">+ Cross-Tenant Link</button>
+  <button class="btn btn-ghost btn-sm" onclick="clearTree()">↺ Reset Tree</button>
+  <div style="margin-left:auto;display:flex;gap:.4rem;flex-wrap:wrap">
+    <span class="chip ch-sky" style="font-size:.55rem">■ SWG</span>
+    <span class="chip ch-o" style="font-size:.55rem">■ ZPT</span>
+    <span class="chip ch-g" style="font-size:.55rem">■ BBY</span>
+    <span class="chip ch-p" style="font-size:.55rem">── SPAN_ID</span>
+    <span class="chip ch-g" style="font-size:.55rem">── SELF/PEER</span>
+  </div>
+</div>
+<canvas id="tree-canvas" height="420"></canvas>
+
+<div class="g3 mt1">
+  <div class="card">
+    <div class="label mb1">Selected Node Detail</div>
+    <div id="tree-node-detail" style="font-size:.72rem;color:var(--t2)">Click a node to inspect...</div>
+  </div>
+  <div class="card">
+    <div class="label mb1">Graph Statistics</div>
+    <div class="g2" style="gap:.4rem">
+      <div><div class="label" style="font-size:.52rem">Nodes</div><div style="font-family:var(--fh);font-size:1.2rem;color:var(--acc)" id="tree-stat-nodes">0</div></div>
+      <div><div class="label" style="font-size:.52rem">Edges</div><div style="font-family:var(--fh);font-size:1.2rem;color:var(--acc2)" id="tree-stat-edges">0</div></div>
+      <div><div class="label" style="font-size:.52rem">Bundles</div><div style="font-family:var(--fh);font-size:1.2rem;color:var(--pur)" id="tree-stat-bundles">0</div></div>
+      <div><div class="label" style="font-size:.52rem">Trips Saved</div><div style="font-family:var(--fh);font-size:1.2rem;color:var(--amb)" id="tree-stat-saved">0</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="label mb1">Audit Trail</div>
+    <div class="log" id="tree-audit" style="max-height:80px">Awaiting graph events...</div>
+  </div>
+</div>
+</div>
+
+<!-- ════════════════ STRESS MODES ════════════════ -->
+<div id="stress" class="pg">
+<div class="section-header">
+  <div class="ht">Stress Mode <span>Engine</span></div>
+  <span class="sh-tag">CLAIM C13</span>
+  <span class="novel">Novel — Zero Prior Art</span>
+</div>
+<div class="hs">Dynamically switches between 3 modes based on queue depth + partner saturation + ETA breach risk · Plan D unlocks dedicated engine</div>
+
+<!-- Plan D gating banner -->
+<div id="plan-d-banner" style="display:none;background:rgba(255,179,0,.07);border:1px solid rgba(255,179,0,.3);border-radius:var(--r);padding:.8rem;margin-bottom:1rem;font-size:.75rem;color:var(--amb)">
+  <strong>⚡ PLAN D ACTIVE</strong> — Dedicated Stress Engine engaged. Real-time SLA monitoring running. Adaptive window compression enabled.
+</div>
+<div id="plan-d-locked" style="background:rgba(255,51,85,.04);border:1px solid rgba(255,51,85,.2);border-radius:var(--r);padding:.8rem;margin-bottom:1rem;font-size:.75rem;color:var(--red)">
+  <strong>🔒 Dedicated Engine Locked</strong> — The dedicated stress mode engine is a <strong>Plan D add-on only</strong> (requires active Plan B or C). Manual mode override available.
+</div>
+
+<div class="g3 mb1">
+  <div class="scard sc-c on" id="sm-cons" onclick="setModeManual('C')">
+    <div style="font-size:1.1rem;margin-bottom:.3rem">◈</div>
+    <div style="font-family:var(--fh);font-size:1.3rem;color:var(--acc2);margin-bottom:.25rem">CONSOLIDATION</div>
+    <div style="font-size:.7rem;color:var(--t2);line-height:1.5;margin-bottom:.6rem">Normal load. Full batching within city-tier window. Maximum vehicle load, minimum trips.</div>
+    <div class="label" style="margin-bottom:2px">Queue Depth</div>
+    <div class="pbar"><div class="pbar-f" id="sm-c-q" style="background:var(--acc2);width:22%"></div></div>
+    <div class="label" style="margin:.35rem 0 2px">Partner Load</div>
+    <div class="pbar"><div class="pbar-f" id="sm-c-p" style="background:var(--acc2);width:32%"></div></div>
+    <div style="margin-top:.6rem;display:flex;gap:.3rem;flex-wrap:wrap">
+      <span class="chip ch-g" id="sm-c-badge">ACTIVE</span>
+      <span class="chip ch-gray">Window: 60–180s</span>
+    </div>
+  </div>
+  <div class="scard sc-h" id="sm-hyb" onclick="setModeManual('H')">
+    <div style="font-size:1.1rem;margin-bottom:.3rem">◇</div>
+    <div style="font-family:var(--fh);font-size:1.3rem;color:var(--amb);margin-bottom:.25rem">HYBRID</div>
+    <div style="font-size:.7rem;color:var(--t2);line-height:1.5;margin-bottom:.6rem">Elevated load. SLA-critical orders dispatch direct, others batched.</div>
+    <div class="label" style="margin-bottom:2px">Queue Depth</div>
+    <div class="pbar"><div class="pbar-f" id="sm-h-q" style="background:var(--amb);width:58%"></div></div>
+    <div class="label" style="margin:.35rem 0 2px">Partner Load</div>
+    <div class="pbar"><div class="pbar-f" id="sm-h-p" style="background:var(--amb);width:66%"></div></div>
+    <div style="margin-top:.6rem;display:flex;gap:.3rem;flex-wrap:wrap">
+      <span class="chip ch-a" id="sm-h-badge">STANDBY</span>
+      <span class="chip ch-gray">Window: 30s</span>
+    </div>
+  </div>
+  <div class="scard sc-l" id="sm-lat" onclick="setModeManual('L')">
+    <div style="font-size:1.1rem;margin-bottom:.3rem">◉</div>
+    <div style="font-family:var(--fh);font-size:1.3rem;color:var(--red);margin-bottom:.25rem">LATENCY</div>
+    <div style="font-size:.7rem;color:var(--t2);line-height:1.5;margin-bottom:.6rem">High demand / agent saturation. Skip all batching. Nearest-agent assign &lt;200ms.</div>
+    <div class="label" style="margin-bottom:2px">Queue Depth</div>
+    <div class="pbar"><div class="pbar-f" id="sm-l-q" style="background:var(--red);width:91%"></div></div>
+    <div class="label" style="margin:.35rem 0 2px">Partner Load</div>
+    <div class="pbar"><div class="pbar-f" id="sm-l-p" style="background:var(--red);width:90%"></div></div>
+    <div style="margin-top:.6rem;display:flex;gap:.3rem;flex-wrap:wrap">
+      <span class="chip ch-r" id="sm-l-badge">STANDBY</span>
+      <span class="chip ch-gray">&lt;200ms assign</span>
+    </div>
+  </div>
+</div>
+<div class="g2">
+  <div class="card">
+    <div class="label mb1">Live Stress Metrics</div>
+    <div class="g4" style="gap:.4rem;margin-bottom:.7rem">
+      <div><div class="label">Queue</div><div style="font-family:var(--fh);font-size:1.3rem" id="str-queue">23</div></div>
+      <div><div class="label">Partner Load</div><div style="font-family:var(--fh);font-size:1.3rem;color:var(--amb)" id="str-load">35%</div></div>
+      <div><div class="label">ETA Breaches</div><div style="font-family:var(--fh);font-size:1.3rem;color:var(--acc2)" id="str-eta">0</div></div>
+      <div><div class="label">Assign Lat</div><div style="font-family:var(--fh);font-size:1.3rem;color:var(--pur)" id="str-lat">1.2s</div></div>
+    </div>
+    <div class="flex-gap">
+      <button class="btn btn-g btn-sm" onclick="simStress('low')">Low Load</button>
+      <button class="btn btn-sm" style="background:var(--amb);color:#000" onclick="simStress('med')">Surge</button>
+      <button class="btn btn-sm" style="background:var(--red);color:#fff" onclick="simStress('high')">Crisis</button>
+    </div>
+  </div>
+  <div class="card">
+    <div class="label mb1"><span class="live-dot"></span>Mode Switch Log</div>
+    <div class="log" id="stress-log" style="max-height:150px">Awaiting simulation...</div>
+  </div>
+</div>
+</div>
+
+<!-- ════════════════ RIDERS ════════════════ -->
+<div id="riders" class="pg">
+<div class="section-header"><div class="ht">Rider <span>Network</span></div><span class="sh-tag">CLAIM C8</span></div>
+<div class="hs">Riders are tokenized — MIDAS never stores rider PII · Platforms see: token, zone, ETA, capacity · Cross-platform assignment via SPAN_ID only</div>
+
+<div class="card mb1" style="border-color:rgba(0,212,255,.18)">
+  <div class="label mb1" style="color:var(--acc)">Anonymous Assignment Protocol — Claim C8</div>
+  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:.6rem">
+    <div style="background:var(--s2);border-radius:5px;padding:.7rem;text-align:center">
+      <div style="font-size:1.1rem;margin-bottom:.25rem">📱</div>
+      <div style="font-family:var(--fh);font-size:.8rem;color:var(--acc);margin-bottom:.25rem">1. CONNECT</div>
+      <div style="font-size:.62rem;color:var(--t3);line-height:1.5">Platform sends: agent_token, zone, capacity_kg, ETA. No name. No phone. No real ID.</div>
+    </div>
+    <div style="background:var(--s2);border-radius:5px;padding:.7rem;text-align:center">
+      <div style="font-size:1.1rem;margin-bottom:.25rem">🔒</div>
+      <div style="font-family:var(--fh);font-size:.8rem;color:var(--acc2);margin-bottom:.25rem">2. TOKEN</div>
+      <div style="font-size:.62rem;color:var(--t3);line-height:1.5">MIDAS stores AGT_TOKEN_[hash] only. Maps to platform for settlement. Never crosses platforms.</div>
+    </div>
+    <div style="background:var(--s2);border-radius:5px;padding:.7rem;text-align:center">
+      <div style="font-size:1.1rem;margin-bottom:.25rem">⚡</div>
+      <div style="font-family:var(--fh);font-size:.8rem;color:var(--pur);margin-bottom:.25rem">3. SIGNAL</div>
+      <div style="font-size:.62rem;color:var(--t3);line-height:1.5">MIDAS sends: {agent_token, order_tokens[]}. Platform dispatches own rider. MIDAS never dispatches.</div>
+    </div>
+    <div style="background:var(--s2);border-radius:5px;padding:.7rem;text-align:center">
+      <div style="font-size:1.1rem;margin-bottom:.25rem">🤝</div>
+      <div style="font-family:var(--fh);font-size:.8rem;color:var(--amb);margin-bottom:.25rem">4. HANDOVER</div>
+      <div style="font-size:.62rem;color:var(--t3);line-height:1.5">SPAN_ID only. Relay rider gets: GPS + masked phone (last 5 digits). Temp session destroyed on delivery.</div>
+    </div>
+    <div style="background:var(--s2);border-radius:5px;padding:.7rem;text-align:center">
+      <div style="font-size:1.1rem;margin-bottom:.25rem">✅</div>
+      <div style="font-family:var(--fh);font-size:.8rem;color:var(--acc2);margin-bottom:.25rem">5. DESTROY</div>
+      <div style="font-size:.62rem;color:var(--t3);line-height:1.5">On delivery: session cryptographically destroyed. Secure enclave erased. DPDP 2023 compliant.</div>
+    </div>
+  </div>
+</div>
+
+<div class="flex-between mb1">
+  <div class="flex-gap"><span class="label">Live Rider Pool</span><span class="chip ch-c" id="rider-count">0</span></div>
+  <div class="flex-gap"><span class="chip ch-g" id="r-idle">0 Idle</span><span class="chip ch-a" id="r-busy">0 Busy</span><span class="chip ch-r" id="r-hold">0 Hold</span></div>
+</div>
+<div id="rider-grid" class="g4" style="gap:.5rem;margin-bottom:1.2rem"></div>
+<div class="section-header"><div class="ht" style="font-size:1.2rem">SPAN_ID <span>Handovers</span></div></div>
+<div id="span-list"></div>
+</div>
+
+<!-- ════════════════ SETTLEMENT ════════════════ -->
+<div id="settle" class="pg">
+<div class="section-header"><div class="ht">Settlement <span>Ledger</span></div><span class="sh-tag">REAL-TIME RECONCILIATION</span></div>
+<div class="hs">Cross-platform payment records · Who owes whom · MIDAS fee auto-deducted · InvoiceID mapped to every settlement · All amounts in ₹</div>
+
+<div class="g4 mb1">
+  <div class="kpi kpi-a"><div class="kpi-val" id="sl-total">₹0</div><div class="kpi-lbl">Total Settled</div></div>
+  <div class="kpi kpi-p"><div class="kpi-val" id="sl-midas">₹0</div><div class="kpi-lbl">MIDAS Revenue</div></div>
+  <div class="kpi kpi-g"><div class="kpi-val" id="sl-count">0</div><div class="kpi-lbl">Transactions</div></div>
+  <div class="kpi kpi-c"><div class="kpi-val" id="sl-inter">0</div><div class="kpi-lbl">Cross-Platform</div></div>
+</div>
+
+<div class="card mb1" style="background:rgba(124,77,255,.03);border-color:rgba(124,77,255,.18)">
+  <div class="label mb1" style="color:var(--pur)">Settlement Flow — Plan C Example</div>
+  <div class="g4" style="font-size:.72rem">
+    <div><div class="label" style="margin-bottom:2px">1. Order Placed</div><div style="color:var(--t2)">Customer ₹350 on Swiggy. Trip fee: ₹38. InvoiceID: INV-SWG-xxxxx</div></div>
+    <div><div class="label" style="margin-bottom:2px">2. Cross-Tenant Match</div><div style="color:var(--t2)">MIDAS matches with ZPT in same zone. Zepto rider dispatched for both. SPAN_ID created.</div></div>
+    <div><div class="label" style="margin-bottom:2px">3. Split Calculation</div><div style="color:var(--t2)">SWG owes ZPT: ₹14 (40% of trip). MIDAS fee: ₹3. SWG saves net ₹21.</div></div>
+    <div><div class="label" style="margin-bottom:2px">4. Auto-Reconciled</div><div style="color:var(--t2)">InvoiceID linked to settlement. Auto-deducted from SWG wallet. ZPT: +₹14. MIDAS: +₹3.</div></div>
+  </div>
+</div>
+
+<div class="srow srow-hd">
+  <div>Time</div><div>InvoiceID</div><div>From</div><div>Via</div>
+  <div>Trip ₹</div><div>Owes ₹</div><div>Earns ₹</div><div>Status</div>
+</div>
+<div id="settle-list" style="max-height:380px;overflow-y:auto"></div>
+</div>
+
+<!-- ════════════════ BALANCE SHEET ════════════════ -->
+<div id="balance" class="pg">
+<div class="section-header"><div class="ht">Platform <span>Balance Sheet</span></div><span class="sh-tag">LIVE P&L</span></div>
+<div class="hs">Live P&L per platform and MIDAS · Refreshes every 3s · Based on active plan's consolidation logic · All figures ₹</div>
+
+<div class="g4 mb1">
+  <div class="kpi kpi-a"><div class="kpi-val" id="bs-tsave">₹0</div><div class="kpi-lbl">System Saving</div><div class="kpi-sub">vs no-MIDAS</div></div>
+  <div class="kpi kpi-g"><div class="kpi-val" id="bs-mprofit">₹0</div><div class="kpi-lbl">MIDAS Net Rev</div><div class="kpi-sub">after infra costs</div></div>
+  <div class="kpi kpi-c"><div class="kpi-val" id="bs-trips">0</div><div class="kpi-lbl">Trips Eliminated</div><div class="kpi-sub">journeys saved</div></div>
+  <div class="kpi kpi-p"><div class="kpi-val" id="bs-cpo">0%</div><div class="kpi-lbl">CPO Reduction</div><div class="kpi-sub">cost per order</div></div>
+</div>
+
+<div class="card mb1" style="overflow-x:auto">
+  <table class="tbl" id="bs-main">
+    <thead><tr>
+      <th style="text-align:left">Line Item</th>
+      <th>SWIGGY</th><th>ZEPTO</th><th>BLINKIT</th><th>MIDAS</th><th>SYSTEM</th>
+    </tr></thead>
+    <tbody id="bs-tbody"></tbody>
+  </table>
+</div>
+
+<div class="section-header"><div class="ht" style="font-size:1.2rem">1M Orders/Day <span>Annual Projection</span></div></div>
+<div class="card" style="overflow-x:auto">
+  <table class="tbl">
+    <thead><tr><th style="text-align:left">Metric</th><th>WITHOUT MIDAS</th><th>WITH MIDAS (Plan C)</th><th>DELTA</th></tr></thead>
+    <tbody>
+      <tr><td>Trips per day</td><td class="neg">10,00,000</td><td class="pos">6,20,000</td><td class="pos">−3,80,000 trips/day</td></tr>
+      <tr><td>Vehicle utilisation</td><td class="neg">10–40%</td><td class="pos">85–98%</td><td class="pos">+55–58 pp</td></tr>
+      <tr><td>Cost per trip</td><td class="neg">₹38–55</td><td class="pos">₹23–31</td><td class="pos">−38.9% CPO</td></tr>
+      <tr><td>Daily logistics cost</td><td class="neg">₹3.8 Cr</td><td class="pos">₹2.32 Cr</td><td class="pos">₹1.48 Cr saved/day</td></tr>
+      <tr><td>Annual logistics cost</td><td class="neg">₹1,387 Cr</td><td class="pos">₹847 Cr</td><td class="hl">₹540 Cr saved/year</td></tr>
+      <tr><td>Empty return trips</td><td class="neg">10,00,000/day</td><td class="pos">6,00,000/day</td><td class="pos">40% eliminated</td></tr>
+      <tr><td>MIDAS fee revenue</td><td class="neu">—</td><td class="pos">₹15L/day</td><td class="pos">₹54.75 Cr/year</td></tr>
+      <tr><td>Platform net saving</td><td class="neu">—</td><td class="pos">₹1.33 Cr/day</td><td class="hl">₹485.45 Cr/year net</td></tr>
+    </tbody>
+  </table>
+</div>
+</div>
+
+<!-- ════════════════ PLANS & ROI ════════════════ -->
+<div id="plans" class="pg">
+<div class="section-header"><div class="ht">Subscription <span>Plans & ROI</span></div><span class="sh-tag">STRICT TIER HIERARCHY</span></div>
+<div class="hs">4 tiers with strict hierarchical ROI · Plan D is an add-on only (requires B or C) · Each tier has mathematically distinct consolidation scope</div>
+
+<!-- Tier hierarchy explainer -->
+<div class="card mb1" style="border-color:rgba(0,212,255,.2)">
+  <div class="label mb1" style="color:var(--acc)">Plan Hierarchy — Consolidation Scope Increases Per Tier</div>
+  <div style="display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.72rem">
+    <div style="background:rgba(79,195,247,.07);border:1px solid rgba(79,195,247,.2);border-radius:4px;padding:6px 10px">
+      <div style="color:var(--sky);font-family:var(--fh);font-size:.9rem;font-weight:700">PLAN A</div>
+      <div style="color:var(--t3);font-size:.6rem">Internal Self-Merge</div>
+      <div style="color:var(--t2);font-size:.62rem;margin-top:2px">Scope: 1 company</div>
+    </div>
+    <div style="color:var(--t3);font-size:.8rem">→</div>
+    <div style="background:rgba(0,230,118,.06);border:1px solid rgba(0,230,118,.18);border-radius:4px;padding:6px 10px">
+      <div style="color:var(--acc2);font-family:var(--fh);font-size:.9rem;font-weight:700">PLAN B</div>
+      <div style="color:var(--t3);font-size:.6rem">Bilateral Peer P2P</div>
+      <div style="color:var(--t2);font-size:.62rem;margin-top:2px">Scope: 1 fixed partner</div>
+    </div>
+    <div style="color:var(--t3);font-size:.8rem">→</div>
+    <div style="background:rgba(124,77,255,.07);border:1px solid rgba(124,77,255,.2);border-radius:4px;padding:6px 10px">
+      <div style="color:var(--pur);font-family:var(--fh);font-size:.9rem;font-weight:700">PLAN C</div>
+      <div style="color:var(--t3);font-size:.6rem">Full Ecosystem Network</div>
+      <div style="color:var(--t2);font-size:.62rem;margin-top:2px">Scope: all clients</div>
+    </div>
+    <div style="color:var(--t3);font-size:.8rem">⊕</div>
+    <div style="background:rgba(255,179,0,.07);border:1px solid rgba(255,179,0,.25);border-radius:4px;padding:6px 10px">
+      <div style="color:var(--amb);font-family:var(--fh);font-size:.9rem;font-weight:700">PLAN D</div>
+      <div style="color:var(--t3);font-size:.6rem">Surge Add-On (B/C only)</div>
+      <div style="color:var(--t2);font-size:.62rem;margin-top:2px">Requires active B or C</div>
+    </div>
+  </div>
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.9rem;margin-bottom:1.4rem">
+
+  <div class="plan-card pc-a" id="pc-A" onclick="setPlan('A')">
+    <div class="plan-tag" style="background:rgba(79,195,247,.08);color:var(--sky);border:1px solid rgba(79,195,247,.2)">PLAN A · INTER-SELF</div>
+    <div class="plan-name" style="color:var(--sky)">SELF CONSOLIDATION</div>
+    <div class="plan-price" style="color:var(--sky)">₹0.75<span style="font-size:.9rem;color:var(--t3)">/order</span></div>
+    <div class="plan-desc">Internal optimization within one company's ecosystem. Merges multiple warehouse or dark-store orders for a single brand. Lowest fee, lowest ROI multiplier.</div>
+    <div class="plan-feat">
+      <div class="pf pf-on">Internal self-consolidation</div>
+      <div class="pf pf-on">Return-trip matching (own riders)</div>
+      <div class="pf pf-on">City-tier windows (60–180s)</div>
+      <div class="pf pf-on">Order splitting + parent trace</div>
+      <div class="pf pf-off">Bilateral partner consolidation</div>
+      <div class="pf pf-off">Cross-tenant network matching</div>
+      <div class="pf pf-off">SPAN_ID inter-carrier handover</div>
+      <div class="pf pf-off">Cross-platform settlement</div>
+    </div>
+    <div class="plan-roi">
+      <div class="label" style="margin-bottom:3px">ROI at 50K orders/day</div>
+      <div style="font-family:var(--fh);font-size:1rem;color:var(--sky)">₹1.8 Cr / year saving</div>
+      <div style="font-size:.6rem;color:var(--t3)">Fee: ₹1.4 Cr/yr · Net: ₹0.4 Cr · Consol Rate: ~15%</div>
+    </div>
+  </div>
+
+  <div class="plan-card pc-b" id="pc-B" onclick="setPlan('B')">
+    <div class="plan-tag" style="background:rgba(0,230,118,.07);color:var(--acc2);border:1px solid rgba(0,230,118,.18)">PLAN B · PEER P2P</div>
+    <div class="plan-name" style="color:var(--acc2)">BILATERAL PARTNER</div>
+    <div class="plan-price" style="color:var(--acc2)">₹1.00<span style="font-size:.9rem;color:var(--t3)">/order</span></div>
+    <div class="plan-desc">Strategic P2P consolidation. Client selects ONE specific partner to merge orders with (e.g., Zepto + Instamart only). Fixed bilateral pairing. Medium ROI.</div>
+    <div class="plan-feat">
+      <div class="pf pf-on">Self-consolidation (Plan A incl.)</div>
+      <div class="pf pf-on">ONE fixed partner bilateral</div>
+      <div class="pf pf-on">Return-trip matching</div>
+      <div class="pf pf-on">City-tier windows (60–180s)</div>
+      <div class="pf pf-on">Order splitting + parent trace</div>
+      <div class="pf pf-on">SPAN_ID for chosen partner</div>
+      <div class="pf pf-off">Cross-tenant full-network match</div>
+    </div>
+    <div class="plan-roi">
+      <div class="label" style="margin-bottom:3px">ROI at 50K orders/day</div>
+      <div style="font-family:var(--fh);font-size:1rem;color:var(--acc2)">₹4.7 Cr / year saving</div>
+      <div style="font-size:.6rem;color:var(--t3)">Fee: ₹1.83 Cr/yr · Net: ₹2.87 Cr · Consol Rate: ~28%</div>
+    </div>
+  </div>
+
+  <div class="plan-card pc-c active" id="pc-C" onclick="setPlan('C')">
+    <div class="plan-tag" style="background:rgba(124,77,255,.08);color:var(--pur);border:1px solid rgba(124,77,255,.22)">PLAN C · POPULAR · HIGHEST BASE ROI</div>
+    <div class="plan-name" style="color:var(--pur)">CROSS-TENANT NETWORK</div>
+    <div class="plan-price" style="color:var(--pur)">₹1.50<span style="font-size:.9rem;color:var(--t3)">/order</span></div>
+    <div class="plan-desc">Global network optimization. Engine merges orders across ALL clients in the MIDAS ecosystem. Maximum consolidation scope = highest base ROI. Most deployed plan.</div>
+    <div class="plan-feat">
+      <div class="pf pf-on">All Plan B features included</div>
+      <div class="pf pf-on">Full cross-tenant matching</div>
+      <div class="pf pf-on">Unlimited partner connections</div>
+      <div class="pf pf-on">Dynamic SPAN_ID generation</div>
+      <div class="pf pf-on">Real-time settlement ledger</div>
+      <div class="pf pf-on">InvoiceID audit trail</div>
+      <div class="pf pf-on">Cross-platform reconciliation</div>
+    </div>
+    <div class="plan-roi">
+      <div class="label" style="margin-bottom:3px">ROI at 50K orders/day</div>
+      <div style="font-family:var(--fh);font-size:1rem;color:var(--pur)">₹9.4 Cr / year saving</div>
+      <div style="font-size:.6rem;color:var(--t3)">Fee: ₹2.74 Cr/yr · Net: ₹6.66 Cr · Consol Rate: ~38%</div>
+    </div>
+  </div>
+
+  <div class="plan-card pc-d" id="pc-D" onclick="setPlanD()">
+    <div class="add-on-badge">⚡ Add-On Only — Requires active Plan B or Plan C subscription. Not available standalone.</div>
+    <div class="plan-tag" style="background:rgba(255,179,0,.08);color:var(--amb);border:1px solid rgba(255,179,0,.22)">PLAN D · SURGE ADD-ON</div>
+    <div class="plan-name" style="color:var(--amb)">DEDICATED SURGE ENGINE</div>
+    <div class="plan-price" style="color:var(--amb)">+₹1.00<span style="font-size:.9rem;color:var(--t3)">/order (on top of B/C)</span></div>
+    <div class="plan-desc">Activates a dedicated optimization engine for prioritised, hyper-dense processing during high-demand surges. Preserves SLA when other clients are throttled.</div>
+    <div class="plan-feat">
+      <div class="pf pf-on">All Plan B/C features retained</div>
+      <div class="pf pf-on">Dedicated processing engine</div>
+      <div class="pf pf-on">Latency mode (&lt;200ms assign)</div>
+      <div class="pf pf-on">Real-time SLA monitoring</div>
+      <div class="pf pf-on">Priority queue management</div>
+      <div class="pf pf-on">Adaptive window compression</div>
+      <div class="pf pf-on">White-glove integration SLA</div>
+    </div>
+    <div class="plan-roi" id="plan-d-roi-note">
+      <div style="color:var(--amb);font-size:.68rem">Select Plan B or C first, then upgrade to Plan D.</div>
+    </div>
+  </div>
+</div>
+
+<div class="section-header"><div class="ht" style="font-size:1.2rem">Custom <span>ROI Calculator</span></div></div>
+<div class="g2">
+  <div class="card">
+    <div class="label mb1">Parameters</div>
+    <div class="rng-group"><label>Daily Orders <span id="rc-ord-d">5,00,000</span></label><input type="range" id="rc-orders" min="50000" max="2000000" step="50000" value="500000" oninput="calcROI()"></div>
+    <div class="rng-group"><label>Baseline CPO (₹) <span id="rc-cpo-d">₹38</span></label><input type="range" id="rc-cpo" min="25" max="65" step="1" value="38" oninput="calcROI()"></div>
+    <div class="rng-group"><label>Consolidation Rate <span id="rc-rate-d">38%</span></label><input type="range" id="rc-rate" min="10" max="60" step="1" value="38" oninput="calcROI()"></div>
+    <div class="label" style="margin-bottom:.4rem;margin-top:.4rem">Base Plan</div>
+    <div class="flex-gap" id="roi-plan-btns" style="flex-wrap:wrap">
+      <button id="roi-A" class="btn btn-ghost btn-sm" onclick="setPlan('A')">Plan A ₹0.75</button>
+      <button id="roi-B" class="btn btn-ghost btn-sm" onclick="setPlan('B')">Plan B ₹1.00</button>
+      <button id="roi-C" class="btn btn-p btn-sm" onclick="setPlan('C')">Plan C ₹1.50</button>
+    </div>
+    <div class="label" style="margin-bottom:.3rem;margin-top:.6rem">Surge Add-On</div>
+    <button id="roi-D" class="btn btn-ghost btn-sm" onclick="setPlanD()" style="opacity:.5">Plan D +₹1.00 (upgrade)</button>
+    <div style="font-size:.6rem;color:var(--t3);margin-top:.3rem" id="plan-d-eligibility">Select Plan B or C to enable Plan D upgrade</div>
+  </div>
+  <div class="card"><div class="label mb1">Annual Impact</div><div id="roi-output"></div></div>
+</div>
+</div>
+
+<!-- ════════════════ PATENT SHIELD ════════════════ -->
+<div id="patent" class="pg">
+<div class="section-header"><div class="ht">Patent <span>Shield</span></div><span class="sh-tag">APP 202641054304 · CBR 35905</span></div>
+<div class="hs">All prior art permanently neutralised · 14 claims across 7 novel technical contributions · Section 3(k) defence fully mapped</div>
+
+<div class="g2 mb1">
+  <div style="background:rgba(0,230,118,.03);border:1px solid rgba(0,230,118,.18);border-radius:var(--rx);padding:1rem">
+    <div style="font-size:.82rem;font-weight:700;color:var(--acc2);margin-bottom:.4rem">🛡 Differentiation Coverage</div>
+    <div style="font-size:.72rem;color:var(--t2);line-height:1.65">No single prior art document discloses more than 2 of MIDAS's 14 patent elements. The 4 v2 additions (city-tier window, order splitting, stress mode engine, SpanID tracing) are absent from ALL identified prior art.</div>
+  </div>
+  <div style="background:rgba(124,77,255,.03);border:1px solid rgba(124,77,255,.18);border-radius:var(--rx);padding:1rem">
+    <div style="font-size:.82rem;font-weight:700;color:var(--pur);margin-bottom:.4rem">⚖ Section 3(k) Defence</div>
+    <div style="font-size:.72rem;color:var(--t2);line-height:1.65">Per Ferid Allani v. UoI (2020) and Ab Initio Technology v. Controller (2024): each claim anchors to a measurable physical hardware effect — GPS delivery, QR scanner event, device storage erasure, DB write. Technical system, not algorithm.</div>
+  </div>
+</div>
+
+<div class="label mb1">Prior Art Analysis — 6 Documents · All Neutralised</div>
+<div id="pa-list"></div>
+
+<div class="div"></div>
+<div class="section-header"><div class="ht" style="font-size:1.2rem">Section 3(k) <span>Hardware Anchoring</span></div></div>
+<div class="card" style="overflow-x:auto">
+  <table class="tbl">
+    <thead><tr><th style="text-align:left">Claim</th><th style="text-align:left">Technical Element</th><th style="text-align:left">Measurable Physical Effect</th><th style="text-align:left">Hardware</th></tr></thead>
+    <tbody>
+      <tr><td class="pos">C1</td><td>Trace ID 5-field string</td><td class="pos">Server RAM reduced O(n²)→O(1). Measurable CPU cycle reduction per match.</td><td class="neu">DB server CPU + memory bus</td></tr>
+      <tr><td class="pos">C2</td><td>Parallel match + ETA tiebreak</td><td class="pos">GPS-enabled mobile ETA value used as hardware input for deterministic tiebreak.</td><td class="neu">GPS chipset in rider device</td></tr>
+      <tr><td class="pos">C3</td><td>Return-trip matching</td><td class="pos">Physical vehicle journey eliminated. Fuel consumption measurably reduced.</td><td class="neu">Rider device receives route update</td></tr>
+      <tr><td class="pos">C7</td><td>3-check atomic QR transfer</td><td class="pos">QR optical scanner triggers atomic DB write. Parcel cannot be in two custodies simultaneously.</td><td class="neu">QR optical scanner on rider device</td></tr>
+      <tr><td class="pos">C8</td><td>Temp session destruction</td><td class="pos">Data erased from device secure enclave on delivery. Hardware storage physically altered.</td><td class="neu">Device secure enclave</td></tr>
+      <tr><td class="pos">C12</td><td>City-tier window (New)</td><td class="pos">Consolidation window adjustment causes different network topology applied to physical dispatch infrastructure.</td><td class="neu">Dispatch server + rider device</td></tr>
+      <tr><td class="pos">C13</td><td>Stress mode switching (New)</td><td class="pos">Mode switch causes physical change in dispatch: batching suspended, nearest-agent algorithm activated, notification pattern changes.</td><td class="neu">All rider devices in zone</td></tr>
+    </tbody>
+  </table>
+</div>
+</div>
+
+<!-- ════════════════ ABOUT US ════════════════ -->
+<div id="about" class="pg">
+<div class="about-hero">
+  <div style="font-family:var(--fm);font-size:.58rem;letter-spacing:.14em;color:var(--acc);margin-bottom:.7rem">INVENTORS · VOOTLA GOKUL PRABHU & RALLABANDI SARALA KUMARI · HYDERABAD, TELANGANA</div>
+  <h1 class="about-h">THE MINUTES LAYER</h1>
+  <p class="about-sub">MIDAS — Multi-Platform Integrated Delivery Aggregation System — is the intelligence layer that operates between the seconds a delivery order is placed and the minutes it takes to consolidate, route, and dispatch. We make the last mile economically and physically efficient.</p>
+</div>
+
+<div class="g2 mb1">
+  <div class="card">
+    <div class="label mb1" style="color:var(--acc)">The Minutes Layer Framework</div>
+    <div style="font-size:.78rem;color:var(--t2);line-height:1.7;margin-bottom:.9rem">The "Minutes Layer" is the temporal window between order placement and dispatch initiation — typically 60–180 seconds depending on city tier. MIDAS occupies this window entirely.</div>
+    <div style="display:flex;flex-direction:column;gap:.5rem">
+      <div style="background:var(--s2);border-radius:4px;padding:.65rem;border-left:2px solid var(--acc)">
+        <div style="font-family:var(--fh);font-size:.9rem;color:var(--acc)">T+0s — ORDER INTAKE</div>
+        <div style="font-size:.68rem;color:var(--t3);margin-top:2px">TraceID generated. Weight, zone, tier, platform encoded in 5-field string. O(1) classification in &lt;1ms.</div>
+      </div>
+      <div style="background:var(--s2);border-radius:4px;padding:.65rem;border-left:2px solid var(--acc2)">
+        <div style="font-family:var(--fh);font-size:.9rem;color:var(--acc2)">T+2s — PARALLEL MATCH</div>
+        <div style="font-size:.68rem;color:var(--t3);margin-top:2px">Simultaneous intra, peer, and cross-tenant matching runs in parallel. Best complement selected via ETA tiebreak.</div>
+      </div>
+      <div style="background:var(--s2);border-radius:4px;padding:.65rem;border-left:2px solid var(--pur)">
+        <div style="font-family:var(--fh);font-size:.9rem;color:var(--pur)">T+60–180s — DISPATCH</div>
+        <div style="font-size:.68rem;color:var(--t3);margin-top:2px">Consolidated batch dispatched. Vehicle utilisation: 85–98%. Up to 38.9% CPO reduction. InvoiceID sealed to TraceID.</div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="label mb1" style="color:var(--acc2)">Automated Footwear Processing Hardware</div>
+    <div style="font-size:.78rem;color:var(--t2);line-height:1.7;margin-bottom:.8rem">MIDAS was originally prototyped on automated conveyor and scanning infrastructure used in footwear manufacturing and dispatch. The patent covers the generalised delivery aggregation layer now deployed across FMCG, QSR, and q-commerce verticals.</div>
+    <div class="g2" style="gap:.5rem">
+      <div class="hw-card" style="border-top-color:var(--acc)">
+        <div class="label mb1" style="color:var(--acc)">QR Scanner Integration</div>
+        <div style="font-size:.68rem;color:var(--t3);line-height:1.5">3-check atomic QR handover (Claim C7). Compatible with industrial barcode scanners and mobile QR scanners.</div>
+      </div>
+      <div class="hw-card" style="border-top-color:var(--acc2)">
+        <div class="label mb1" style="color:var(--acc2)">Secure Enclave</div>
+        <div style="font-size:.68rem;color:var(--t3);line-height:1.5">Rider device secure enclave for temporary cross-platform session. DPDP 2023 compliant architecture.</div>
+      </div>
+      <div class="hw-card" style="border-top-color:var(--pur)">
+        <div class="label mb1" style="color:var(--pur)">GPS Chipset</div>
+        <div style="font-size:.68rem;color:var(--t3);line-height:1.5">ETA tiebreak from GPS chipset (Claim C2). Physical hardware input used as deterministic decision variable.</div>
+      </div>
+      <div class="hw-card" style="border-top-color:var(--amb)">
+        <div class="label mb1" style="color:var(--amb)">Dispatch Server</div>
+        <div style="font-size:.68rem;color:var(--t3);line-height:1.5">City-tier window engine runs on dispatch server. Mode switch causes measurable physical change in network topology.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section-header"><div class="ht" style="font-size:1.2rem">2026 <span>Patent Timeline</span></div></div>
+<div id="about-timeline">
+  <div class="timeline-item"><div class="tl-date">JAN 2026</div><div><div class="tl-title">System Architecture Complete</div><div class="tl-body">Core TraceID engine, parallel match algorithm, and stress mode switcher finalized. Prototype deployed on footwear processing conveyor infrastructure in Hyderabad.</div></div></div>
+  <div class="timeline-item" style="border-left-color:var(--acc2)"><div class="tl-date">MAR 2026</div><div><div class="tl-title">4 Novel Claims Added (v2)</div><div class="tl-body">City-tier consolidation window (C12), order splitting with parent-child TraceID (C14), stress mode engine (C13), and SPAN_ID inter-carrier tracing (C7) added to the specification.</div></div></div>
+  <div class="timeline-item" style="border-left-color:var(--pur)"><div class="tl-date">APR 2026</div><div><div class="tl-title">Patent Filed — App 202641054304</div><div class="tl-body">Application No. 202641054304 filed at Chennai Patent Office. CBR 35905 issued. Priority date: April 2026. 14 claims across 7 novel technical contributions. Section 3(k) hardware anchoring table submitted.</div></div></div>
+  <div class="timeline-item" style="border-left-color:var(--amb)"><div class="tl-date">MAY 2026</div><div><div class="tl-title">Live Dashboard Demo — MIDAS v4.0</div><div class="tl-body">Patent showcase dashboard launched. Full interactive simulation of all 14 claims. Real-time consolidation tree, audit trail, and ROI calculator demonstrating commercial viability at national scale (1M+ orders/day).</div></div></div>
+</div>
+
+<div class="section-header" style="margin-top:1.2rem"><div class="ht" style="font-size:1.2rem">Commercial <span>Deployment</span></div></div>
+<div class="g3">
+  <div class="card" style="border-top:3px solid var(--sky)">
+    <div style="font-family:var(--fh);font-size:1rem;color:var(--sky);margin-bottom:.4rem">TARGET VERTICALS</div>
+    <div style="font-size:.72rem;color:var(--t2);line-height:1.7">Quick Commerce · Food Delivery · FMCG Last Mile · Footwear & Apparel Dispatch · B2B Logistics · Pharmaceutical Cold Chain</div>
+  </div>
+  <div class="card" style="border-top:3px solid var(--pur)">
+    <div style="font-family:var(--fh);font-size:1rem;color:var(--pur);margin-bottom:.4rem">INTEGRATION MODEL</div>
+    <div style="font-size:.72rem;color:var(--t2);line-height:1.7">API-first. No hardware changes required for platforms. 48–72 hour integration via webhook + REST. Rider apps: SDK drop-in for token handshake.</div>
+  </div>
+  <div class="card" style="border-top:3px solid var(--acc2)">
+    <div style="font-family:var(--fh);font-size:1rem;color:var(--acc2);margin-bottom:.4rem">REGULATORY POSTURE</div>
+    <div style="font-size:.72rem;color:var(--t2);line-height:1.7">DPDP 2023 compliant by design. No PII stored. Competition Commission of India (CCI) neutral — MIDAS does not fix prices or restrict supply. Pure orchestration layer.</div>
+  </div>
+</div>
+</div>
+
+</main>
+
+<footer>
+  MIDAS v4.0 — Application No. 202641054304 &nbsp;·&nbsp; CBR 35905 &nbsp;·&nbsp; Chennai Patent Office &nbsp;·&nbsp; Priority: April 2026<br>
+  Inventors: Vootla Gokul Prabhu &amp; Rallabandi Sarala Kumari &nbsp;·&nbsp; Hyderabad, Telangana, India<br>
+  All modules share a single global simulation engine — metrics, pipeline, tree, stress mode, settlements, and balance sheet are fully synchronised.<br>
+  CONFIDENTIAL — PATENT PENDING — DO NOT DISCLOSE WITHOUT AUTHORISATION
+</footer>
+
+<script>
+/* ══════════════════════════════════════════════════════
+   MIDAS v4 — GLOBAL STATE + SIMULATION ENGINE
+   Plan Hierarchy:
+     A = Self-consolidation (same company, any warehouse)
+     B = Bilateral peer (one fixed partner)
+     C = Full cross-tenant (all ecosystem clients)
+     D = Add-on for B/C only (dedicated surge engine)
+══════════════════════════════════════════════════════ */
+var G = {
+  sim: false, iv: null, tick: 0,
+  plan: 'C', planD: false, // planD is an add-on on top of B or C
+  mode: 'C', // C H L
+  
+  // Plan fee rates
+  fee: {A:0.75, B:1.00, C:1.50, D_ADDON:1.00},
+  
+  // Plan consolidation rates (determines ROI impact)
+  consolRate: {A:0.15, B:0.28, C:0.38},
+  
+  // Counters
+  total:0, selfConsol:0, peerConsol:0, crossTenant:0, returnMatch:0, split:0, direct:0, trips:0,
+  eta:0, midasRev:0, settleTotal:0,
+  
+  plat:{
+    SWG:{orders:0,saving:0,feePaid:0,debit:0,credit:0,tripCost:0,baseline:0},
+    ZPT:{orders:0,saving:0,feePaid:0,debit:0,credit:0,tripCost:0,baseline:0},
+    BBY:{orders:0,saving:0,feePaid:0,debit:0,credit:0,tripCost:0,baseline:0},
+  },
+  
+  intake:[], transit:[], delivered:[],
+  settlements:[], riders:[], spans:[],
+  recentTs:[],
+  queue:23, pload:35, etaB:0,
+  
+  // For tree
+  treeNodes:[], treeEdges:[],
+};
+
+var PLATS=['SWG','ZPT','BBY'];
+var ZONES=['HYD01','HYD02','HYD03','CHN01','MUM01'];
+var PLATCOL={SWG:'#ff6422',ZPT:'#4fc3f7',BBY:'#00e676'};
+var PLATCLS={SWG:'ch-o',ZPT:'ch-sky',BBY:'ch-g'};
+var TRIP=38, CONSOL_TRIP=23, INFRA=0.25;
+var invSeq=0, ordSeq=0;
+
+function nOID(){return 'ORD'+String(++ordSeq).padStart(5,'0');}
+function nINV(plat){return 'INV-'+plat+'-'+String(++invSeq).padStart(5,'0');}
+function p2(n){return String(n).padStart(2,'0');}
+function now(){var d=new Date();return p2(d.getHours())+':'+p2(d.getMinutes())+':'+p2(d.getSeconds());}
+function ts(){var d=new Date();return p2(d.getHours())+p2(d.getMinutes())+p2(d.getSeconds());}
+function rnd(a,b){return Math.random()*(b-a)+a;}
+function ri(a,b){return Math.floor(rnd(a,b+1));}
+function pick(a){return a[Math.floor(Math.random()*a.length)];}
+function fmt(n){
+  if(n>=1e7) return '₹'+Math.round(n/1e7)+'Cr';
+  if(n>=1e5) return '₹'+Math.round(n/1e5)+'L';
+  if(n>=1e3) return '₹'+Math.round(n/1e3)+'K';
+  return '₹'+Math.round(n);
+}
+function fmtN(n){
+  if(n>=1e7) return Math.round(n/1e7)+'Cr';
+  if(n>=1e5) return Math.round(n/1e5)+'L';
+  if(n>=1e3) return Math.round(n/1e3)+'K';
+  return String(Math.round(n));
+}
+
+// ── RIDER POOL ──────────────────────────────────────
+function initRiders(){
+  G.riders=[];
+  for(var i=0;i<18;i++){
+    var p=PLATS[i%3];
+    G.riders.push({token:'AGT_'+Math.random().toString(36).substr(2,8).toUpperCase(),
+      platform:p,zone:pick(ZONES),capacity:ri(15,45),load:0,status:'IDLE',eta:rnd(2,8).toFixed(1)});
+  }
+}
+initRiders();
+
+// ── GENERATE ORDER ──────────────────────────────────
+function genOrder(ov){
+  ov=ov||{};
+  var plat=ov.plat||pick(PLATS);
+  var zone=ov.zone||pick(ZONES);
+  var wt=ov.wt!=null?ov.wt:rnd(0.5,20);
+  var tier=ov.tier||pick(['T1','T1','T1','T2','T3']);
+  var sla=ov.sla||pick(['STD','STD','STD','FAST','SCHED']);
+  var fee=rnd(22,52);
+  var t=ts(); var oid=nOID(); var inv=nINV(plat);
+  var tierSfx=tier; // T1 T2 T3
+  var traceId=plat+'_'+t+'_'+zone+'_'+wt.toFixed(1)+'_'+tierSfx;
+  return{oid,inv,plat,zone,wt:parseFloat(wt.toFixed(1)),tier,sla,fee,traceId,
+    label:wt>45?'HEAVY_WEIGHT':sla==='FAST'?'FAST_DIRECT':'ELIGIBLE',
+    status:'INTAKE',matchType:null,riderToken:null,spanId:null,
+    t,isHeavy:wt>45,isReturn:ov.isReturn||false,isSplit:ov.isSplit||false};
+}
+
+// ── CLASSIFY ORDER (plan-aware) ──────────────────────
+function classify(o){
+  if(G.mode==='L'&&!o.isHeavy) return 'DIRECT';
+  if(o.isReturn) return 'RETURN_PENDING';
+  if(o.wt>45) return 'HEAVY_WEIGHT';
+  if(o.sla==='FAST') return 'FAST_DIRECT';
+  
+  var cands=G.intake.filter(function(c){return c.oid!==o.oid&&c.zone===o.zone&&c.label==='ELIGIBLE';});
+  
+  if(G.plan==='A'){
+    // Self: same company/platform only
+    var self=cands.filter(function(c){return c.plat===o.plat;});
+    if(self.length>0) return 'SELF_CONSOL';
+  } else if(G.plan==='B'){
+    // Bilateral: self OR exactly ONE fixed partner (simulated as one specific different plat)
+    var self=cands.filter(function(c){return c.plat===o.plat;});
+    if(self.length>0) return 'SELF_CONSOL';
+    // Fixed partner: always pick lowest alphabetical different platform as "the partner"
+    var partners=PLATS.filter(function(p){return p!==o.plat;}).sort();
+    var fixedPartner=partners[0];
+    var peer=cands.filter(function(c){return c.plat===fixedPartner;});
+    if(peer.length>0) return 'PEER_CONSOL';
+  } else if(G.plan==='C'||G.plan==='D'){
+    // Cross-tenant: all platforms
+    var self=cands.filter(function(c){return c.plat===o.plat;});
+    var cross=cands.filter(function(c){return c.plat!==o.plat;});
+    if(self.length>0&&cross.length>0) return Math.random()<0.45?'SELF_CONSOL':'CROSS_TENANT';
+    if(self.length>0) return 'SELF_CONSOL';
+    if(cross.length>0) return 'CROSS_TENANT';
+  }
+  // Return match
+  var ret=G.intake.filter(function(c){return c.isReturn&&c.zone===o.zone;});
+  if(ret.length>0) return 'RETURN_CONSOL';
+  if(o.isSplit) return 'SPLIT_CHILD';
+  return Math.random()<0.12?'DIRECT':'ELIGIBLE';
+}
+
+// ── FINANCIALS ──────────────────────────────────────
+function applyFin(o){
+  var f=G.fee[G.plan]+(G.planD&&(G.plan==='B'||G.plan==='C')?G.fee.D_ADDON:0);
+  G.midasRev+=f;
+  G.plat[o.plat].orders++;
+  G.plat[o.plat].feePaid+=f;
+  G.plat[o.plat].baseline+=TRIP;
+  
+  var isC=(o.label==='SELF_CONSOL'||o.label==='PEER_CONSOL'||o.label==='CROSS_TENANT'||o.label==='RETURN_CONSOL');
+  if(isC){
+    G.plat[o.plat].tripCost+=CONSOL_TRIP/2;
+    G.plat[o.plat].saving+=TRIP-CONSOL_TRIP/2-f;
+    G.trips++;
+  } else {
+    G.plat[o.plat].tripCost+=TRIP;
+    G.plat[o.plat].saving-=f;
+  }
+  
+  // Cross-tenant settlement
+  if((o.label==='CROSS_TENANT'||o.label==='PEER_CONSOL')&&o.relayPlat){
+    var tf=rnd(30,46);
+    var owe=tf*0.42;
+    var mcut=rnd(2,4.5);
+    var earn=owe-mcut;
+    G.plat[o.plat].debit+=owe;
+    G.plat[o.relayPlat].credit+=earn;
+    G.settleTotal+=owe;
+    G.midasRev+=mcut-f;
+    G.settlements.unshift({ts:now(),inv:o.inv,from:o.plat,via:o.relayPlat,
+      tf:tf.toFixed(0),owe:owe.toFixed(0),earn:earn.toFixed(0),midas:mcut.toFixed(0)});
+    if(G.settlements.length>60) G.settlements.pop();
+  }
+}
+
+// ── ASSIGN RIDER ───────────────────────────────────
+function assignRider(o){
+  var avail=G.riders.filter(function(r){return r.zone===o.zone&&r.status==='IDLE'&&r.capacity-r.load>=o.wt;});
+  if(avail.length===0){var a=G.riders.find(function(r){return r.status==='IDLE';});if(a){a.zone=o.zone;return a;}return null;}
+  return avail[0];
+}
+
+// ── SIM TICK ────────────────────────────────────────
+function tick(){
+  G.tick++;
+  
+  // Plan D: auto stress if active
+  if(G.planD&&(G.plan==='B'||G.plan==='C')){
+    var qd=G.intake.length;
+    if(qd>12) setMode('L');
+    else if(qd>6) setMode('H');
+    else setMode('C');
+  }
+  
+  var n=G.mode==='L'?1:ri(1,2);
+  for(var i=0;i<n;i++){
+    var o=genOrder();
+    o.label=classify(o);
+    if(o.label==='CROSS_TENANT'){
+      o.relayPlat=pick(PLATS.filter(function(p){return p!==o.plat;}));
+      G.crossTenant++;
+      o.spanId='SPAN_'+o.plat+'_'+o.relayPlat+'_'+o.oid+'_'+ts();
+      if(G.spans.length<5) G.spans.push(o);
+    } else if(o.label==='PEER_CONSOL'){
+      o.relayPlat=pick(PLATS.filter(function(p){return p!==o.plat;}));
+      G.peerConsol++;
+      o.spanId='SPAN_P_'+o.plat+'_'+o.relayPlat+'_'+ts();
+      if(G.spans.length<5) G.spans.push(o);
+    } else if(o.label==='SELF_CONSOL') G.selfConsol++;
+    else if(o.label==='RETURN_CONSOL') G.returnMatch++;
+    else if(o.label==='HEAVY_WEIGHT') G.split++;
+    else G.direct++;
+    
+    var r=assignRider(o);
+    if(r){o.riderToken=r.token;r.status='BUSY';r.load+=o.wt;}
+    
+    applyFin(o);
+    G.total++;
+    G.recentTs.push(Date.now());
+    G.intake.unshift(o);
+    if(G.intake.length>8) G.intake.pop();
+    
+    updateLastTrace(o);
+    glog('['+now()+'] <span class="hi">'+o.label+'</span>: '+o.traceId.substr(0,30)+'... <span class="inv">'+o.inv+'</span>');
+    
+    // Add to tree
+    addToTree(o);
+  }
+  
+  // Intake → Transit
+  G.intake.forEach(function(o){
+    if(o.label!=='ELIGIBLE'&&o.label!=='RETURN_PENDING'){
+      if(!o._tt) o._tt=G.tick;
+      if(G.tick-o._tt>=2){
+        G.intake=G.intake.filter(function(x){return x.oid!==o.oid;});
+        o.status='TRANSIT';
+        if(!G.transit) G.transit=[];
+        G.transit.unshift(o);
+        if(G.transit.length>8) G.transit.pop();
+      }
+    }
+  });
+  
+  // Transit → Delivered
+  if(!G.transit) G.transit=[];
+  G.transit.forEach(function(o){if(!o._td)o._td=G.tick;});
+  var toDeliver=G.transit.filter(function(o){return G.tick-o._td>=3;});
+  toDeliver.forEach(function(o){
+    G.transit=G.transit.filter(function(x){return x.oid!==o.oid;});
+    o.status='DELIVERED';
+    G.delivered.unshift(o);
+    if(G.delivered.length>12) G.delivered.pop();
+    var r=G.riders.find(function(r){return r.token===o.riderToken;});
+    if(r){r.status='IDLE';r.load=Math.max(0,r.load-o.wt);}
+    if(o.spanId) G.spans=G.spans.filter(function(s){return s.oid!==o.oid;});
+  });
+  
+  G.queue=G.intake.length+ri(0,4);
+  G.pload=Math.min(99,ri(28,65)+(G.mode==='L'?25:G.mode==='H'?12:0));
+  G.etaB=G.mode==='L'?ri(10,20):G.mode==='H'?ri(2,7):0;
+  var cut=Date.now()-60000;
+  G.recentTs=G.recentTs.filter(function(t){return t>cut;});
+  
+  renderAll();
+}
+
+// ── MODE ────────────────────────────────────────────
+function setMode(m){
+  G.mode=m;
+  var labels={C:'CONSOL',H:'HYBRID',L:'LATENCY'};
+  var cls={C:'sp-c',H:'sp-h',L:'sp-l'};
+  var pill=document.getElementById('mode-pill');
+  if(pill){pill.className='status-pill '+cls[m];pill.textContent='● '+labels[m];}
+  ['sm-cons','sm-hyb','sm-lat'].forEach(function(id){document.getElementById(id)&&document.getElementById(id).classList.remove('on');});
+  var map={C:'sm-cons',H:'sm-hyb',L:'sm-lat'};
+  document.getElementById(map[m])&&document.getElementById(map[m]).classList.add('on');
+  var msgs={C:'<span class="ok">● CONSOLIDATION — Low load · Full windows active</span>',
+    H:'<span class="warn">⚠ HYBRID — Elevated queue · Partial batching</span>',
+    L:'<span class="err">🚨 LATENCY — Critical · Batching suspended · &lt;200ms assign</span>'};
+  var sl=document.getElementById('stress-log');
+  if(sl){var d=document.createElement('div');d.innerHTML='['+now()+'] '+msgs[m];sl.prepend(d);while(sl.children.length>30)sl.removeChild(sl.lastChild);}
+  [['sm-c-badge','ch-g'],['sm-h-badge','ch-a'],['sm-l-badge','ch-r']].forEach(function(x){
+    var el=document.getElementById(x[0]);if(el){el.className='chip '+x[1];el.textContent='STANDBY';}
+  });
+  var bmap={C:['sm-c-badge','ch-g','ACTIVE'],H:['sm-h-badge','ch-a','ACTIVE'],L:['sm-l-badge','ch-r','ACTIVE']};
+  var b=bmap[m];var bel=document.getElementById(b[0]);if(bel){bel.className='chip '+b[1];bel.textContent=b[2];}
+}
+function cycleModeManual(){setModeManual(G.mode==='C'?'H':G.mode==='H'?'L':'C');}
+function setModeManual(m){setMode(m);}
+
+// ── PLAN ────────────────────────────────────────────
+function setPlan(p){
+  G.plan=p; G.planD=false;
+  // Update UI
+  var cls={A:'pp-a',B:'pp-b',C:'pp-c',D:'pp-d'};
+  var pill=document.getElementById('plan-pill');
+  if(pill){pill.className='plan-pill '+cls[p];pill.textContent='PLAN '+p;}
+  ['A','B','C','D'].forEach(function(x){
+    var el=document.getElementById('pc-'+x);
+    if(el) el.classList.toggle('active',x===p);
+  });
+  // Update ROI buttons
+  ['A','B','C'].forEach(function(x){
+    var btn=document.getElementById('roi-'+x);
+    if(btn) btn.className=(x===p)?'btn btn-p btn-sm':'btn btn-ghost btn-sm';
+  });
+  var dBtn=document.getElementById('roi-D');
+  var dEl=document.getElementById('pc-D');
+  var delig=document.getElementById('plan-d-eligibility');
+  if(p==='B'||p==='C'){
+    if(dBtn){dBtn.style.opacity='1';dBtn.className='btn btn-ghost btn-sm';}
+    if(dEl) dEl.classList.remove('disabled');
+    if(delig) delig.textContent='Plan D upgrade available for Plan '+p+' subscribers';
+  } else {
+    if(dBtn){dBtn.style.opacity='.4';dBtn.className='btn btn-ghost btn-sm';}
+    if(dEl) dEl.classList.add('disabled');
+    if(delig) delig.textContent='Select Plan B or C to enable Plan D upgrade';
+  }
+  // Stress mode banner
+  updatePlanDBanner(false);
+  calcROI(); renderAll();
+}
+
+function setPlanD(){
+  if(G.plan!=='B'&&G.plan!=='C'){alert('Plan D requires an active Plan B or Plan C subscription.');return;}
+  G.planD=!G.planD;
+  updatePlanDBanner(G.planD);
+  var dBtn=document.getElementById('roi-D');
+  if(dBtn) dBtn.className=G.planD?'btn btn-pur btn-sm':'btn btn-ghost btn-sm';
+  calcROI();renderAll();
+}
+
+function updatePlanDBanner(active){
+  var b=document.getElementById('plan-d-banner');
+  var l=document.getElementById('plan-d-locked');
+  if(b) b.style.display=active?'block':'none';
+  if(l) l.style.display=active?'none':'block';
+}
+
+// ── RENDER ALL ──────────────────────────────────────
+function renderAll(){
+  renderCMD();renderOPS();renderSTRESS();renderRIDERS();renderSETTLE();renderBALANCE();
+  if(document.getElementById('trace').classList.contains('on')) renderTraceRegistry();
+}
+
+function $t(id,v){var e=document.getElementById(id);if(e) e.textContent=v;}
+
+// ── CMD ─────────────────────────────────────────────
+function renderCMD(){
+  var consol=G.selfConsol+G.peerConsol+G.crossTenant+G.returnMatch;
+  var pct=G.total>0?Math.round(consol/G.total*100):0;
+  $t('k-total',G.total);$t('k-consol',consol);
+  $t('k-saved',fmt(Math.max(0,Object.values(G.plat).reduce(function(a,p){return a+p.saving;},0))));
+  $t('k-mrev',fmt(G.midasRev));
+  $t('k-util',Math.min(98,35+pct)+'%');$t('k-eta',G.etaB);
+  $t('k-cpct',pct+'%');
+  var f=G.fee[G.plan]+(G.planD&&(G.plan==='B'||G.plan==='C')?G.fee.D_ADDON:0);
+  $t('k-frate','₹'+f+'/order');
+  [['SWG','s'],['ZPT','z'],['BBY','b']].forEach(function(x){
+    var d=G.plat[x[0]];var k=x[1];
+    $t('p'+k+'-ord',d.orders);$t('p'+k+'-sav',fmt(Math.max(0,d.saving)));$t('p'+k+'-fee',fmt(d.feePaid));
+    var bar=document.getElementById('p'+k+'-bar');
+    if(bar) bar.style.width=Math.min(100,Math.round(d.orders/Math.max(1,G.total)*300))+'%';
+  });
+}
+
+// ── OPS ─────────────────────────────────────────────
+function renderOPS(){
+  $t('o-total',G.total);$t('o-intra',G.selfConsol);$t('o-peer',G.peerConsol);
+  $t('o-inter',G.crossTenant);$t('o-split',G.split);$t('o-trips',G.trips);
+  $t('ops-mode-chip',G.mode==='C'?'CONSOLIDATION':G.mode==='H'?'HYBRID':'LATENCY');
+  $t('ops-plan-chip','PLAN '+(G.planD?G.plan+'+D':G.plan));
+  renderCol('col-intake','cnt-i',G.intake);
+  renderCol('col-transit','cnt-t',G.transit||[]);
+  renderCol('col-del','cnt-d',G.delivered);
+}
+function renderCol(cid,countId,arr){
+  var c=document.getElementById(cid);var ct=document.getElementById(countId);
+  if(!c) return;ct.textContent=arr.length;
+  c.innerHTML=arr.slice(0,8).map(oCardHTML).join('');
+}
+function oCardHTML(o){
+  var bc={SELF_CONSOL:'oc-intra',PEER_CONSOL:'oc-peer',CROSS_TENANT:'oc-inter',
+    RETURN_CONSOL:'oc-ret',SPLIT_CHILD:'oc-split',HEAVY_WEIGHT:'oc-heavy',DELIVERED:'oc-del'}[o.label]||'';
+  var lc={SELF_CONSOL:'ch-g',PEER_CONSOL:'ch-sky',CROSS_TENANT:'ch-p',ELIGIBLE:'ch-a',
+    HEAVY_WEIGHT:'ch-r',FAST_DIRECT:'ch-r',RETURN_PENDING:'ch-a',RETURN_CONSOL:'ch-a',
+    SPLIT_CHILD:'ch-o',DIRECT:'ch-gray',FAST_DIRECT:'ch-r'}[o.label]||'ch-gray';
+  return '<div class="ocard '+bc+'"><div class="oc-id">'+o.traceId.substr(0,36)+'</div><div class="oc-inv">'+o.inv+'</div><div class="oc-row"><span class="chip '+PLATCLS[o.plat]+'">'+o.plat+'</span><span class="chip '+lc+'">'+o.label.replace(/_/g,' ')+'</span><span class="chip ch-gray">'+o.wt+'kg</span></div></div>';
+}
+
+// ── STRESS ──────────────────────────────────────────
+function renderSTRESS(){
+  $t('str-queue',G.queue);$t('str-load',G.pload+'%');$t('str-eta',G.etaB);
+  $t('str-lat',G.mode==='L'?'143ms':G.mode==='H'?'0.8s':'1.2s');
+}
+
+// ── RIDERS ──────────────────────────────────────────
+function renderRIDERS(){
+  var idle=G.riders.filter(function(r){return r.status==='IDLE';}).length;
+  var busy=G.riders.filter(function(r){return r.status==='BUSY';}).length;
+  $t('rider-count',G.riders.length+' Active');$t('r-idle',idle+' Idle');$t('r-busy',busy+' Busy');$t('r-hold',(G.riders.length-idle-busy)+' Hold');
+  var g=document.getElementById('rider-grid');if(!g) return;
+  g.innerHTML=G.riders.slice(0,12).map(function(r){
+    var pct=Math.round(r.load/r.capacity*100);
+    var sc={IDLE:'ch-g',BUSY:'ch-a',HOLD:'ch-r'}[r.status]||'ch-gray';
+    return '<div class="rcard"><div class="rcard-av" style="border-color:'+PLATCOL[r.platform]+';color:'+PLATCOL[r.platform]+'">'+r.platform[0]+'</div><div class="rcard-body"><div class="rcard-tok">'+r.token+'</div><div class="rcard-meta">'+r.zone+' · '+r.capacity+'kg cap · ETA '+r.eta+'min</div><div class="oc-row" style="margin-top:3px"><span class="chip '+PLATCLS[r.platform]+'">'+r.platform+'</span><span class="chip '+sc+'">'+r.status+'</span><span class="chip ch-gray">'+r.load.toFixed(1)+'/'+r.capacity+'kg</span></div><div class="pbar"><div class="pbar-f" style="background:'+PLATCOL[r.platform]+';width:'+pct+'%"></div></div></div></div>';
+  }).join('');
+  var sl=document.getElementById('span-list');if(!sl) return;
+  if(G.spans.length===0){sl.innerHTML='<div style="color:var(--t3);font-size:.72rem;padding:.5rem">No active handovers.</div>';return;}
+  sl.innerHTML=G.spans.map(function(o){
+    return '<div class="card" style="margin-bottom:.4rem;border-color:rgba(124,77,255,.25)"><div style="font-family:var(--fm);font-size:.6rem;color:var(--pur);margin-bottom:.3rem">'+o.spanId+'</div><div style="display:flex;gap:.5rem;flex-wrap:wrap;font-size:.7rem"><span>Origin: <strong style="color:'+PLATCOL[o.plat]+'">'+o.plat+'</strong></span><span>→ Relay: <strong style="color:'+PLATCOL[o.relayPlat]+'">'+o.relayPlat+'</strong></span><span style="color:var(--t2)">Zone: '+o.zone+'</span><span class="chip ch-a">QR Locked</span><span class="chip ch-teal">'+o.inv+'</span></div></div>';
+  }).join('');
+}
+
+// ── SETTLEMENT ──────────────────────────────────────
+function renderSETTLE(){
+  $t('sl-total',fmt(G.settleTotal));$t('sl-midas',fmt(G.midasRev));$t('sl-count',G.settlements.length);$t('sl-inter',G.settlements.length);
+  var l=document.getElementById('settle-list');if(!l) return;
+  l.innerHTML=G.settlements.slice(0,40).map(function(s){
+    return '<div class="srow"><span class="smono dim">'+s.ts+'</span><span class="smono text-t" style="font-size:.58rem">'+s.inv+'</span><span class="chip '+PLATCLS[s.from]+'" style="font-size:.55rem">'+s.from+'</span><span class="chip '+PLATCLS[s.via]+'" style="font-size:.55rem">'+s.via+'</span><span class="smono">₹'+s.tf+'</span><span class="smono text-r">−₹'+s.owe+'</span><span class="smono text-g">+₹'+s.earn+'</span><span class="chip ch-g" style="font-size:.52rem">SETTLED</span></div>';
+  }).join('');
+}
+
+// ── BALANCE ──────────────────────────────────────────
+function renderBALANCE(){
+  var tSave=Object.values(G.plat).reduce(function(a,p){return a+p.saving;},0);
+  var mProfit=G.midasRev-G.total*INFRA;
+  $t('bs-tsave',fmt(Math.max(0,tSave+G.midasRev)));
+  $t('bs-mprofit',fmt(Math.max(0,mProfit)));
+  $t('bs-trips',G.trips);
+  $t('bs-cpo',G.total>0?Math.round((1-CONSOL_TRIP/TRIP)*100)+'%':'0%');
+  var tb=document.getElementById('bs-tbody');if(!tb) return;
+  var p=G.plat;
+  var rows=[
+    ['Orders',p.SWG.orders,p.ZPT.orders,p.BBY.orders,'—',G.total,'neu'],
+    ['Baseline Cost',fmt(p.SWG.baseline),fmt(p.ZPT.baseline),fmt(p.BBY.baseline),'—',fmt(p.SWG.baseline+p.ZPT.baseline+p.BBY.baseline),'neg'],
+    ['Actual Trip Cost',fmt(p.SWG.tripCost),fmt(p.ZPT.tripCost),fmt(p.BBY.tripCost),'—',fmt(p.SWG.tripCost+p.ZPT.tripCost+p.BBY.tripCost),'pos'],
+    ['MIDAS Fee Paid',fmt(p.SWG.feePaid),fmt(p.ZPT.feePaid),fmt(p.BBY.feePaid),fmt(G.midasRev),fmt(p.SWG.feePaid+p.ZPT.feePaid+p.BBY.feePaid),'neg'],
+    ['Handover Debit',fmt(p.SWG.debit),fmt(p.ZPT.debit),fmt(p.BBY.debit),'—',fmt(p.SWG.debit+p.ZPT.debit+p.BBY.debit),'neg'],
+    ['Handover Credit',fmt(p.SWG.credit),fmt(p.ZPT.credit),fmt(p.BBY.credit),'—',fmt(p.SWG.credit+p.ZPT.credit+p.BBY.credit),'pos'],
+    ['Gross Saving',fmt(Math.max(0,p.SWG.saving)),fmt(Math.max(0,p.ZPT.saving)),fmt(Math.max(0,p.BBY.saving)),fmt(Math.max(0,mProfit)),fmt(Math.max(0,tSave)),'pos'],
+  ];
+  tb.innerHTML=rows.map(function(r,i){
+    var isNet=(i===rows.length-1);
+    return '<tr class="'+(isNet?'net':'')+'"><td>'+r[0]+'</td>'+[r[1],r[2],r[3]].map(function(v){return '<td class="'+(isNet?'pos':r[6])+'">'+v+'</td>';}).join('')+'<td class="'+(isNet?'pos':'neu')+'">'+r[4]+'</td><td class="pos" style="font-weight:600">'+r[5]+'</td></tr>';
+  }).join('');
+}
+
+// ── TRACE REGISTRY ──────────────────────────────────
+function renderTraceRegistry(){
+  var all=[].concat(G.delivered,G.transit||[],G.intake);
+  all=all.slice(0,60);
+  var q=(document.getElementById('trace-search')||{}).value||'';
+  var fp=(document.getElementById('trace-filter-plat')||{}).value||'';
+  var fl=(document.getElementById('trace-filter-label')||{}).value||'';
+  var filtered=all.filter(function(o){
+    var ql=q.toLowerCase();
+    var matchQ=!q||(o.traceId.toLowerCase().includes(ql)||o.inv.toLowerCase().includes(ql)||o.oid.toLowerCase().includes(ql));
+    var matchP=!fp||(o.plat===fp);
+    var matchL=!fl||(o.label===fl);
+    return matchQ&&matchP&&matchL;
+  });
+  $t('trace-filter-count',filtered.length+' results');
+  $t('registry-count',filtered.length+' entries');
+  var reg=document.getElementById('trace-registry');if(!reg) return;
+  if(filtered.length===0){reg.innerHTML='<div style="color:var(--t3);font-size:.72rem;padding:.5rem">No matches.</div>';return;}
+  reg.innerHTML=filtered.map(function(o){
+    var lc={SELF_CONSOL:'ch-g',PEER_CONSOL:'ch-sky',CROSS_TENANT:'ch-p',ELIGIBLE:'ch-a',
+      HEAVY_WEIGHT:'ch-r',FAST_DIRECT:'ch-r',RETURN_CONSOL:'ch-a',DIRECT:'ch-gray'}[o.label]||'ch-gray';
+    return '<div style="display:grid;grid-template-columns:1fr 140px 100px 90px 70px 60px;gap:.4rem;align-items:center;padding:5px 8px;border-bottom:1px solid var(--b1);font-size:.67rem">'
+      +'<span style="font-family:var(--fm);font-size:.62rem;color:var(--t2);word-break:break-all">'+o.traceId+'</span>'
+      +'<span class="smono text-t" style="font-size:.58rem">'+o.inv+'</span>'
+      +'<span class="chip '+PLATCLS[o.plat]+'">'+o.plat+'</span>'
+      +'<span class="chip '+lc+'">'+o.label.replace(/_/g,' ')+'</span>'
+      +'<span class="chip ch-gray">'+o.wt+'kg</span>'
+      +'<span class="chip '+(o.status==='DELIVERED'?'ch-g':o.status==='TRANSIT'?'ch-c':'ch-a')+'">'+o.status+'</span></div>';
+  }).join('');
+}
+function filterTraces(){renderTraceRegistry();}
+
+// ── LOG ─────────────────────────────────────────────
+function glog(html){
+  var l=document.getElementById('global-log');if(!l) return;
+  var d=document.createElement('div');d.innerHTML=html;l.prepend(d);
+  while(l.children.length>40) l.removeChild(l.lastChild);
+}
+
+// ── ROI CALCULATOR ──────────────────────────────────
+function calcROI(){
+  var orders=parseInt((document.getElementById('rc-orders')||{}).value||500000);
+  var cpo=parseInt((document.getElementById('rc-cpo')||{}).value||38);
+  var rate=parseInt((document.getElementById('rc-rate')||{}).value||38)/100;
+  // Constrain rate by plan
+  var maxRate={A:0.15,B:0.28,C:0.60,D:0.60}[G.plan]||0.38;
+  rate=Math.min(rate,maxRate);
+  $t('rc-ord-d',fmtN(orders)+'/day');
+  $t('rc-cpo-d','₹'+cpo);
+  $t('rc-rate-d',Math.round(rate*100)+'%');
+  
+  var f=G.fee[G.plan]+(G.planD&&(G.plan==='B'||G.plan==='C')?G.fee.D_ADDON:0);
+  var tripsElimDay=Math.round(orders*rate*0.5);
+  var annTrips=tripsElimDay*365;
+  var grossAnn=annTrips*cpo;
+  var feeAnn=orders*365*f;
+  var netAnn=grossAnn-feeAnn;
+  var cpoPct=Math.round(rate*0.5*100);
+  
+  var planNotes={
+    A:'<div style="background:rgba(79,195,247,.05);border:1px solid rgba(79,195,247,.15);border-radius:4px;padding:.5rem;font-size:.65rem;color:var(--sky);margin-top:.5rem">Plan A consolidates internal orders only (single company). Consolidation scope is limited to same-platform matching. Lower rate ceiling (~15%).</div>',
+    B:'<div style="background:rgba(0,230,118,.04);border:1px solid rgba(0,230,118,.14);border-radius:4px;padding:.5rem;font-size:.65rem;color:var(--acc2);margin-top:.5rem">Plan B adds one fixed bilateral partner to internal matching. Medium consolidation ceiling (~28%). Ideal for established partnership pilots.</div>',
+    C:'<div style="background:rgba(124,77,255,.04);border:1px solid rgba(124,77,255,.14);border-radius:4px;padding:.5rem;font-size:.65rem;color:var(--pur);margin-top:.5rem">Plan C cross-tenant matching across the full MIDAS ecosystem — highest ROI multiplier. Network effects compound as more clients join (~38–60% consolidation possible).</div>',
+    D:'<div style="background:rgba(255,179,0,.05);border:1px solid rgba(255,179,0,.2);border-radius:4px;padding:.5rem;font-size:.65rem;color:var(--amb);margin-top:.5rem">Plan D adds dedicated surge engine on top of B/C. During demand surges, priority processing preserves SLA and captures consolidation opportunities others miss (+₹'+G.fee.D_ADDON+'/order add-on).</div>',
+  };
+  
+  var out=document.getElementById('roi-output');if(!out) return;
+  out.innerHTML='<div class="g2" style="gap:.4rem;margin-bottom:.6rem">'
+    +'<div style="background:var(--s2);border-radius:4px;padding:.6rem"><div class="label">Trips Elim/yr</div><div style="font-family:var(--fh);font-size:1.3rem;color:var(--acc)">'+fmtN(annTrips)+'</div></div>'
+    +'<div style="background:var(--s2);border-radius:4px;padding:.6rem"><div class="label">CPO Reduction</div><div style="font-family:var(--fh);font-size:1.3rem;color:var(--acc2)">'+cpoPct+'%</div></div>'
+    +'<div style="background:var(--s2);border-radius:4px;padding:.6rem"><div class="label">Gross Saving/yr</div><div style="font-family:var(--fh);font-size:1.3rem;color:var(--acc2)">₹'+fmtN(grossAnn)+'</div></div>'
+    +'<div style="background:var(--s2);border-radius:4px;padding:.6rem"><div class="label">MIDAS Fee/yr</div><div style="font-family:var(--fh);font-size:1.3rem;color:var(--pur)">₹'+fmtN(feeAnn)+'</div></div>'
+    +'</div><div style="background:rgba(0,230,118,.05);border:1px solid rgba(0,230,118,.18);border-radius:5px;padding:.7rem;text-align:center">'
+    +'<div class="label" style="margin-bottom:2px">NET PLATFORM SAVING / YEAR</div>'
+    +'<div style="font-family:var(--fh);font-size:1.8rem;color:var(--acc2)">₹'+fmtN(Math.max(0,netAnn))+'</div>'
+    +'<div style="font-size:.6rem;color:var(--t3);margin-top:2px">Plan '+(G.planD?G.plan+'+D':G.plan)+' · ₹'+f+'/order</div>'
+    +'</div>'+(planNotes[G.planD?'D':G.plan]||'');
+}
+
+// ── TRACE BUILDER ────────────────────────────────────
+function buildTrace(){
+  var plat=(document.getElementById('tb-plat')||{}).value||'SWG';
+  var zone=(document.getElementById('tb-zone')||{}).value||'HYD01';
+  var wt=parseFloat((document.getElementById('tb-wt')||{}).value||12.5);
+  var tier=parseInt((document.getElementById('tb-tier')||{}).value||1);
+  var type=(document.getElementById('tb-type')||{}).value||'O';
+  $t('tb-wt-d',wt.toFixed(1));
+  var tierW={1:60,2:120,3:180}[tier];
+  $t('tb-tier-d','T'+tier+' ('+tierW+'s)');
+  var t=ts(); var inv='INV-'+plat+'-DEMO01';
+  var prefix=type==='R'?'RTN_':type==='S'?'SPLIT_':'';
+  var seg=plat+'_'+t+'_'+zone+'_'+wt.toFixed(1)+'_T'+tier;
+  var full=prefix+seg;
+  var disp=document.getElementById('trace-display');
+  if(!disp) return;
+  disp.innerHTML=(prefix?'<span class="tseg ts-inv">'+prefix+'</span><span class="ts-sep">+</span>':'')+
+    '<span class="tseg ts-p">'+plat+'</span><span class="ts-sep">_</span>'+
+    '<span class="tseg ts-t">'+t+'</span><span class="ts-sep">_</span>'+
+    '<span class="tseg ts-z">'+zone+'</span><span class="ts-sep">_</span>'+
+    '<span class="tseg ts-w">'+wt.toFixed(1)+'</span><span class="ts-sep">_</span>'+
+    '<span class="tseg ts-m">T'+tier+'</span>'+
+    '<span class="ts-sep"> | </span><span class="tseg ts-inv">'+inv+'</span>';
+  var label,cls,desc;
+  if(type==='R'){label='RETURN_PENDING';cls='ch-a';desc='Return trace — matching outbound to same zone';}
+  else if(type==='S'){label='SPLIT_CHILD';cls='ch-o';desc='Child order — parent TraceID linked';}
+  else if(wt>45){label='HEAVY_WEIGHT';cls='ch-r';desc='Weight > 45kg → direct dispatch + split eval';}
+  else{label='ELIGIBLE';cls='ch-g';desc='Weight ≤ 45kg → T'+tier+' window: '+tierW+'s';}
+  var chip=document.getElementById('tb-label-chip');
+  if(chip){chip.className='chip '+cls;chip.textContent=label;}
+  $t('tb-label-desc',desc);
+  var ms=(Math.random()*.18+.04).toFixed(2);
+  var lg=document.getElementById('trace-log');
+  if(lg) lg.textContent='ID: '+full+'\n--- Field Decode (O(1) string reads) ---\nPLAT:   '+plat+' ← seg[0] chars 0-2\nTIME:   '+t+' ← seg[1] epoch\nZONE:   '+zone+' ← seg[2] chars 0-4\nWEIGHT: '+wt.toFixed(1)+' ← seg[3] float\nTIER:   T'+tier+' → window='+tierW+'s\n--- InvoiceID Binding ---\n'+inv+' → sealed on dispatch\n--- Decision ---\nLabel: '+label+'\nDecision time: '+ms+'ms\nDB queries: 0';
+}
+
+// ── LAST TRACE DISPLAY ────────────────────────────────
+var lastTraceO=null;
+function updateLastTrace(o){
+  if(o===lastTraceO) return; lastTraceO=o;
+  var el=document.getElementById('last-trace-display');
+  var lg=document.getElementById('last-trace-log');
+  if(!el||!lg) return;
+  var segs=o.traceId.split('_');
+  var segH=segs.map(function(s,i){
+    var cls=['ts-p','ts-t','ts-z','ts-w','ts-m'][i]||'';
+    return '<span class="tseg '+cls+'">'+s+'</span>'+(i<segs.length-1?'<span class="ts-sep">_</span>':'');
+  }).join('');
+  var lc={SELF_CONSOL:'ch-g',PEER_CONSOL:'ch-sky',CROSS_TENANT:'ch-p',ELIGIBLE:'ch-a',
+    HEAVY_WEIGHT:'ch-r',FAST_DIRECT:'ch-r',RETURN_CONSOL:'ch-a',DIRECT:'ch-gray'}[o.label]||'ch-gray';
+  el.innerHTML='<div style="display:flex;flex-wrap:wrap;gap:2px;margin-bottom:.4rem;align-items:center">'+segH+'</div>'
+    +'<div style="display:flex;flex-wrap:wrap;gap:2px;margin-bottom:.3rem"><span class="chip '+PLATCLS[o.plat]+'">'+o.plat+'</span><span class="chip '+lc+'">'+o.label.replace(/_/g,' ')+'</span><span class="chip ch-gray">'+o.wt+'kg</span><span class="chip ch-gray">'+o.tier+'</span></div>'
+    +'<div style="font-family:var(--fm);font-size:.58rem;color:var(--teal)">'+o.inv+'</div>';
+  var ms=(Math.random()*.2+.04).toFixed(2);
+  lg.textContent='TraceID: '+o.traceId+'\nInvoiceID: '+o.inv+'\nLabel: '+o.label+' ('+ms+'ms — O(1))\nPlan: '+G.plan+(G.planD?'+D':'')+'\nMatch scope: '+{A:'same-platform only',B:'self + one fixed partner',C:'full ecosystem',D:'full ecosystem + priority'}[G.planD?'D':G.plan]+'\nMode: '+G.mode+(G.mode==='L'?' → batching bypassed':' → window active');
+}
+
+// ══════════════════════════════════════════════════════
+// CONSOLIDATION TREE (Canvas-based)
+// ══════════════════════════════════════════════════════
+var TREE = {nodes:[], edges:[], selectedNode:null, animFrame:null};
+var tAuditBuf=[];
+
+function initTree(){
+  TREE.nodes=[];TREE.edges=[];
+  drawTree();
+}
+
+function addToTree(o){
+  // Add node
+  var canvas=document.getElementById('tree-canvas');
+  if(!canvas) return;
+  var W=canvas.offsetWidth||900, H=440;
+  var x=ri(60,W-60), y=ri(60,H-60);
+  var node={id:o.oid,inv:o.inv,traceId:o.traceId,plat:o.plat,wt:o.wt,label:o.label,x:x,y:y,r:18,vel:{x:rnd(-1,1),y:rnd(-1,1)}};
+  TREE.nodes.push(node);
+  if(TREE.nodes.length>30) TREE.nodes.shift();
+  
+  // Add edge if consolidated
+  if(o.label==='CROSS_TENANT'||o.label==='PEER_CONSOL'||o.label==='SELF_CONSOL'){
+    var candidates=TREE.nodes.filter(function(n){return n.id!==o.oid&&n.plat===o.plat;});
+    if(candidates.length>0){
+      TREE.edges.push({from:o.oid,to:candidates[0].id,type:o.label,span:!!o.spanId});
+      if(TREE.edges.length>40) TREE.edges.shift();
+    }
+  }
+  
+  updateTreeStats();
+  drawTree();
+  
+  // Audit log
+  var msg='['+now()+'] NODE: '+o.oid+' ('+o.plat+') Label:'+o.label+' INV:'+o.inv;
+  tAuditBuf.unshift(msg);
+  if(tAuditBuf.length>20) tAuditBuf.pop();
+  var ta=document.getElementById('tree-audit');
+  if(ta) ta.textContent=tAuditBuf.slice(0,8).join('\n');
+}
+
+function addTreeNode(){
+  var o=genOrder();o.label=classify(o);
+  if(o.label==='CROSS_TENANT'||o.label==='PEER_CONSOL'){
+    o.relayPlat=pick(PLATS.filter(function(p){return p!==o.plat;}));
+    o.spanId='SPAN_'+ts();
+  }
+  addToTree(o);
+}
+
+function addPeerLink(){
+  if(TREE.nodes.length<2) return;
+  var i1=ri(0,TREE.nodes.length-1);
+  var n1=TREE.nodes[i1];
+  var others=TREE.nodes.filter(function(n){return n.id!==n1.id&&n.plat===n1.plat;});
+  if(others.length===0){others=TREE.nodes.filter(function(n){return n.id!==n1.id;});}
+  if(others.length===0) return;
+  var n2=others[0];
+  TREE.edges.push({from:n1.id,to:n2.id,type:'PEER_CONSOL',span:false});
+  if(TREE.edges.length>40) TREE.edges.shift();
+  updateTreeStats();drawTree();
+}
+
+function addCrossTenantLink(){
+  if(TREE.nodes.length<2) return;
+  var pltNodes={};
+  TREE.nodes.forEach(function(n){if(!pltNodes[n.plat])pltNodes[n.plat]=[];pltNodes[n.plat].push(n);});
+  var plats=Object.keys(pltNodes).filter(function(p){return pltNodes[p].length>0;});
+  if(plats.length<2) return;
+  var p1=plats[0],p2=plats[1];
+  TREE.edges.push({from:pltNodes[p1][0].id,to:pltNodes[p2][0].id,type:'CROSS_TENANT',span:true});
+  if(TREE.edges.length>40) TREE.edges.shift();
+  updateTreeStats();drawTree();
+}
+
+function clearTree(){TREE.nodes=[];TREE.edges=[];TREE.selectedNode=null;updateTreeStats();drawTree();}
+
+function updateTreeStats(){
+  $t('tree-stat-nodes',TREE.nodes.length);
+  $t('tree-stat-edges',TREE.edges.length);
+  var bundles=TREE.edges.filter(function(e){return e.type==='CROSS_TENANT'||e.type==='PEER_CONSOL';}).length;
+  $t('tree-stat-bundles',bundles);
+  $t('tree-stat-saved',Math.floor(bundles*0.7));
+}
+
+function drawTree(){
+  var canvas=document.getElementById('tree-canvas');if(!canvas) return;
+  var W=canvas.offsetWidth||900, H=440;
+  canvas.width=W;canvas.height=H;
+  var ctx=canvas.getContext('2d');
+  ctx.clearRect(0,0,W,H);
+  
+  // Background grid
+  ctx.strokeStyle='rgba(0,180,220,.03)';ctx.lineWidth=1;
+  for(var gx=0;gx<W;gx+=40){ctx.beginPath();ctx.moveTo(gx,0);ctx.lineTo(gx,H);ctx.stroke();}
+  for(var gy=0;gy<H;gy+=40){ctx.beginPath();ctx.moveTo(0,gy);ctx.lineTo(W,gy);ctx.stroke();}
+  
+  // Draw edges
+  TREE.edges.forEach(function(e){
+    var n1=TREE.nodes.find(function(n){return n.id===e.from;});
+    var n2=TREE.nodes.find(function(n){return n.id===e.to;});
+    if(!n1||!n2) return;
+    ctx.beginPath();ctx.moveTo(n1.x,n1.y);ctx.lineTo(n2.x,n2.y);
+    if(e.span){ctx.strokeStyle='rgba(124,77,255,.7)';ctx.lineWidth=2.5;ctx.setLineDash([6,3]);}
+    else if(e.type==='CROSS_TENANT'){ctx.strokeStyle='rgba(0,212,255,.5)';ctx.lineWidth=2;ctx.setLineDash([]);}
+    else{ctx.strokeStyle='rgba(0,230,118,.45)';ctx.lineWidth=1.5;ctx.setLineDash([]);}
+    ctx.stroke();ctx.setLineDash([]);
+    // Midpoint label
+    var mx=(n1.x+n2.x)/2, my=(n1.y+n2.y)/2;
+    ctx.fillStyle=e.span?'rgba(124,77,255,.9)':'rgba(0,230,118,.8)';
+    ctx.font='8px JetBrains Mono,monospace';
+    ctx.fillText(e.type.replace(/_/g,' '),mx-24,my-4);
+  });
+  
+  // Draw nodes
+  TREE.nodes.forEach(function(n){
+    var col=PLATCOL[n.plat]||'#00d4ff';
+    var isSelected=(TREE.selectedNode&&TREE.selectedNode.id===n.id);
+    
+    // Glow
+    if(isSelected){ctx.shadowColor=col;ctx.shadowBlur=18;}
+    else{ctx.shadowColor=col;ctx.shadowBlur=6;}
+    
+    // Circle
+    ctx.beginPath();ctx.arc(n.x,n.y,n.r,0,Math.PI*2);
+    ctx.fillStyle='rgba(6,20,34,.9)';ctx.fill();
+    ctx.strokeStyle=col;ctx.lineWidth=isSelected?2.5:1.5;ctx.stroke();
+    ctx.shadowBlur=0;
+    
+    // Platform letter
+    ctx.fillStyle=col;ctx.font='bold 11px Rajdhani,sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText(n.plat[0],n.x,n.y);
+    
+    // Label below
+    ctx.fillStyle='rgba(200,230,255,.55)';ctx.font='7px JetBrains Mono,monospace';
+    ctx.fillText(n.label.replace(/_/g,'\n').substr(0,12),n.x,n.y+n.r+8);
+    
+    // InvoiceID tag (small)
+    ctx.fillStyle='rgba(29,233,182,.5)';ctx.font='6px JetBrains Mono,monospace';
+    ctx.fillText(n.inv.substr(0,14),n.x,n.y+n.r+18);
+  });
+  ctx.textAlign='left';ctx.textBaseline='alphabetic';
+  
+  // Legend
+  ctx.fillStyle='rgba(0,212,255,.4)';ctx.font='9px JetBrains Mono,monospace';
+  ctx.fillText('CONSOLIDATION TREE — '+TREE.nodes.length+' nodes, '+TREE.edges.length+' edges',12,20);
+}
+
+// Canvas click handler
+document.addEventListener('DOMContentLoaded',function(){
+  var c=document.getElementById('tree-canvas');
+  if(!c) return;
+  c.addEventListener('click',function(e){
+    var rect=c.getBoundingClientRect();
+    var mx=e.clientX-rect.left, my=e.clientY-rect.top;
+    TREE.selectedNode=null;
+    TREE.nodes.forEach(function(n){
+      var dx=n.x-mx,dy=n.y-my;
+      if(Math.sqrt(dx*dx+dy*dy)<=n.r+4){TREE.selectedNode=n;}
+    });
+    drawTree();
+    var det=document.getElementById('tree-node-detail');
+    if(!det) return;
+    if(TREE.selectedNode){
+      var n=TREE.selectedNode;
+      det.innerHTML='<div style="font-family:var(--fm);font-size:.62rem;line-height:1.8">'
+        +'<div><span style="color:var(--t3)">OID:&nbsp;</span><span style="color:var(--acc)">'+n.id+'</span></div>'
+        +'<div><span style="color:var(--t3)">InvoiceID:&nbsp;</span><span style="color:var(--teal)">'+n.inv+'</span></div>'
+        +'<div><span style="color:var(--t3)">TraceID:&nbsp;</span><span style="color:var(--t2)">'+n.traceId.substr(0,40)+'</span></div>'
+        +'<div><span style="color:var(--t3)">Platform:&nbsp;</span><span style="color:'+PLATCOL[n.plat]+'">'+n.plat+'</span></div>'
+        +'<div><span style="color:var(--t3)">Label:&nbsp;</span><span style="color:var(--acc2)">'+n.label+'</span></div>'
+        +'<div><span style="color:var(--t3)">Weight:&nbsp;</span><span style="color:var(--t1)">'+n.wt+'kg</span></div></div>';
+    } else {det.innerHTML='<div style="color:var(--t3);font-size:.72rem">Click a node to inspect...</div>';}
+  });
+  // Resize
+  window.addEventListener('resize',function(){drawTree();});
+});
+
+// ══════════════════════════════════════════════════════
+// SIMULATION CONTROLS
+// ══════════════════════════════════════════════════════
+function startSim(){
+  if(G.sim) return;
+  G.sim=true;
+  G.iv=setInterval(tick,1300);
+  glog('<span class="ok">['+now()+'] Simulation started — Plan '+(G.planD?G.plan+'+D':G.plan)+' · Mode '+G.mode+'</span>');
+}
+function stopSim(){G.sim=false;clearInterval(G.iv);}
+
+function manualOrder(){
+  if(!G.sim) startSim();
+  var o=genOrder();o.label=classify(o);
+  if(o.label==='CROSS_TENANT'){o.relayPlat=pick(PLATS.filter(function(p){return p!==o.plat;}));G.crossTenant++;o.spanId='SPAN_'+ts();G.spans.push(o);}
+  else if(o.label==='SELF_CONSOL') G.selfConsol++;
+  else if(o.label==='PEER_CONSOL'){o.relayPlat=PLATS.filter(function(p){return p!==o.plat;})[0];G.peerConsol++;}
+  G.intake.unshift(o);G.total++;applyFin(o);renderAll();addToTree(o);
+}
+function burstOrders(n){for(var i=0;i<n;i++) setTimeout(manualOrder,i*200);}
+function manualReturn(){
+  var o=genOrder({wt:0.1,isReturn:true});o.isReturn=true;o.label='RETURN_PENDING';
+  o.traceId='RTN_'+o.traceId;G.intake.unshift(o);G.total++;G.returnMatch++;applyFin(o);renderAll();
+}
+function manualSplit(){
+  var o=genOrder({wt:72,plat:'SWG'});o.isSplit=true;o.isHeavy=true;o.label='HEAVY_WEIGHT';
+  G.split++;G.intake.unshift(o);G.total++;applyFin(o);renderAll();addToTree(o);
+}
+function clearOps(){
+  G.intake=[];G.transit=[];G.delivered=[];
+  G.total=0;G.selfConsol=0;G.peerConsol=0;G.crossTenant=0;G.returnMatch=0;G.split=0;G.direct=0;G.trips=0;
+  Object.values(G.plat).forEach(function(p){p.orders=0;p.saving=0;p.feePaid=0;p.debit=0;p.credit=0;p.tripCost=0;p.baseline=0;});
+  G.midasRev=0;G.settlements=[];G.settleTotal=0;
+  clearTree();renderAll();
+}
+
+function simStress(level){
+  var sl=document.getElementById('stress-log');
+  if(level==='low'){
+    setMode('C');$t('str-queue','18');$t('str-load','30%');$t('str-eta','0');$t('str-lat','1.2s');
+    if(sl){var d=document.createElement('div');d.innerHTML='<span class="ok">['+now()+'] LOW LOAD: queue=18 · load=30% · CONSOLIDATION MODE</span>';sl.prepend(d);}
+  } else if(level==='med'){
+    setMode('H');$t('str-queue','142');$t('str-load','67%');$t('str-eta','5');$t('str-lat','0.8s');
+    if(sl){var d=document.createElement('div');d.innerHTML='<span class="warn">['+now()+'] SURGE: queue=142 · load=67% → HYBRID MODE</span>';sl.prepend(d);}
+  } else {
+    setMode('L');$t('str-queue','318');$t('str-load','92%');$t('str-eta','19');$t('str-lat','143ms');
+    if(sl){var d=document.createElement('div');d.innerHTML='<span class="err">['+now()+'] CRISIS: queue=318 · load=92% → LATENCY MODE</span>';sl.prepend(d);}
+  }
+}
+
+// ══════════════════════════════════════════════════════
+// NAV
+// ══════════════════════════════════════════════════════
+var PAGES=['cmd','ops','trace','tree','stress','riders','settle','balance','plans','patent','about'];
+function go(id){
+  PAGES.forEach(function(p){
+    var el=document.getElementById(p);if(el) el.classList.toggle('on',p===id);
+  });
+  document.querySelectorAll('.ntab').forEach(function(t,i){t.classList.toggle('on',PAGES[i]===id);});
+  if(id==='patent') buildPA();
+  if(id==='plans') calcROI();
+  if(id==='trace') renderTraceRegistry();
+  if(id==='tree') drawTree();
+}
+
+// ══════════════════════════════════════════════════════
+// PRIOR ART
+// ══════════════════════════════════════════════════════
+var PA=[
+  {n:'US 10,510,108',r:'Uber/Postmates',w:'Geographic proximity batching with DB join for every match decision.',
+   s:['No Trace ID — requires full DB join per match','No cross-platform architecture','No SPAN_ID or QR handover','No stress mode or city-tier window','No InvoiceID audit chain'],risk:'LOW'},
+  {n:'CN 110,689,186',r:'Meituan (strongest)',w:'Same-city food batching via centralised DB clustering algorithm.',
+   s:['Centralised DB required — our O(1) string match is structurally opposite','Single platform only','No RTN_ return matching','No SPAN_ID inter-carrier protocol','No adaptive stress mode engine'],risk:'MED'},
+  {n:'WO 2020/223,431',r:'DoorDash',w:'Predictive pre-positioning of riders before orders arrive.',
+   s:['Pre-positioning vs confirmed orders — entirely different domain','No weight-based consolidation','No Trace ID or InvoiceID binding','No DPDP-compliant identity architecture','No stress mode or tier window'],risk:'LOW'},
+  {n:'IN 202141021503',r:'Dunzo/Zepto India',w:'Hyper-local delivery using real-time demand signals and proximity scoring.',
+   s:['No structured Trace ID — standard order IDs only','No cross-platform consolidation','No SPAN_ID QR handover','No stress mode switching','No order splitting with parent-child trace'],risk:'MED'},
+  {n:'US 10,685,302',r:'Amazon Logistics',w:'Single-platform route optimisation using historical traffic data.',
+   s:['Single carrier — no cross-platform','No Trace ID for O(1) matching','No SPAN_ID or QR handover','No return matching','No city-tier window or stress mode'],risk:'LOW'},
+  {n:'US 9,256,844',r:'Google Maps / Route API',w:'Route planning and ETA computation using Dijkstra / A*.',
+   s:['ETA used as tiebreaker only — not the invention','No Trace ID structure','No consolidation logic','No privacy layer','Entirely different technical domain'],risk:'LOW'},
+];
+function buildPA(){
+  var el=document.getElementById('pa-list');if(!el) return;
+  el.innerHTML=PA.map(function(p){
+    return '<div class="pa-row"><div><div class="pa-name">'+p.n+'</div><div class="pa-ref">'+p.r+'</div></div>'
+      +'<div><div class="label" style="margin-bottom:3px">What it does</div><div style="font-size:.7rem;color:var(--t2);line-height:1.5">'+p.w+'</div></div>'
+      +'<div><div class="label" style="margin-bottom:3px">MIDAS differentiators</div>'+p.s.map(function(s){return '<div class="shield-i">'+s+'</div>';}).join('')+'</div>'
+      +'<div><span class="risk-pill '+(p.risk==='LOW'?'risk-l':'risk-m')+'">'+p.risk+'</span></div></div>';
+  }).join('');
+}
+
+// ══════════════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════════════
+setPlan('C');
+buildTrace();
+calcROI();
+buildPA();
+initTree();
+renderAll();
+drawTree();
+</script>
+</body>
+</html>
