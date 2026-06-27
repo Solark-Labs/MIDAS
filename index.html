@@ -7,16 +7,37 @@
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@400;600;900&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#06101a;--s1:#0b1825;--s2:#101f30;--s3:#162840;--s4:#1c3250;
-  --b1:rgba(0,210,255,.08);--b2:rgba(0,210,255,.16);--b3:rgba(0,210,255,.32);
-  --acc:#00d4ff;--grn:#00f07a;--amb:#ffb800;--red:#ff3a5a;--pur:#9b6dff;
-  --sky:#38d4f8;--tea:#2df4c0;--ora:#ff7a35;--lim:#b8f040;--pnk:#ff6eb4;
-  --t1:#e8f4ff;--t2:#7ab0cc;--t3:#2a5570;--t4:#164060;
-  --fh:'Rajdhani',sans-serif;--fo:'Orbitron',sans-serif;--fm:'JetBrains Mono',monospace;
-  --r:5px;--rx:10px;--nav-w:192px;
+  --bg:#0b0f19;
+  --s1:#151b2c;
+  --s2:#1e253b;
+  --s3:#2b3452;
+  --s4:#384469;
+  --b1:rgba(14,165,233,0.1);
+  --b2:rgba(14,165,233,0.22);
+  --b3:rgba(14,165,233,0.4);
+  --acc:#0ea5e9; /* Sky blue */
+  --grn:#10b981; /* Emerald green */
+  --amb:#f59e0b; /* Golden amber */
+  --red:#ef4444; /* Alert red */
+  --pur:#8b5cf6; /* Indigo/purple */
+  --sky:#38d4f8;
+  --tea:#14b8a6;
+  --ora:#f97316;
+  --lim:#84cc16;
+  --pnk:#ec4899;
+  --t1:#f8fafc; /* Crisp white-slate */
+  --t2:#94a3b8; /* Slate gray */
+  --t3:#475569; /* Dark slate gray */
+  --t4:#334155;
+  --fh:'Inter',sans-serif; /* Clean body font */
+  --fo:'Inter',sans-serif; /* Use Inter for clean readability */
+  --fm:'JetBrains Mono',monospace;
+  --r:8px; /* Softer corners */
+  --rx:12px;
+  --nav-w:210px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{font-size:13px;scroll-behavior:smooth}
+html{font-size:14px;scroll-behavior:smooth}
 body{background:var(--bg);color:var(--t1);font-family:var(--fh);min-height:100vh;overflow-x:hidden}
 body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,210,255,.014) 1px,transparent 1px),linear-gradient(90deg,rgba(0,210,255,.014) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0}
 
@@ -363,6 +384,70 @@ footer{margin-left:var(--nav-w);border-top:1px solid var(--b1);padding:.85rem 1.
 .tl-t{font-family:var(--fh);font-size:.88rem;font-weight:700;margin-bottom:2px;color:var(--t1)}
 .tl-b{font-size:.65rem;color:var(--t2);line-height:1.55}
 #tree-cv{width:100%;background:#040c16;border:1px solid var(--b1);border-radius:5px;display:block}
+
+/* Premium UI Enhancements */
+.ppt-slide { animation: fadeIn 0.4s ease-in-out; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+.premium-card {
+    background: rgba(30, 37, 59, 0.6);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.premium-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(14, 165, 233, 0.3);
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, #f8fafc, #94a3b8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+.gradient-text-accent {
+    background: linear-gradient(135deg, #0ea5e9, #10b981);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.icon-box {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px; height: 40px;
+    border-radius: 8px;
+    background: rgba(14, 165, 233, 0.1);
+    color: var(--acc);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+.icon-box.green { background: rgba(16, 185, 129, 0.1); color: var(--grn); }
+.icon-box.purple { background: rgba(139, 92, 246, 0.1); color: var(--pur); }
+.icon-box.amber { background: rgba(245, 158, 11, 0.1); color: var(--amb); }
+
+.feature-list { list-style: none; padding: 0; margin: 0; }
+.feature-list li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 0.8rem;
+    font-size: 0.8rem;
+    color: var(--t2);
+    line-height: 1.6;
+}
+.feature-list li::before {
+    content: '✓';
+    color: var(--grn);
+    font-weight: bold;
+    margin-right: 0.6rem;
+    margin-top: 0.1rem;
+}
+
 </style>
 </head>
 <body>
@@ -422,6 +507,7 @@ footer{margin-left:var(--nav-w);border-top:1px solid var(--b1);padding:.85rem 1.
   </div>
   <div class="nav-sec">Overview</div>
   <div class="nav-item on" onclick="go('home')"><span class="ni">⬡</span>Home</div>
+  <div class="nav-item" onclick="go('overview')"><span class="ni">📄</span>Pitch Deck</div>
   <div class="nav-item" onclick="go('how')"><span class="ni">◈</span>How It Works</div>
   <div class="nav-item" onclick="go('scale')"><span class="ni">🗺</span>Scale &amp; Hubs</div>
   <div class="nav-sec">Live Demo</div>
@@ -436,6 +522,8 @@ footer{margin-left:var(--nav-w);border-top:1px solid var(--b1);padding:.85rem 1.
   <div class="nav-sec">Business</div>
   <div class="nav-item" onclick="go('why')"><span class="ni">🎯</span>Why MIDAS?</div>
   <div class="nav-item" onclick="go('plans')"><span class="ni">💡</span>Plans &amp; ROI</div>
+  <div class="nav-item" onclick="go('ecosystem')"><span class="ni">🤝</span>T-Hub &amp; Ecosystem</div>
+  <div class="nav-item" onclick="go('debate')"><span class="ni">⚖</span>ONDC vs Zepto</div>
   <div class="nav-sec">Legal</div>
   <div class="nav-item" onclick="go('patent')"><span class="ni">🛡</span>Patent Shield</div>
   <div class="nav-item" onclick="go('about')"><span class="ni">ℹ</span>About</div>
@@ -458,9 +546,10 @@ footer{margin-left:var(--nav-w);border-top:1px solid var(--b1);padding:.85rem 1.
 <!-- ══ HOME ══ -->
 <div id="home" class="pg on">
 <div class="pg-hd">
-  <div><div class="pg-hd-title">COMMAND <span class="hi">CENTER</span></div><div class="pg-hd-sub">MIDAS v7.0 · App 202641054304 · CBR 35905 · Chennai Patent Office</div></div>
+  <div><div class="pg-hd-title">ONDC COMMAND <span class="hi">CENTER</span></div><div class="pg-hd-sub">ONDC Digital Public Infrastructure (DPI) · MIDAS Middleware v7.0 · Patent Ref: IN202641051096</div></div>
   <div class="fr">
     <button class="btn btn-p btn-sm" onclick="go('ops');startSim()">▶ START SIM</button>
+    <button class="btn btn-gh btn-sm" onclick="go('overview')">📄 Pitch Deck</button>
     <button class="btn btn-gh btn-sm" onclick="go('why')">Why MIDAS?</button>
     <button class="btn btn-gh btn-sm" onclick="go('qr-demo')">QR Demo</button>
   </div>
@@ -468,12 +557,13 @@ footer{margin-left:var(--nav-w);border-top:1px solid var(--b1);padding:.85rem 1.
 <div class="pg-body">
   <div style="background:linear-gradient(135deg,rgba(0,210,255,.05),rgba(0,240,122,.04),rgba(155,109,255,.04));border:1px solid var(--b2);border-radius:var(--rx);padding:1.2rem 1.4rem;margin-bottom:.9rem;position:relative;overflow:hidden">
     <div style="position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 50%,rgba(0,210,255,.03),transparent);pointer-events:none"></div>
-    <div style="font-family:var(--fo);font-size:.55rem;letter-spacing:.16em;color:var(--acc);margin-bottom:.5rem">APPLICATION 202641054304 · CBR 35905 · CHENNAI PATENT OFFICE · APRIL 2026</div>
-    <div style="font-family:var(--fo);font-size:clamp(.95rem,3vw,1.9rem);font-weight:900;letter-spacing:.06em;line-height:.95;margin-bottom:.45rem;background:linear-gradient(120deg,#e8f4ff,var(--acc) 38%,var(--grn));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">MULTI-PLATFORM INTEGRATED DELIVERY AGGREGATION SYSTEM</div>
-    <div style="font-family:var(--fm);font-size:.7rem;color:var(--t2);max-width:620px;line-height:1.65">World's first cross-platform, hub-aware, geo-hash-matched delivery consolidation engine. Metadata broker only — zero PII, zero competitor intelligence exposure, zero rider management. Every platform competes. Every delivery co-operates.</div>
+    <div style="font-family:var(--fo);font-size:.55rem;letter-spacing:.16em;color:var(--acc);margin-bottom:.5rem">ONDC TECHNOLOGY SERVICE PROVIDER (TSP) · PATENT REF: IN202641051096</div>
+    <div style="font-family:var(--fo);font-size:clamp(.95rem,3vw,1.9rem);font-weight:900;letter-spacing:.06em;line-height:.95;margin-bottom:.45rem;background:linear-gradient(120deg,#e8f4ff,var(--acc) 38%,var(--grn));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">ONDC LOGISTICS ORCHESTRATION PROTOCOL</div>
+    <div style="font-family:var(--fm);font-size:.7rem;color:var(--t2);max-width:720px;line-height:1.65">World's first Beckn-compliant, ONDC-native, geo-hash-matched delivery consolidation engine. Operating strictly as an asset-light metadata broker: zero customer PII, zero rider payroll management, and zero dark store lease costs. Every platform competes, every delivery co-operates.</div>
   </div>
   <div style="background:rgba(255,184,0,.04);border:1px solid rgba(255,184,0,.2);border-radius:var(--r);padding:.75rem 1rem;margin-bottom:.9rem;font-size:.7rem;color:var(--t2);line-height:1.65">
-    <strong style="color:var(--amb)">⚡ Architecture Truth:</strong> Intra-platform batching (Swiggy batching their own orders) already exists and is <strong style="color:var(--t1)">explicitly disclaimed as background art</strong> in our patent. MIDAS patents only the <em>cross-platform</em> layer — matching Swiggy + Zepto orders going to the same geo-hash zone with <strong style="color:var(--grn)">zero PII shared</strong>, auto-settling the cost split, and providing QR-verified custody transfer between riders.
+    <strong style="color:var(--amb)">⚡ ONDC &amp; Beckn Protocol Architecture Truth:</strong> 
+    MIDAS intercepts asynchronous multicasts on the Beckn Protocol before they reach LSPs. It does not compete with LSPs or platforms; it acts as a neutral optimization layer. We explicitly disclaim standard intra-fleet routing as prior art. MIDAS patents only the <em>cross-platform, zero-PII metadata matching layer</em>—enabling ONDC with Amazon-level delivery efficiency without a central logistics monopoly.
   </div>
   <div class="g6 mb">
     <div class="kpi kpi-c"><div class="kpi-val" id="h-total">0</div><div class="kpi-lbl">Packets</div><div class="kpi-sub" id="h-rate">0/min</div></div>
@@ -484,34 +574,188 @@ footer{margin-left:var(--nav-w);border-top:1px solid var(--b1);padding:.85rem 1.
     <div class="kpi kpi-r"><div class="kpi-val" id="h-sla" style="color:var(--red)">0</div><div class="kpi-lbl">SLA Breaches</div></div>
   </div>
   <div class="g3 mb">
-    <div class="card"><div class="fb mb" style="margin-bottom:.4rem"><div style="font-family:var(--fo);font-size:.85rem;color:var(--ora)">SWIGGY</div><span class="chip c-o">SWG</span></div>
+    <div class="card"><div class="fb mb" style="margin-bottom:.4rem"><div style="font-family:var(--fo);font-size:.85rem;color:var(--ora)">SHADOWFAX</div><span class="chip c-o">SFX</span></div>
       <div class="g3" style="gap:.35rem">
-        <div><div class="label">Packets</div><div style="font-family:var(--fo);font-size:.9rem;color:var(--t1)" id="swg-o">0</div></div>
-        <div><div class="label">Net Saving</div><div style="font-family:var(--fo);font-size:.9rem;color:var(--grn)" id="swg-s">₹0</div></div>
-        <div><div class="label">Fee Paid</div><div style="font-family:var(--fo);font-size:.9rem;color:var(--amb)" id="swg-f">₹0</div></div>
+        <div><div class="label">Packets</div><div style="font-family:var(--fo);font-size:.9rem;color:var(--t1)" id="sfx-o">0</div></div>
+        <div><div class="label">Net Saving</div><div style="font-family:var(--fo);font-size:.9rem;color:var(--grn)" id="sfx-s">₹0</div></div>
+        <div><div class="label">Fee Paid</div><div style="font-family:var(--fo);font-size:.9rem;color:var(--amb)" id="sfx-f">₹0</div></div>
       </div>
-      <div class="pb mt"><div class="pb-f" id="swg-b" style="background:var(--ora);width:0%"></div></div>
+      <div class="pb mt"><div class="pb-f" id="sfx-b" style="background:var(--ora);width:0%"></div></div>
     </div>
-    <div class="card"><div class="fb mb" style="margin-bottom:.4rem"><div style="font-family:var(--fo);font-size:.85rem;color:var(--sky)">ZEPTO</div><span class="chip c-sk">ZPT</span></div>
+    <div class="card"><div class="fb mb" style="margin-bottom:.4rem"><div style="font-family:var(--fo);font-size:.85rem;color:var(--sky)">DELHIVERY</div><span class="chip c-sk">DLV</span></div>
       <div class="g3" style="gap:.35rem">
-        <div><div class="label">Packets</div><div style="font-family:var(--fo);font-size:.9rem;color:var(--t1)" id="zpt-o">0</div></div>
-        <div><div class="label">Net Saving</div><div style="font-family:var(--fo);font-size:.9rem;color:var(--grn)" id="zpt-s">₹0</div></div>
-        <div><div class="label">Fee Paid</div><div style="font-family:var(--fo);font-size:.9rem;color:var(--amb)" id="zpt-f">₹0</div></div>
+        <div><div class="label">Packets</div><div style="font-family:var(--fo);font-size:.9rem;color:var(--t1)" id="dlv-o">0</div></div>
+        <div><div class="label">Net Saving</div><div style="font-family:var(--fo);font-size:.9rem;color:var(--grn)" id="dlv-s">₹0</div></div>
+        <div><div class="label">Fee Paid</div><div style="font-family:var(--fo);font-size:.9rem;color:var(--amb)" id="dlv-f">₹0</div></div>
       </div>
-      <div class="pb mt"><div class="pb-f" id="zpt-b" style="background:var(--sky);width:0%"></div></div>
+      <div class="pb mt"><div class="pb-f" id="dlv-b" style="background:var(--sky);width:0%"></div></div>
     </div>
-    <div class="card"><div class="fb mb" style="margin-bottom:.4rem"><div style="font-family:var(--fo);font-size:.85rem;color:var(--grn)">BLINKIT</div><span class="chip c-g">BBY</span></div>
+    <div class="card"><div class="fb mb" style="margin-bottom:.4rem"><div style="font-family:var(--fo);font-size:.85rem;color:var(--grn)">DUNZO</div><span class="chip c-g">DNZ</span></div>
       <div class="g3" style="gap:.35rem">
-        <div><div class="label">Packets</div><div style="font-family:var(--fo);font-size:.9rem;color:var(--t1)" id="bby-o">0</div></div>
-        <div><div class="label">Net Saving</div><div style="font-family:var(--fo);font-size:.9rem;color:var(--grn)" id="bby-s">₹0</div></div>
-        <div><div class="label">Fee Paid</div><div style="font-family:var(--fo);font-size:.9rem;color:var(--amb)" id="bby-f">₹0</div></div>
+        <div><div class="label">Packets</div><div style="font-family:var(--fo);font-size:.9rem;color:var(--t1)" id="dnz-o">0</div></div>
+        <div><div class="label">Net Saving</div><div style="font-family:var(--fo);font-size:.9rem;color:var(--grn)" id="dnz-s">₹0</div></div>
+        <div><div class="label">Fee Paid</div><div style="font-family:var(--fo);font-size:.9rem;color:var(--amb)" id="dnz-f">₹0</div></div>
       </div>
-      <div class="pb mt"><div class="pb-f" id="bby-b" style="background:var(--grn);width:0%"></div></div>
+      <div class="pb mt"><div class="pb-f" id="dnz-b" style="background:var(--grn);width:0%"></div></div>
     </div>
   </div>
+  <!-- ONDC Executive Overview Integrated Pitch Deck -->
+  <div style="margin-bottom:1rem">
+    <div class="sect-title" style="margin-bottom:.4rem">MIDAS PROTOCOL: <span class="hi">EXECUTIVE OVERVIEW</span></div>
+    <div class="sect-sub" style="margin-bottom:.6rem">Pitch deck presentation coded directly into the ONDC command dashboard</div>
+    
+    <div class="g2 mb">
+      <!-- 1. Where It Fits in the Ecosystem -->
+      <div class="card" style="border-color:rgba(0,210,255,.2)">
+        <div style="font-family:var(--fo);font-size:.85rem;color:var(--sky);margin-bottom:.45rem;border-bottom:1px solid var(--b1);padding-bottom:.3rem">1. WHERE IT FITS IN THE ECOSYSTEM</div>
+        <div style="font-size:.66rem;color:var(--t2);line-height:1.6">
+          MIDAS sits as a neutral orchestration layer above delivery apps and couriers:
+          <ul style="margin-top:.3rem;padding-left:1rem">
+            <li><strong>Technology Service Provider (TSP):</strong> Operates as a TSP on open registries like ONDC.</li>
+            <li><strong>Beckn Multicast Listener:</strong> Intercepts asynchronous multicasts from Buyer and Seller apps before LSPs dispatch riders.</li>
+            <li><strong>The Intersection Layer:</strong> Translates chaotic, fragmented orders into dense, consolidated routes.</li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- 2. How It Is Helpful (Core Problem Solving) -->
+      <div class="card" style="border-color:rgba(0,240,122,.2)">
+        <div style="font-family:var(--fo);font-size:.85rem;color:var(--grn);margin-bottom:.45rem;border-bottom:1px solid var(--b1);padding-bottom:.3rem">2. HOW IT IS HELPFUL (PROBLEM SOLVING)</div>
+        <div style="font-size:.66rem;color:var(--t2);line-height:1.6">
+          MIDAS solves the four fatal flaws of traditional logistics:
+          <ul style="margin-top:.3rem;padding-left:1rem">
+            <li><strong>Eliminates Hyper-Redundant Rides:</strong> Merges apparel &amp; grocery orders headed to the same apartment.</li>
+            <li><strong>Zero Real-Estate Execution:</strong> Uses IoT Lockers as Micro-Buffer Nodes, avoiding expensive dark store leases.</li>
+            <li><strong>ZK QR SPAN_ID Handshake:</strong> Isolates leg liability cryptographically on the ledger.</li>
+            <li><strong>100% DPDP Compliance:</strong> Mutes data visibility; trace data is destroyed upon delivery.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <div class="g2 mb">
+      <!-- 3. Who Can Benefit -->
+      <div class="card" style="border-color:rgba(155,109,255,.2)">
+        <div style="font-family:var(--fo);font-size:.85rem;color:var(--pur);margin-bottom:.45rem;border-bottom:1px solid var(--b1);padding-bottom:.3rem">3. WHO CAN INCORPORATE &amp; BENEFIT</div>
+        <div style="font-size:.66rem;color:var(--t2);line-height:1.6">
+          Designed as a win-win for open registries and merchants:
+          <ul style="margin-top:.3rem;padding-left:1rem">
+            <li><strong>3PLs &amp; Gig Fleets:</strong> Delhivery, Shadowfax, Shiprocket plug in to monetize empty back-hauls.</li>
+            <li><strong>Open Networks (ONDC):</strong> Obtains the hyper-local delivery efficiency required to challenge monopolies.</li>
+            <li><strong>Local Merchants &amp; D2C:</strong> Shared dynamic routes lower last-mile costs for small sellers.</li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- 4. Bottom Line ROI -->
+      <div class="card" style="border-color:rgba(255,184,0,.2)">
+        <div style="font-family:var(--fo);font-size:.85rem;color:var(--amb);margin-bottom:.45rem;border-bottom:1px solid var(--b1);padding-bottom:.3rem">4. THE BOTTOM LINE ROI</div>
+        <div style="font-size:.66rem;color:var(--t2);line-height:1.6">
+          Provides pure utility as the digital protocol layer:
+          <ul style="margin-top:.3rem;padding-left:1rem">
+            <li><strong>0% Real Estate Footprint:</strong> Scalable instantly with zero commercial property leases.</li>
+            <li><strong>50%+ CapEx Reduction:</strong> Converts overlapping, half-empty runs into dense routes.</li>
+            <li><strong>Peak-Hour Load Balancing:</strong> Dynamic capacity shifts during surges, cutting surge fees.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <div style="background:rgba(0,240,122,.04);border:1px dashed rgba(0,240,122,.25);border-radius:4px;padding:.8rem;text-align:center;font-size:.7rem;color:var(--t1)">
+      <strong style="color:var(--grn)">🛡 PIONEER VISION:</strong> MIDAS is a pure digital public infrastructure (DPI) middleware to make open, decentralized commerce financially sustainable at scale.
+    </div>
+  </div>
+
   <div class="card"><div class="fr mb" style="margin-bottom:.4rem"><span class="ld"></span><span class="label">Live Signal Feed</span></div>
     <div class="log" id="global-log" style="max-height:150px">Simulation idle — press ▶ START SIM to begin...</div>
   </div>
+</div>
+</div>
+
+<!-- ══ PITCH DECK & EXECUTIVE OVERVIEW ══ -->
+<div id="overview" class="pg">
+<div class="pg-hd">
+  <div><div class="pg-hd-title">EXECUTIVE <span class="hi">OVERVIEW</span></div><div class="pg-hd-sub">The Asset-Light Logistics Middleware for Open Commerce · Patent Ref: IN202641051096</div></div>
+  <div class="fr"><span class="tag">PATENT REF: IN202641051096</span></div>
+</div>
+<div class="pg-body">
+  
+  <!-- Introduction Banner -->
+  <div style="background:linear-gradient(135deg,rgba(0,210,255,.05),rgba(155,109,255,.05));border:1px solid var(--b2);border-radius:var(--rx);padding:1.4rem;margin-bottom:1rem">
+    <div style="font-family:var(--fo);font-size:.65rem;letter-spacing:.15em;color:var(--acc);margin-bottom:.4rem">THE PIONEER VISION</div>
+    <div style="font-family:var(--fo);font-size:1.8rem;font-weight:900;margin-bottom:.5rem;color:var(--t1)">THE MIDAS PROTOCOL</div>
+    <div style="font-size:.74rem;color:var(--t2);line-height:1.75;max-width:850px">
+      MIDAS is an entirely software-driven logistics orchestration protocol. It functions as the <strong>"digital traffic controller"</strong> for modern e-commerce and quick-commerce. Rather than owning fleets or leasing warehouses, MIDAS mathematically intercepts, consolidates, and routes overlapping deliveries across competing platforms in real-time.
+    </div>
+  </div>
+
+  <!-- Sections Grid -->
+  <div class="g2 mb">
+    
+    <!-- Where It Fits -->
+    <div class="card">
+      <div style="font-family:var(--fo);font-size:.9rem;color:var(--sky);margin-bottom:.6rem;border-bottom:1px solid var(--b1);padding-bottom:.4rem">1. WHERE IT FITS IN THE ECOSYSTEM</div>
+      <div style="font-size:.68rem;color:var(--t2);line-height:1.75">
+        MIDAS does not compete with delivery apps or courier companies; it sits above them as a neutral orchestration layer.
+        <ul style="margin-top:.4rem;padding-left:1.2rem">
+          <li><strong>Technology Service Provider (TSP):</strong> In open networks like the ONDC (Open Network for Digital Commerce), MIDAS acts strictly as a TSP.</li>
+          <li style="margin-top:.3rem"><strong>Beckn Protocol Integration:</strong> It listens to the asynchronous multicasts on the open Beckn Protocol. When multiple unoptimized delivery requests are broadcasted from various Buyer and Seller apps, MIDAS intercepts the signals before they reach the Logistics Service Providers (LSPs).</li>
+          <li style="margin-top:.3rem"><strong>The Intersection Layer:</strong> It sits squarely between the digital order creation and the physical street-level execution, translating chaotic, fragmented orders into highly dense, consolidated routes.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- How It Is Helpful -->
+    <div class="card">
+      <div style="font-family:var(--fo);font-size:.9rem;color:var(--grn);margin-bottom:.6rem;border-bottom:1px solid var(--b1);padding-bottom:.4rem">2. CORE PROBLEM SOLVING</div>
+      <div style="font-size:.68rem;color:var(--t2);line-height:1.75">
+        The traditional logistics industry is trapped in a CapEx-heavy cycle of leasing massive warehouses and sending duplicate, empty rides across the city. MIDAS solves the industry's four fatal operational flaws:
+        <ul style="margin-top:.4rem;padding-left:1.2rem">
+          <li><strong>Eliminates Hyper-Redundant Rides:</strong> If a D2C apparel order and a local Kirana grocery order are heading to the same apartment building, MIDAS algorithmically merges them onto a single shared vehicle trace, slashing fuel and labor waste.</li>
+          <li style="margin-top:.3rem"><strong>Zero Real-Estate Execution:</strong> To execute street-level consolidation without destroying 10-minute SLAs, MIDAS utilizes an agnostic network of <strong>Micro-Buffer Nodes (IoT Smart Lockers)</strong>. Riders securely drop and swap packages asynchronously, eliminating the need for expensive "Dark Store" hub leases.</li>
+          <li style="margin-top:.3rem"><strong>Bulletproof Liability Management:</strong> It strictly separates internal packaging liability from external transit liability. Custody is transferred via a <strong>Zero-Knowledge QR Handshake</strong> (<code>SPAN_ID</code>), which instantly syncs with central grievance frameworks (like ONDC’s IGM). If a sealed package is tampered with, the cryptographic ledger isolates the exact leg of the journey.</li>
+          <li style="margin-top:.3rem"><strong>100% DPDP Compliance:</strong> Logistics partners execute the final mile without ever seeing the originating platform's proprietary customer data. Once delivered, trace data is mathematically decoupled and destroyed.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="g2 mb">
+    
+    <!-- Who Can Benefit -->
+    <div class="card">
+      <div style="font-family:var(--fo);font-size:.9rem;color:var(--pur);margin-bottom:.6rem;border-bottom:1px solid var(--b1);padding-bottom:.4rem">3. WHO CAN INCORPORATE &amp; BENEFIT</div>
+      <div style="font-size:.68rem;color:var(--t2);line-height:1.75">
+        The protocol is designed to be a win-win for everyone except the closed-ecosystem monopolies.
+        <ul style="margin-top:.4rem;padding-left:1.2rem">
+          <li><strong>Third-Party Logistics (3PLs) &amp; Gig Fleets:</strong> Companies like Shadowfax, Delhivery, or Shiprocket can plug into the MIDAS API to instantly increase their route density. They gain the ability to monetize their empty back-hauls (ghost rides) without spending money on customer acquisition.</li>
+          <li style="margin-top:.3rem"><strong>Open Networks (ONDC):</strong> ONDC gains the missing hyper-local logistics engine it needs to truly challenge giant monopolies. MIDAS provides the network with Amazon-level delivery efficiency without requiring a central authority.</li>
+          <li style="margin-top:.3rem"><strong>Local Merchants &amp; D2C Brands:</strong> Small sellers can finally offer rapid, low-cost delivery to their buyers because the logistics cost is shared dynamically across the network, rather than borne entirely by the merchant.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom Line ROI -->
+    <div class="card">
+      <div style="font-family:var(--fo);font-size:.9rem;color:var(--amb);margin-bottom:.6rem;border-bottom:1px solid var(--b1);padding-bottom:.4rem">4. THE BOTTOM LINE ROI</div>
+      <div style="font-size:.68rem;color:var(--t2);line-height:1.75">
+        By acting as the "Visa of Logistics"—providing the protocol rather than owning the physical assets—MIDAS delivers unprecedented utility:
+        <ul style="margin-top:.4rem;padding-left:1.2rem">
+          <li><strong>0% Real Estate Footprint:</strong> Infinite scalability across new cities without signing a single commercial property lease.</li>
+          <li style="margin-top:.3rem"><strong>50%+ Reduction in Logistics CapEx:</strong> By converting two overlapping, half-empty delivery runs into one fully optimized route.</li>
+          <li style="margin-top:.3rem"><strong>Peak-Hour Load Balancing:</strong> Dynamically shifting delivery capacity across the city during high-demand surges, eliminating the need for platforms to charge customers "Surge Fees."</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer Banner -->
+  <div style="background:rgba(0,240,122,.04);border:1px solid rgba(0,240,122,.15);border-radius:var(--r);padding:1rem;text-align:center">
+    <strong style="color:var(--grn)">The Pioneer Vision:</strong> MIDAS is not a logistics company. It is the foundational digital infrastructure required to make open, decentralized digital commerce financially sustainable at scale.
+  </div>
+
 </div>
 </div>
 
@@ -539,33 +783,33 @@ hub = nearest_hub_with_stock(order)</div>
     <div style="padding:.8rem;background:var(--s1);border:1px solid var(--b1);border-radius:var(--r);border-left:3px solid var(--grn)">
       <div style="font-family:var(--fo);font-size:.6rem;color:var(--grn);margin-bottom:.4rem">STEP 02 — METADATA PACKET</div>
       <div style="font-size:.7rem;color:var(--t1);line-height:1.65;margin-bottom:.4rem">After order confirmed, Zepto sends MIDAS an anonymized 6-field packet. No customer data. Only logistics signals.</div>
-      <div class="step-code">{plat:"ZPT", hub:"ZPT_HYD_KOND", dest_geo:"GH7F4X",
+      <div class="step-code">{plat:"DLV", hub:"DLV_HYD_KOND", dest_geo:"GH7F4X",
  weight_kg:3.2, sla_tier:"T1", order_token:"ANON_8f3a"}</div>
     </div>
     <div style="padding:.8rem;background:var(--s1);border:1px solid var(--b1);border-radius:var(--r);border-left:3px solid var(--pur)">
       <div style="font-family:var(--fo);font-size:.6rem;color:var(--pur);margin-bottom:.4rem">STEP 03 — GEO-HASH MATCH</div>
-      <div style="font-size:.7rem;color:var(--t1);line-height:1.65;margin-bottom:.4rem">MIDAS checks pool for same geo-hash. If SWG order for "GH7F4X" exists and hubs are ≤800m — match fires in &lt;2ms.</div>
-      <div class="step-code">pool["GH7F4X"] → SWG(2.8kg)+ZPT(3.2kg)=6.0kg ✓
+      <div style="font-size:.7rem;color:var(--t1);line-height:1.65;margin-bottom:.4rem">MIDAS checks pool for same geo-hash. If SFX order for "GH7F4X" exists and hubs are ≤800m — match fires in &lt;2ms.</div>
+      <div class="step-code">pool["GH7F4X"] → SFX(2.8kg)+DLV(3.2kg)=6.0kg ✓
 hub_relay_dist = 220m ✓ → MATCH in 1.4ms</div>
     </div>
     <div style="padding:.8rem;background:var(--s1);border:1px solid var(--b1);border-radius:var(--r);border-left:3px solid var(--sky)">
       <div style="font-family:var(--fo);font-size:.6rem;color:var(--sky);margin-bottom:.4rem">STEP 04 — CONSOLIDATION SIGNAL</div>
-      <div style="font-size:.7rem;color:var(--t1);line-height:1.65;margin-bottom:.4rem">MIDAS → Swiggy dispatch API: "Your rider can relay ZPT parcel from ZPT hub (220m detour) to geo GH7F4X." Swiggy decides and dispatches.</div>
+      <div style="font-size:.7rem;color:var(--t1);line-height:1.65;margin-bottom:.4rem">MIDAS → Swiggy dispatch API: "Your rider can relay DLV parcel from DLV hub (220m detour) to geo GH7F4X." Swiggy decides and dispatches.</div>
       <div class="step-code">{action:"CONSOLIDATION_OPPORTUNITY",
- relay_hub:"ZPT_HYD_KOND", relay_geo:"GH7F4X",
- span_id:"SPAN_SWG_R012_ZPT_R044_ORD88812"}</div>
+ relay_hub:"DLV_HYD_KOND", relay_geo:"GH7F4X",
+ span_id:"SPAN_SFX_R012_DLV_R044_ORD88812"}</div>
     </div>
     <div style="padding:.8rem;background:var(--s1);border:1px solid var(--b1);border-radius:var(--r);border-left:3px solid var(--tea)">
       <div style="font-family:var(--fo);font-size:.6rem;color:var(--tea);margin-bottom:.4rem">STEP 05 — QR RELAY &amp; HANDOVER</div>
-      <div style="font-size:.7rem;color:var(--t1);line-height:1.65;margin-bottom:.4rem">Rider A stops at ZPT hub (220m detour). Rider B scans QR. 3 simultaneous checks pass. Atomic DB write transfers custody. Rider B receives GPS + masked phone only.</div>
-      <div class="step-code">SPAN_SWG_R012_ZPT_R044_ORD88812 → checks(a,b,c) PASS
-ATOMIC: remove SWG_R012 → add ZPT_R044</div>
+      <div style="font-size:.7rem;color:var(--t1);line-height:1.65;margin-bottom:.4rem">Rider A stops at DLV hub (220m detour). Rider B scans QR. 3 simultaneous checks pass. Atomic DB write transfers custody. Rider B receives GPS + masked phone only.</div>
+      <div class="step-code">SPAN_SFX_R012_DLV_R044_ORD88812 → checks(a,b,c) PASS
+ATOMIC: remove SFX_R012 → add DLV_R044</div>
     </div>
     <div style="padding:.8rem;background:var(--s1);border:1px solid var(--b1);border-radius:var(--r);border-left:3px solid var(--amb)">
       <div style="font-family:var(--fo);font-size:.6rem;color:var(--amb);margin-bottom:.4rem">STEP 06 — AUTO-SETTLEMENT</div>
-      <div style="font-size:.7rem;color:var(--t1);line-height:1.65;margin-bottom:.4rem">Delivery confirmed. Session erased. MIDAS calculates weight-proportional split. ZPT debited ₹14.20. SWG credited ₹12.00. MIDAS takes ₹3.70 broker fee. Immutable ledger.</div>
-      <div class="step-code">ZPT pays: ₹14.20 · SWG earns: ₹12.00 · MIDAS: ₹3.70
-InvoiceID: INV-ZPT-00412 → bound to TraceID</div>
+      <div style="font-size:.7rem;color:var(--t1);line-height:1.65;margin-bottom:.4rem">Delivery confirmed. Session erased. MIDAS calculates weight-proportional split. DLV debited ₹14.20. SFX credited ₹12.00. MIDAS takes ₹3.70 broker fee. Immutable ledger.</div>
+      <div class="step-code">DLV pays: ₹14.20 · SFX earns: ₹12.00 · MIDAS: ₹3.70
+InvoiceID: INV-DLV-00412 → bound to TraceID</div>
     </div>
   </div>
 </div>
@@ -590,9 +834,9 @@ InvoiceID: INV-ZPT-00412 → bound to TraceID</div>
   <div class="card mb"><div class="fb mb" style="margin-bottom:.5rem"><span class="label">Geo-Hash Zone Map — <span id="hub-city-name">Hyderabad</span></span><span class="chip c-c" style="font-size:.46rem">Match fires when ≥2 platforms in same cell</span></div>
     <div id="geo-grid" style="display:grid;gap:4px;margin-bottom:.5rem"></div>
     <div class="fr" style="font-size:.5rem;color:var(--t3)">
-      <span class="chip c-o" style="font-size:.44rem">■ SWG hub</span>
-      <span class="chip c-sk" style="font-size:.44rem">■ ZPT hub</span>
-      <span class="chip c-g" style="font-size:.44rem">■ BBY hub</span>
+      <span class="chip c-o" style="font-size:.44rem">■ SFX hub</span>
+      <span class="chip c-sk" style="font-size:.44rem">■ DLV hub</span>
+      <span class="chip c-g" style="font-size:.44rem">■ DNZ hub</span>
       <span class="chip c-p" style="font-size:.44rem">■ Multi-platform → MATCH ZONE</span>
       <span class="chip c-x" style="font-size:.44rem">□ No coverage</span>
     </div>
@@ -649,7 +893,7 @@ InvoiceID: INV-ZPT-00412 → bound to TraceID</div>
   <div class="card mb">
     <div class="label mb" style="margin-bottom:.6rem">Build 6-Field TraceID Live — hover each segment</div>
     <div class="g5" style="margin-bottom:1rem">
-      <div><div class="label" style="margin-bottom:3px">Platform</div><select id="tb-p" onchange="buildTrace()"><option>SWG</option><option>ZPT</option><option>BBY</option><option>SMT</option></select></div>
+      <div><div class="label" style="margin-bottom:3px">Platform</div><select id="tb-p" onchange="buildTrace()"><option>SFX</option><option>DLV</option><option>DNZ</option><option>SMT</option></select></div>
       <div><div class="label" style="margin-bottom:3px">Hub Zone</div><select id="tb-z" onchange="buildTrace()"><option>HYD-KOND</option><option>HYD-BNJR</option><option>HYD-JUBH</option><option>HYD-HITC</option><option>CHN-ANNA</option><option>MUM-ANDR</option><option>BLR-KORM</option></select></div>
       <div><div class="label" style="margin-bottom:3px">Dest GeoHash</div><select id="tb-g" onchange="buildTrace()"><option>GH7F4X</option><option>GH7F5Y</option><option>GH7G1Z</option><option>GH8C3B</option><option>GH7J8C</option><option>GH9A2D</option></select></div>
       <div><div class="label" style="margin-bottom:3px">Type</div><select id="tb-t" onchange="buildTrace()"><option value="O">Outbound</option><option value="R">Return (RTN_)</option><option value="S">Split (SPLIT_)</option><option value="X">Cross-Platform</option></select></div>
@@ -666,7 +910,7 @@ InvoiceID: INV-ZPT-00412 → bound to TraceID</div>
   <!-- Search bar -->
   <div class="search-bar">
     <input type="search" id="ts-search" placeholder="Search TraceID, SpanID, InvoiceID, GeoHash, Hub, Rider..." oninput="filterTrace()">
-    <select id="ts-plat" onchange="filterTrace()" style="width:105px"><option value="">All Platforms</option><option>SWG</option><option>ZPT</option><option>BBY</option></select>
+    <select id="ts-plat" onchange="filterTrace()" style="width:105px"><option value="">All Platforms</option><option>SFX</option><option>DLV</option><option>DNZ</option></select>
     <select id="ts-lbl" onchange="filterTrace()" style="width:140px"><option value="">All Labels</option><option>SELF_MATCH</option><option>PEER_MATCH</option><option>CROSS_PLATFORM</option><option>RETURN_MATCH</option><option>HEAVY</option><option>SLA_BREACH</option><option>DIRECT</option></select>
     <select id="ts-city" onchange="filterTrace()" style="width:105px"><option value="">All Cities</option><option>HYD</option><option>BLR</option><option>CHN</option><option>MUM</option><option>DEL</option></select>
     <span class="chip c-c" id="ts-count">0</span>
@@ -748,35 +992,35 @@ InvoiceID: INV-ZPT-00412 → bound to TraceID</div>
   <div style="background:rgba(155,109,255,.05);border:1px solid rgba(155,109,255,.25);border-radius:var(--rx);padding:1rem;margin-bottom:1rem">
     <div style="font-family:var(--fo);font-size:.65rem;color:var(--pur);margin-bottom:.5rem">SPAN_ID STRUCTURE — Rider A Identity → Rider B Identity</div>
     <div id="span-display" style="font-family:var(--fm);font-size:.72rem;color:var(--t1);word-break:break-all;background:var(--s2);padding:.6rem;border-radius:4px;margin-bottom:.6rem">
-      SPAN_<span style="color:var(--ora)">SWG_HYD_KOND_R012</span>_<span style="color:var(--sky)">ZPT_HYD_KOND_R044</span>_<span style="color:var(--tea)">ORD88812</span>_<span style="color:var(--pur)">143522</span>
+      SPAN_<span style="color:var(--ora)">SFX_HYD_KOND_R012</span>_<span style="color:var(--sky)">DLV_HYD_KOND_R044</span>_<span style="color:var(--tea)">ORD88812</span>_<span style="color:var(--pur)">143522</span>
     </div>
     <div class="g4" style="font-family:var(--fm);font-size:.6rem;gap:.5rem">
-      <div style="background:var(--s2);padding:.45rem;border-radius:4px;border-left:2px solid var(--ora)"><div style="color:var(--t3)">Field 1 — Origin Rider</div><div style="color:var(--ora)">SWG_HYD_KOND_R012</div><div style="color:var(--t3);font-size:.52rem">Platform + Hub + Rider ID</div></div>
-      <div style="background:var(--s2);padding:.45rem;border-radius:4px;border-left:2px solid var(--sky)"><div style="color:var(--t3)">Field 2 — Relay Rider</div><div style="color:var(--sky)">ZPT_HYD_KOND_R044</div><div style="color:var(--t3);font-size:.52rem">Platform + Hub + Rider ID</div></div>
+      <div style="background:var(--s2);padding:.45rem;border-radius:4px;border-left:2px solid var(--ora)"><div style="color:var(--t3)">Field 1 — Origin Rider</div><div style="color:var(--ora)">SFX_HYD_KOND_R012</div><div style="color:var(--t3);font-size:.52rem">Platform + Hub + Rider ID</div></div>
+      <div style="background:var(--s2);padding:.45rem;border-radius:4px;border-left:2px solid var(--sky)"><div style="color:var(--t3)">Field 2 — Relay Rider</div><div style="color:var(--sky)">DLV_HYD_KOND_R044</div><div style="color:var(--t3);font-size:.52rem">Platform + Hub + Rider ID</div></div>
       <div style="background:var(--s2);padding:.45rem;border-radius:4px;border-left:2px solid var(--tea)"><div style="color:var(--t3)">Field 3 — Order Ref</div><div style="color:var(--tea)">ORD88812</div><div style="color:var(--t3);font-size:.52rem">Anonymized token</div></div>
       <div style="background:var(--s2);padding:.45rem;border-radius:4px;border-left:2px solid var(--pur)"><div style="color:var(--t3)">Field 4 — Timestamp</div><div style="color:var(--pur)">143522</div><div style="color:var(--t3);font-size:.52rem">HHMMSS — time-locked</div></div>
     </div>
   </div>
   <div class="g2 mb">
     <div class="card">
-      <div style="font-family:var(--fo);font-size:.65rem;color:var(--ora);margin-bottom:.6rem">RIDER A — Origin (SWG_R012)</div>
+      <div style="font-family:var(--fo);font-size:.65rem;color:var(--ora);margin-bottom:.6rem">RIDER A — Origin (SFX_R012)</div>
       <div style="background:var(--s2);border:1px solid rgba(255,122,53,.25);border-radius:5px;padding:.7rem;margin-bottom:.6rem;font-family:var(--fm);font-size:.64rem;color:var(--t1);line-height:1.7">
-        <div style="color:var(--ora);margin-bottom:.3rem">🚴 SWG_HYD_KOND_R012 — Swiggy Rider at Kondapur Hub</div>
+        <div style="color:var(--ora);margin-bottom:.3rem">🚴 SFX_HYD_KOND_R012 — Swiggy Rider at Kondapur Hub</div>
         <div>Carrying: ORD88812 (2.8 kg, geo: GH7F4X)</div>
-        <div>Also carrying: own SWG order (4.2 kg)</div>
-        <div>Detour to ZPT hub: 220m → picks up ZPT parcel</div>
+        <div>Also carrying: own SFX order (4.2 kg)</div>
+        <div>Detour to DLV hub: 220m → picks up DLV parcel</div>
         <div style="margin-top:.4rem;color:var(--tea)">SPAN_ID generated. Status: LOCKED pending Rider B scan.</div>
       </div>
       <div style="text-align:center">
         <svg id="qr-A-static" width="110" height="110" viewBox="0 0 110 110" style="margin:0 auto;display:block"></svg>
-        <div style="font-family:var(--fm);font-size:.56rem;color:var(--t3);margin-top:.3rem">Parcel QR — attached to ZPT package</div>
+        <div style="font-family:var(--fm);font-size:.56rem;color:var(--t3);margin-top:.3rem">Parcel QR — attached to DLV package</div>
       </div>
     </div>
     <div class="card">
-      <div style="font-family:var(--fo);font-size:.65rem;color:var(--sky);margin-bottom:.6rem">RIDER B — Relay (ZPT_R044)</div>
+      <div style="font-family:var(--fo);font-size:.65rem;color:var(--sky);margin-bottom:.6rem">RIDER B — Relay (DLV_R044)</div>
       <div style="background:var(--s2);border:1px solid rgba(56,212,248,.25);border-radius:5px;padding:.7rem;margin-bottom:.6rem;font-family:var(--fm);font-size:.64rem;color:var(--t1);line-height:1.7">
-        <div style="color:var(--sky);margin-bottom:.3rem">🚴 ZPT_HYD_KOND_R044 — Zepto Rider at Kondapur Hub</div>
-        <div>Waiting at ZPT_HYD_KOND hub</div>
+        <div style="color:var(--sky);margin-bottom:.3rem">🚴 DLV_HYD_KOND_R044 — Zepto Rider at Kondapur Hub</div>
+        <div>Waiting at DLV_HYD_KOND hub</div>
         <div>Will receive parcel from Rider A</div>
         <div>Destination: GH7F4X cluster (GPS + masked phone only)</div>
         <div style="margin-top:.4rem;color:var(--t3)">Status: Active, awaiting SPAN_ID unlock</div>
@@ -791,7 +1035,7 @@ InvoiceID: INV-ZPT-00412 → bound to TraceID</div>
     <div style="font-family:var(--fo);font-size:.65rem;color:var(--acc);margin-bottom:.6rem">3-CHECK SIMULTANEOUS VERIFICATION</div>
     <div id="demo-checks" style="display:flex;flex-direction:column;gap:.3rem;margin-bottom:.6rem">
       <div class="check-row"><div class="chk-icon chk-p" id="dc1">?</div><div><div style="font-weight:600;color:var(--t1)">Check (a) — QR payload matches active order record ORD88812</div><div id="dc1-d" style="font-size:.58rem;color:var(--t3)">Awaiting scan...</div></div></div>
-      <div class="check-row"><div class="chk-icon chk-p" id="dc2">?</div><div><div style="font-weight:600;color:var(--t1)">Check (b) — Relay partner ZPT_R044 is in active operational status</div><div id="dc2-d" style="font-size:.58rem;color:var(--t3)">Awaiting scan...</div></div></div>
+      <div class="check-row"><div class="chk-icon chk-p" id="dc2">?</div><div><div style="font-weight:600;color:var(--t1)">Check (b) — Relay partner DLV_R044 is in active operational status</div><div id="dc2-d" style="font-size:.58rem;color:var(--t3)">Awaiting scan...</div></div></div>
       <div class="check-row"><div class="chk-icon chk-p" id="dc3">?</div><div><div style="font-weight:600;color:var(--t1)">Check (c) — One-time session token matches current SPAN_ID session</div><div id="dc3-d" style="font-size:.58rem;color:var(--t3)">Awaiting scan...</div></div></div>
     </div>
     <div class="log" id="demo-qr-log" style="height:80px;margin-bottom:.6rem">Press "Simulate Rider B Scan" to begin authentication...</div>
@@ -872,7 +1116,7 @@ InvoiceID: INV-ZPT-00412 → bound to TraceID</div>
     <div class="kpi kpi-p"><div class="kpi-val" id="bs-cp">0%</div><div class="kpi-lbl">CPO Reduction</div></div>
   </div>
   <div class="card mb" style="overflow-x:auto">
-    <table class="tbl"><thead><tr><th>Line Item</th><th>SWIGGY</th><th>ZEPTO</th><th>BLINKIT</th><th>MIDAS</th><th>SYSTEM</th></tr></thead><tbody id="bs-tbody"></tbody></table>
+    <table class="tbl"><thead><tr><th>Line Item</th><th>SHADOWFAX</th><th>DELHIVERY</th><th>DUNZO</th><th>MIDAS</th><th>SYSTEM</th></tr></thead><tbody id="bs-tbody"></tbody></table>
   </div>
   <div class="card" style="overflow-x:auto">
     <div class="label mb" style="margin-bottom:.6rem;color:var(--acc)">1M Orders/Day — Annual National Scale</div>
@@ -893,104 +1137,214 @@ InvoiceID: INV-ZPT-00412 → bound to TraceID</div>
 
 <!-- ══ WHY MIDAS ══ -->
 <div id="why" class="pg">
-<div class="pg-hd"><div><div class="pg-hd-title">WHY <span class="hi">MIDAS?</span></div><div class="pg-hd-sub">The commercial case — why Zepto, Blinkit &amp; Swiggy should sign now</div></div></div>
+<div class="pg-hd" style="border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 1rem; margin-bottom: 1.5rem;">
+  <div>
+    <div class="pg-hd-title" style="font-size: 1.4rem; font-weight: 700; color: var(--t1);">EXECUTIVE SUMMARY <span class="hi" style="color: var(--acc); font-weight: 400;">&amp; PITCH DECK</span></div>
+    <div class="pg-hd-sub" style="color: var(--t2); font-size: 0.85rem; margin-top: 0.3rem;">Strategic Overview, Integration, and Security Architecture</div>
+  </div>
+  <div class="fr" style="gap: 1rem;">
+    <button class="btn btn-gh btn-sm" onclick="prevSlide()" style="padding: 0.5rem 1rem; border-radius: 6px;">◀ PREV</button>
+    <span class="chip c-c" id="slide-num" style="font-family: var(--fm); font-size: 0.75rem; min-width: 90px; text-align: center; padding: 0.4rem 0.8rem; background: var(--s2); border: 1px solid var(--s4);">Slide 1 of 8</span>
+    <button class="btn btn-p btn-sm" onclick="nextSlide()" style="padding: 0.5rem 1rem; border-radius: 6px;">NEXT ▶</button>
+  </div>
+</div>
 <div class="pg-body">
-
-  <div class="why-hero">
-    <div style="font-family:var(--fo);font-size:.6rem;letter-spacing:.16em;color:var(--red);margin-bottom:.5rem">THE ₹1,387 CRORE PROBLEM NOBODY HAS SOLVED</div>
-    <div style="font-family:var(--fo);font-size:clamp(.95rem,3.5vw,2rem);font-weight:900;line-height:.95;margin-bottom:.5rem;color:var(--t1)">A SWIGGY RIDER AND A ZEPTO RIDER ARE<br>GOING TO THE SAME APARTMENT BLOCK.<br><span style="color:var(--red)">RIGHT NOW. EVERY DAY. 4 LAKH TIMES.</span></div>
-    <div style="font-size:.76rem;color:var(--t2);max-width:600px;margin:0 auto .8rem">Neither platform knows. Both pay ₹38–55 full trip cost. Neither can fix it alone — sharing rider data with a competitor is legally and commercially impossible. Until now.</div>
-    <div class="stat-blast">
-      <div><span class="sb-val" style="color:var(--red)">₹1,387Cr</span><div class="sb-lbl">India's annual last-mile waste</div></div>
-      <div><span class="sb-val" style="color:var(--amb)">4L+</span><div class="sb-lbl">Empty return trips daily</div></div>
-      <div><span class="sb-val" style="color:var(--pur)">10–40%</span><div class="sb-lbl">Current vehicle utilisation</div></div>
-      <div><span class="sb-val" style="color:var(--grn)">₹540Cr</span><div class="sb-lbl">MIDAS saves at 1M orders/day</div></div>
-    </div>
-    <div style="font-family:var(--fo);font-size:.65rem;color:var(--grn);letter-spacing:.1em">MIDAS IS THE ONLY LEGAL, PRIVACY-SAFE, NEUTRAL ENGINE THAT CAN FIX THIS — AND THE PATENT MEANS NO ONE ELSE CAN BUILD IT FOR 20 YEARS.</div>
-  </div>
-
-  <!-- VS comparison -->
-  <div class="vs-row mb">
-    <div class="vs-card vs-left">
-      <div style="font-family:var(--fo);font-size:.7rem;color:var(--red);margin-bottom:.5rem">WITHOUT MIDAS</div>
-      <div class="pain">Vehicle utilisation: 10–40%. 60–90% of every trip is empty vehicle.</div>
-      <div class="pain">CPO ₹38–55. Cannot reduce without competitor route data.</div>
-      <div class="pain">4 lakh+ empty return journeys daily in India.</div>
-      <div class="pain">Festival surges: platforms over-provision 3×, still miss ETAs.</div>
-      <div class="pain">SLA breaches untracked — no cross-platform audit trail.</div>
-      <div class="pain">Legal impossibility: can't share rider data with Zepto/Blinkit.</div>
-    </div>
-    <div class="vs-sep">VS</div>
-    <div class="vs-card vs-right">
-      <div style="font-family:var(--fo);font-size:.7rem;color:var(--grn);margin-bottom:.5rem">WITH MIDAS</div>
-      <div class="gain">Vehicle utilisation → 85–98%. Each rider carries consolidated loads.</div>
-      <div class="gain">CPO → ₹23–31. 38.9% reduction. Direct EBITDA improvement.</div>
-      <div class="gain">4L return trips eliminated/day. ₹1.48 Cr saved every single day.</div>
-      <div class="gain">Stress modes handle surges automatically. &lt;200ms assignment.</div>
-      <div class="gain">SHA-256 chained SLA breach ledger. Full forensic audit trail.</div>
-      <div class="gain">Zero PII shared. DPDP 2023 compliant. CCI-safe neutral orchestrator.</div>
-    </div>
-  </div>
-
-  <!-- Platform cases -->
-  <div class="g3 mb">
-    <div style="background:rgba(255,122,53,.04);border:1px solid rgba(255,122,53,.18);border-radius:var(--rx);padding:.9rem">
-      <div style="font-family:var(--fo);font-size:.85rem;color:var(--ora);margin-bottom:.4rem">SWIGGY — 3L+ orders/day</div>
-      <div style="font-size:.68rem;color:var(--t1);line-height:1.65;margin-bottom:.5rem">Dark store density in Tier-1 cities creates ~65% hub-zone overlap with Zepto and Blinkit. Even at 25% consolidation: saves <strong style="color:var(--grn)">₹18 Cr/year net</strong> after MIDAS fee.</div>
-      <div class="g2" style="gap:.35rem">
-        <div style="background:var(--s2);border-radius:3px;padding:.45rem"><div class="label" style="font-size:.44rem">Daily Saving</div><div style="font-family:var(--fo);font-size:.85rem;color:var(--grn)">₹5.2L</div></div>
-        <div style="background:var(--s2);border-radius:3px;padding:.45rem"><div class="label" style="font-size:.44rem">Annual Net</div><div style="font-family:var(--fo);font-size:.85rem;color:var(--grn)">₹18 Cr</div></div>
+  
+  <div id="ppt-container" style="background: linear-gradient(145deg, #111827, #1e293b); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; min-height: 520px; padding: 3rem 4rem; position: relative; display: flex; flex-direction: column; justify-content: center; box-shadow: 0 20px 50px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05);">
+    
+    <!-- Slide 1: Title -->
+    <div class="ppt-slide" style="display:block; text-align:center">
+      <div style="display:inline-block; padding: 0.4rem 1.2rem; background: rgba(14, 165, 233, 0.1); border: 1px solid rgba(14, 165, 233, 0.3); border-radius: 20px; font-family: var(--fo); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; color: var(--acc); margin-bottom: 2rem;">ENTERPRISE LOGISTICS INFRASTRUCTURE</div>
+      <h1 style="font-family: var(--fo); font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 900; line-height: 1.1; margin-bottom: 1.5rem;" class="gradient-text">THE MIDAS PROTOCOL</h1>
+      <div style="font-size: 1.2rem; color: var(--t2); max-width: 700px; margin: 0 auto 3rem; line-height: 1.6;">The Secure, Asset-Light Middleware empowering ONDC with Amazon-level Delivery Efficiency.</div>
+      <div style="display:flex; justify-content:center; gap: 2rem;">
+        <div style="text-align: left; border-left: 2px solid var(--acc); padding-left: 1rem;">
+          <div style="font-size: 0.65rem; color: var(--t3); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.2rem;">Patent Status</div>
+          <div style="font-size: 0.85rem; color: var(--t1); font-family: var(--fm);">IN202641051096</div>
+        </div>
+        <div style="text-align: left; border-left: 2px solid var(--grn); padding-left: 1rem;">
+          <div style="font-size: 0.65rem; color: var(--t3); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.2rem;">Ecosystem Role</div>
+          <div style="font-size: 0.85rem; color: var(--t1); font-weight: 500;">Neutral Network TSP</div>
+        </div>
       </div>
     </div>
-    <div style="background:rgba(56,212,248,.04);border:1px solid rgba(56,212,248,.18);border-radius:var(--rx);padding:.9rem">
-      <div style="font-family:var(--fo);font-size:.85rem;color:var(--sky);margin-bottom:.4rem">ZEPTO — ~2,000 stores</div>
-      <div style="font-size:.68rem;color:var(--t1);line-height:1.65;margin-bottom:.5rem">Placed in highest-density pin codes — exact zones where Blinkit and Swiggy cluster. 60–80% hub overlap. Maximum MIDAS benefit: <strong style="color:var(--grn)">₹22 Cr/year net</strong>.</div>
-      <div class="g2" style="gap:.35rem">
-        <div style="background:var(--s2);border-radius:3px;padding:.45rem"><div class="label" style="font-size:.44rem">Daily Saving</div><div style="font-family:var(--fo);font-size:.85rem;color:var(--grn)">₹6.1L</div></div>
-        <div style="background:var(--s2);border-radius:3px;padding:.45rem"><div class="label" style="font-size:.44rem">Annual Net</div><div style="font-family:var(--fo);font-size:.85rem;color:var(--grn)">₹22 Cr</div></div>
+    
+    <!-- Slide 2: Problem Statement -->
+    <div class="ppt-slide" style="display:none">
+      <div style="font-size: 0.75rem; font-weight: 700; color: var(--red); letter-spacing: 0.1em; margin-bottom: 1rem; text-transform: uppercase;">1. The Problem Statement</div>
+      <h2 style="font-size: 2rem; font-weight: 800; margin-bottom: 2rem; color: var(--t1);">The ₹1,387 Cr Last-Mile Inefficiency</h2>
+      <div class="premium-card" style="border-left: 4px solid var(--red);">
+        <p style="font-size: 0.95rem; color: var(--t1); line-height: 1.7; margin-bottom: 1.5rem;">
+          Right now, a <span style="color: var(--ora); font-weight: 600;">Shadowfax</span> rider and a <span style="color: var(--sky); font-weight: 600;">Delhivery</span> rider are driving to the same apartment building at the exact same time to deliver two separate orders.
+        </p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1.5rem;">
+          <div>
+            <div style="font-weight: 600; color: var(--t1); margin-bottom: 0.5rem;">The Financial Bleed</div>
+            <p style="font-size: 0.8rem; color: var(--t2); line-height: 1.6;">Platforms pay ₹38-₹55 per trip. With 4 Lakh+ redundant runs daily across India, the industry wastes over ₹1,387 Crores annually on duplicated efforts.</p>
+          </div>
+          <div>
+            <div style="font-weight: 600; color: var(--t1); margin-bottom: 0.5rem;">The Trust &amp; Privacy Barrier</div>
+            <p style="font-size: 0.8rem; color: var(--t2); line-height: 1.6;">Competitors cannot consolidate deliveries because sharing rider locations or customer PII violates DPDP laws and destroys competitive advantage.</p>
+          </div>
+        </div>
       </div>
     </div>
-    <div style="background:rgba(0,240,122,.04);border:1px solid rgba(0,240,122,.15);border-radius:var(--rx);padding:.9rem">
-      <div style="font-family:var(--fo);font-size:.85rem;color:var(--grn);margin-bottom:.4rem">BLINKIT — 7L+ orders/day</div>
-      <div style="font-size:.68rem;color:var(--t1);line-height:1.65;margin-bottom:.5rem">Warehouse network overlaps Swiggy + Zepto across top 30 cities. Plan C: <strong style="color:var(--grn)">₹31 Cr/year net</strong>. Plan D recommended for Sunday/holiday surges.</div>
-      <div class="g2" style="gap:.35rem">
-        <div style="background:var(--s2);border-radius:3px;padding:.45rem"><div class="label" style="font-size:.44rem">Daily Saving</div><div style="font-family:var(--fo);font-size:.85rem;color:var(--grn)">₹8.6L</div></div>
-        <div style="background:var(--s2);border-radius:3px;padding:.45rem"><div class="label" style="font-size:.44rem">Annual Net</div><div style="font-family:var(--fo);font-size:.85rem;color:var(--grn)">₹31 Cr</div></div>
+
+    <!-- Slide 3: The Resolution -->
+    <div class="ppt-slide" style="display:none">
+      <div style="font-size: 0.75rem; font-weight: 700; color: var(--grn); letter-spacing: 0.1em; margin-bottom: 1rem; text-transform: uppercase;">2. The Resolution</div>
+      <h2 style="font-size: 2rem; font-weight: 800; margin-bottom: 2rem; color: var(--t1);">Intelligent Route Consolidation</h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+        <div class="premium-card">
+          <div class="icon-box green">⚄</div>
+          <h3 style="font-size: 1.1rem; color: var(--t1); margin-bottom: 0.8rem;">The MIDAS Middleware</h3>
+          <p style="font-size: 0.85rem; color: var(--t2); line-height: 1.6; margin-bottom: 1rem;">
+            MIDAS acts as a neutral "Traffic Controller". We mathematically intercept overlapping deliveries in the 60-second window before riders are dispatched.
+          </p>
+          <ul class="feature-list">
+            <li>Matches routes using anonymized Geo-Hashes.</li>
+            <li>Assigns one rider to carry both packages.</li>
+            <li>Eliminates the second vehicle entirely.</li>
+          </ul>
+        </div>
+        <div class="premium-card" style="background: rgba(16, 185, 129, 0.05); border-color: rgba(16, 185, 129, 0.2);">
+          <div style="font-size: 0.85rem; font-weight: 600; color: var(--grn); margin-bottom: 1rem; text-transform: uppercase;">The Result</div>
+          <div style="font-size: 3rem; font-weight: 900; color: var(--t1); line-height: 1;">85%+</div>
+          <div style="font-size: 0.9rem; color: var(--t2); margin-top: 0.5rem; margin-bottom: 1.5rem;">Vehicle Utilization (Up from 30%)</div>
+          
+          <div style="font-size: 3rem; font-weight: 900; color: var(--t1); line-height: 1;">-38.9%</div>
+          <div style="font-size: 0.9rem; color: var(--t2); margin-top: 0.5rem;">Reduction in Cost-Per-Order (CPO)</div>
+        </div>
       </div>
     </div>
+
+    <!-- Slide 4: Why Integrate (ROI) -->
+    <div class="ppt-slide" style="display:none">
+      <div style="font-size: 0.75rem; font-weight: 700; color: var(--amb); letter-spacing: 0.1em; margin-bottom: 1rem; text-transform: uppercase;">3. The Business Case</div>
+      <h2 style="font-size: 2rem; font-weight: 800; margin-bottom: 2rem; color: var(--t1);">Why Ecosystems Must Integrate</h2>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;">
+        <div class="premium-card" style="text-align: center; padding: 2rem 1.5rem;">
+          <div style="font-size: 2.5rem; font-weight: 900; color: var(--amb); margin-bottom: 0.5rem;">0%</div>
+          <div style="font-size: 0.9rem; font-weight: 600; color: var(--t1); margin-bottom: 0.5rem;">Real Estate CapEx</div>
+          <p style="font-size: 0.75rem; color: var(--t2); line-height: 1.5;">Unlike asset-heavy startups, MIDAS requires no warehouses, dark stores, or fleet purchases. Pure software scalability.</p>
+        </div>
+        <div class="premium-card" style="text-align: center; padding: 2rem 1.5rem;">
+          <div style="font-size: 2.5rem; font-weight: 900; color: var(--amb); margin-bottom: 0.5rem;">₹1.33 Cr</div>
+          <div style="font-size: 0.9rem; font-weight: 600; color: var(--t1); margin-bottom: 0.5rem;">Daily Savings (at 1M orders)</div>
+          <p style="font-size: 0.75rem; color: var(--t2); line-height: 1.5;">Direct EBITDA injection for logistics partners. The network becomes inherently more profitable.</p>
+        </div>
+        <div class="premium-card" style="text-align: center; padding: 2rem 1.5rem;">
+          <div style="font-size: 2.5rem; font-weight: 900; color: var(--amb); margin-bottom: 0.5rem;">3.4x</div>
+          <div style="font-size: 0.9rem; font-weight: 600; color: var(--t1); margin-bottom: 0.5rem;">Year 1 ROI</div>
+          <p style="font-size: 0.75rem; color: var(--t2); line-height: 1.5;">Platforms pay a micro-fee (₹1.50) only upon a successful match that saves them ₹15+.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 5: Integration -->
+    <div class="ppt-slide" style="display:none">
+      <div style="font-size: 0.75rem; font-weight: 700; color: var(--sky); letter-spacing: 0.1em; margin-bottom: 1rem; text-transform: uppercase;">4. Seamless Deployment</div>
+      <h2 style="font-size: 2rem; font-weight: 800; margin-bottom: 2rem; color: var(--t1);">48-Hour Drop-In Integration</h2>
+      <div class="premium-card">
+        <p style="font-size: 0.95rem; color: var(--t1); line-height: 1.7; margin-bottom: 2rem;">
+          We respect legacy systems. Integrating MIDAS requires <strong>zero changes</strong> to your rider apps, hardware, or databases.
+        </p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+          <div>
+            <h4 style="color: var(--sky); font-size: 0.9rem; margin-bottom: 1rem;">How It Works:</h4>
+            <ul class="feature-list">
+              <li><strong>REST API / Webhook:</strong> Simply route dispatch calls through our endpoint.</li>
+              <li><strong>Beckn Protocol Native:</strong> ONDC networks plug in automatically via multicast listener.</li>
+              <li><strong>&lt; 20ms Latency:</strong> Matching decisions happen instantly before rider assignment.</li>
+            </ul>
+          </div>
+          <div style="background: var(--bg); border: 1px solid var(--s4); border-radius: 8px; padding: 1rem; font-family: var(--fm); font-size: 0.75rem; color: var(--t2);">
+            <div style="color: var(--pur); margin-bottom: 0.5rem;">// Sample Pre-Dispatch Hook</div>
+            <div><span style="color: var(--sky);">POST</span> /api/v1/midas/consolidate</div>
+            <div style="color: #a6e22e; margin: 0.5rem 0;">{<br>&nbsp;&nbsp;"hub_id": "SFX_HYD_01",<br>&nbsp;&nbsp;"geo_hash": "GH7F4X",<br>&nbsp;&nbsp;"weight_kg": 2.5<br>}</div>
+            <div style="color: var(--pur);">// Returns matched TraceID &amp; SpanID</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 6: Security & Privacy -->
+    <div class="ppt-slide" style="display:none">
+      <div style="font-size: 0.75rem; font-weight: 700; color: var(--pur); letter-spacing: 0.1em; margin-bottom: 1rem; text-transform: uppercase;">5. Security &amp; Trust</div>
+      <h2 style="font-size: 2rem; font-weight: 800; margin-bottom: 2rem; color: var(--t1);">Ironclad Data Privacy (DPDP Compliant)</h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+        <div class="premium-card" style="border-top: 3px solid var(--pur);">
+          <div class="icon-box purple">🔒</div>
+          <h3 style="font-size: 1.1rem; color: var(--t1); margin-bottom: 0.8rem;">Zero PII Exposure</h3>
+          <p style="font-size: 0.85rem; color: var(--t2); line-height: 1.6;">
+            MIDAS is a pure metadata broker. We never receive customer names, exact addresses, or phone numbers. We match purely on coarse Geo-Hashes (1.2km radius) and anonymized tokens.
+          </p>
+        </div>
+        <div class="premium-card" style="border-top: 3px solid var(--sky);">
+          <div class="icon-box" style="background: rgba(14, 165, 233, 0.1); color: var(--sky);">🏢</div>
+          <h3 style="font-size: 1.1rem; color: var(--t1); margin-bottom: 0.8rem;">CCI &amp; Antitrust Safe</h3>
+          <p style="font-size: 0.85rem; color: var(--t2); line-height: 1.6;">
+            Competitors never see each other's data. Shadowfax does not know they are carrying a Delhivery order until the encrypted QR scan at the exact moment of physical handover.
+          </p>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 1.5rem; font-size: 0.85rem; color: var(--grn); background: rgba(16, 185, 129, 0.1); padding: 0.8rem; border-radius: 8px; border: 1px solid rgba(16, 185, 129, 0.2);">
+        ✓ Compliant with India's Digital Personal Data Protection (DPDP) Act, 2023.
+      </div>
+    </div>
+
+    <!-- Slide 7: Core Tech (TraceID & SpanID) -->
+    <div class="ppt-slide" style="display:none">
+      <div style="font-size: 0.75rem; font-weight: 700; color: var(--acc); letter-spacing: 0.1em; margin-bottom: 1rem; text-transform: uppercase;">6. Core Technology</div>
+      <h2 style="font-size: 2rem; font-weight: 800; margin-bottom: 2rem; color: var(--t1);">TraceID, SpanID &amp; The Itinerary</h2>
+      <div class="premium-card">
+        <div style="display: flex; gap: 2rem; align-items: center; margin-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 1.5rem;">
+          <div style="flex: 1;">
+            <h4 style="color: var(--t1); font-size: 1rem; margin-bottom: 0.5rem;">1. TraceID (The Master Route)</h4>
+            <p style="font-size: 0.8rem; color: var(--t2); line-height: 1.5;">Combines multiple orders under a single, trackable logistical journey. Unifies the itinerary across platforms.</p>
+          </div>
+          <div style="flex: 1;">
+            <h4 style="color: var(--t1); font-size: 1rem; margin-bottom: 0.5rem;">2. SpanID (Cryptographic Handover)</h4>
+            <p style="font-size: 0.8rem; color: var(--t2); line-height: 1.5;">A Zero-Knowledge QR code that transfers custody liability atomically between Rider A and Rider B. Resolves disputes instantly.</p>
+          </div>
+        </div>
+        <div>
+          <div style="font-size: 0.75rem; font-weight: 600; color: var(--t3); margin-bottom: 0.5rem; text-transform: uppercase;">Visualizing The Itinerary View</div>
+          <div style="background: var(--bg); border: 1px solid var(--s3); border-radius: 8px; padding: 1rem; display: flex; align-items: center; justify-content: space-between; font-family: var(--fm); font-size: 0.8rem;">
+            <div style="color: var(--ora);">Shadowfax Hub (Pickup A &amp; B)</div>
+            <div style="color: var(--t3);">────── <span style="color: var(--grn);">SPAN_ID Handover</span> ──────▶</div>
+            <div style="color: var(--sky);">Delhivery Rider (Final Mile)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 8: The Vision -->
+    <div class="ppt-slide" style="display:none; text-align: center;">
+      <div style="font-size: 0.75rem; font-weight: 700; color: var(--amb); letter-spacing: 0.1em; margin-bottom: 1rem; text-transform: uppercase;">7. The Pioneer Vision</div>
+      <h2 style="font-size: 2.5rem; font-weight: 900; margin-bottom: 1.5rem; color: var(--t1);" class="gradient-text-accent">The Next Multi-Billion Dollar Infrastructure</h2>
+      <p style="font-size: 1.1rem; color: var(--t2); line-height: 1.7; max-width: 800px; margin: 0 auto 2.5rem;">
+        Just as <strong>Rapido</strong> monetized idle personal bikes without buying them, and <strong>MyGate</strong> secured millions of homes without leasing gates, <strong>MIDAS</strong> optimizes national logistics with zero physical assets.
+      </p>
+      
+      <div style="display: inline-flex; align-items: center; gap: 1rem; padding: 1rem 2rem; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 50px;">
+        <span style="font-size: 1.5rem;">🌐</span>
+        <div style="text-align: left;">
+          <div style="font-weight: 700; color: var(--grn); font-size: 0.9rem;">Ready for ONDC Ecosystem</div>
+          <div style="color: var(--t2); font-size: 0.75rem;">Scale integration starts today.</div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
-  <!-- Network Effect -->
-  <div class="card mb">
-    <div style="font-family:var(--fo);font-size:.7rem;color:var(--acc);margin-bottom:.7rem">⚡ NETWORK EFFECT — WHY FIRST-MOVER WINS</div>
-    <div class="network-effect">
-      <div class="ne-step" style="border-top-color:var(--sky)"><div style="font-family:var(--fo);font-size:1.1rem;color:var(--sky)">1st</div><div style="font-family:var(--fm);font-size:.56rem;color:var(--t3);margin:.2rem 0">Joins MIDAS</div><div style="font-size:.64rem;color:var(--t1)">Self-match only. ~15% consolidation.</div></div>
-      <div style="display:flex;align-items:center;color:var(--t3);font-size:1rem;flex-shrink:0">→</div>
-      <div class="ne-step" style="border-top-color:var(--grn)"><div style="font-family:var(--fo);font-size:1.1rem;color:var(--grn)">2nd</div><div style="font-family:var(--fm);font-size:.56rem;color:var(--t3);margin:.2rem 0">2nd platform joins</div><div style="font-size:.64rem;color:var(--t1)">Bilateral activated. ~28% immediately.</div></div>
-      <div style="display:flex;align-items:center;color:var(--t3);font-size:1rem;flex-shrink:0">→</div>
-      <div class="ne-step" style="border-top-color:var(--pur)"><div style="font-family:var(--fo);font-size:1.1rem;color:var(--pur)">3rd</div><div style="font-family:var(--fm);font-size:.56rem;color:var(--t3);margin:.2rem 0">3rd platform joins</div><div style="font-size:.64rem;color:var(--t1)">3-way geo-hash matches. ~38% rate.</div></div>
-      <div style="display:flex;align-items:center;color:var(--t3);font-size:1rem;flex-shrink:0">→</div>
-      <div class="ne-step" style="border-top-color:var(--amb)"><div style="font-family:var(--fo);font-size:1.1rem;color:var(--amb)">5+</div><div style="font-family:var(--fm);font-size:.56rem;color:var(--t3);margin:.2rem 0">5+ clients</div><div style="font-size:.64rem;color:var(--t1)">Hub zones saturated. 50–60%. Latecomers: same fee, fewer matches.</div></div>
-      <div style="display:flex;align-items:center;color:var(--t3);font-size:1rem;flex-shrink:0">→</div>
-      <div class="ne-step" style="border-top-color:var(--grn);background:rgba(0,240,122,.07)"><div style="font-family:var(--fo);font-size:1.1rem;color:var(--grn)">∞</div><div style="font-family:var(--fm);font-size:.56rem;color:var(--grn);margin:.2rem 0">Early advantage</div><div style="font-size:.64rem;color:var(--t1)">First movers set hub maps, hold Plan D priority lanes for 3 years.</div></div>
-    </div>
+  <!-- Keyboard hints -->
+  <div class="fr mt" style="justify-content:center; font-size: 0.75rem; color: var(--t3); margin-top: 1.5rem;">
+    <span>💡 Tip: Use the <strong>Left</strong> and <strong>Right Arrow Keys</strong> to navigate seamlessly.</span>
   </div>
 
-  <div class="card" style="border-color:rgba(0,210,255,.2);text-align:center;padding:1.2rem">
-    <div style="font-family:var(--fo);font-size:.65rem;color:var(--acc);margin-bottom:.5rem">THE 48-HOUR INTEGRATION PROMISE</div>
-    <div style="font-size:.75rem;color:var(--t1);line-height:1.75;max-width:600px;margin:0 auto .7rem">SDK drop-in. Webhook registration. No hardware changes. No rider app changes. No data schema migration. Your dispatch system continues to work exactly as before — MIDAS adds a pre-dispatch consolidation check that returns in &lt;2ms.</div>
-    <div class="fr" style="justify-content:center;gap:.5rem">
-      <span class="chip c-g">48hr integration</span>
-      <span class="chip c-c">Zero PII shared</span>
-      <span class="chip c-p">Patented 20yr exclusivity</span>
-      <span class="chip c-a">3.4× ROI Year 1</span>
-      <span class="chip c-t">DPDP 2023 compliant</span>
-    </div>
-  </div>
 </div>
 </div>
-
-<!-- ══ PLANS ══ -->
 <div id="plans" class="pg">
 <div class="pg-hd"><div><div class="pg-hd-title">PLANS <span class="hi">&amp; ROI</span></div><div class="pg-hd-sub">Strict tier hierarchy · Plan D = add-on only · ROI calculator</div></div></div>
 <div class="pg-body">
@@ -1061,6 +1415,277 @@ InvoiceID: INV-ZPT-00412 → bound to TraceID</div>
       <div id="roi-out"></div>
     </div>
   </div>
+</div>
+</div>
+
+<!-- ══ ECOSYSTEM COMPARISON & BRAND PIONEER STORY ══ -->
+<div id="ecosystem" class="pg">
+<div class="pg-hd">
+  <div><div class="pg-hd-title">T-HUB ECOSYSTEM &amp; <span class="hi">BRAND PIONEER STORY</span></div><div class="pg-hd-sub">MIDAS comparison with Quiklee, ETO Motors, Enmovil · Brand story vs Rapido &amp; MyGate · Pavan's Live Objections Solver</div></div>
+  <div class="fr"><span class="tag">PIONEER STATUS</span></div>
+</div>
+<div class="pg-body">
+  
+  <!-- Rapido / MyGate Brand Story section -->
+  <div class="why-hero" style="border-color:rgba(155,109,255,.3);background:linear-gradient(135deg,rgba(155,109,255,.05),rgba(0,210,255,.04));text-align:left;padding:1.5rem">
+    <div style="font-family:var(--fo);font-size:.65rem;letter-spacing:.16em;color:var(--pur);margin-bottom:.5rem">THE UNICORN BLUEPRINT: PURE MIDDLEWARE INFRASTRUCTURE</div>
+    <div style="font-family:var(--fo);font-size:1.8rem;font-weight:900;line-height:1.05;margin-bottom:.7rem;color:var(--t1)">THE NEXT MULTI-BILLION DOLLAR BRANDS ARE BUILT ON SOFTWARE, NOT ASSETS.</div>
+    <p style="font-size:.76rem;color:var(--t2);line-height:1.7;margin-bottom:1rem">
+      Look at how India's greatest brand success stories were built:
+    </p>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.2rem;margin-bottom:1rem">
+      <div style="background:var(--s2);padding:.8rem;border-radius:6px;border-top:3px solid var(--amb)">
+        <div style="font-family:var(--fo);font-size:.9rem;color:var(--amb);margin-bottom:.3rem">RAPIDO STORY</div>
+        <div style="font-size:.66rem;color:var(--t1);line-height:1.6">
+          Rapido did not buy lakhs of bikes or hire monthly-salaried riders. They built the <strong>matching middleware</strong>. They converted idle personal bikes into commercial income opportunities.
+        </div>
+      </div>
+      <div style="background:var(--s2);padding:.8rem;border-radius:6px;border-top:3px solid var(--sky)">
+        <div style="font-family:var(--fo);font-size:.9rem;color:var(--sky);margin-bottom:.3rem">MYGATE STORY</div>
+        <div style="font-size:.66rem;color:var(--t1);line-height:1.6">
+          MyGate did not hire security guards or lease gates for societies. They built the <strong>visitor-management middleware</strong>. A pure SaaS model that secured 4 Million+ homes with 0% real estate footprint.
+        </div>
+      </div>
+      <div style="background:var(--s2);padding:.8rem;border-radius:6px;border-top:3px solid var(--pur)">
+        <div style="font-family:var(--fo);font-size:.9rem;color:var(--pur);margin-bottom:.3rem">MIDAS PIONEER VISION</div>
+        <div style="font-size:.66rem;color:var(--t1);line-height:1.6">
+          <strong>MIDAS is the Rapido of Last-Mile Delivery</strong>. We do not own electric fleets or lease expensive dark stores. We are the <strong>neutral digital traffic controller</strong> that matches deliveries across competing networks in real-time. Pure transaction-fee SaaS.
+        </div>
+      </div>
+    </div>
+    <div style="font-family:var(--fo);font-size:.65rem;color:var(--grn);letter-spacing:.1em;text-align:center;border-top:1px dashed var(--b2);padding-top:.8rem">
+      MIDAS IS THE FOUNDATIONAL DIGITAL PUBLIC INFRASTRUCTURE FOR SUSTAINABLE OPEN COMMERCE.
+    </div>
+  </div>
+
+  <!-- T-Hub Startups Grid -->
+  <div class="card mb">
+    <div class="fb mb" style="margin-bottom:.6rem"><span class="label" style="color:var(--acc)">T-Hub Mobility &amp; Logistics Startup Comparison</span><span class="chip c-c">Direct Differentiators</span></div>
+    <table class="tbl">
+      <thead>
+        <tr>
+          <th style="min-width:140px">Metric</th>
+          <th style="color:var(--sky)">QUIKLEE (T-Hub)</th>
+          <th style="color:var(--ora)">ETO MOTORS (T-Hub)</th>
+          <th style="color:var(--tea)">ENMOVIL (T-Hub)</th>
+          <th style="color:var(--pur);font-weight:700">MIDAS PROTOCOL</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="color:var(--t1)">Core Offering</td>
+          <td>D2C fulfillment &amp; dark store operations</td>
+          <td>EV manufacturing, fleet &amp; charging stations</td>
+          <td>Enterprise long-haul freight tracking SaaS</td>
+          <td style="color:var(--pur);font-weight:600">Cross-platform last-mile route consolidation</td>
+        </tr>
+        <tr>
+          <td style="color:var(--t1)">Asset Load</td>
+          <td class="t-neg">High (Leases warehouses, stores inventory)</td>
+          <td class="t-neg">Extremely High (Owns/leases EV 3-wheelers)</td>
+          <td class="t-pos">Low (Enterprise SaaS)</td>
+          <td class="t-pos" style="color:var(--grn);font-weight:700">Zero (0% Vehicles, 0% Real Estate)</td>
+        </tr>
+        <tr>
+          <td style="color:var(--t1)">Ecosystem Role</td>
+          <td>Logistics carrier / Fulfillment provider</td>
+          <td>Logistics fleet provider</td>
+          <td>B2B supply chain telematics</td>
+          <td style="color:var(--pur);font-weight:600">Neutral orchestrator (unifies competitors)</td>
+        </tr>
+        <tr>
+          <td style="color:var(--t1)">Scale CapEx</td>
+          <td class="t-neg">High (Lakhs required to open new pin-codes)</td>
+          <td class="t-neg">High (Millions required to expand fleet size)</td>
+          <td class="t-pos">Low (B2B sales cycle)</td>
+          <td class="t-pos" style="color:var(--grn);font-weight:700">Zero (Instant digital scale via API integration)</td>
+        </tr>
+        <tr>
+          <td style="color:var(--t1)">ONDC/Beckn Native</td>
+          <td>No (Uses traditional custom APIs)</td>
+          <td>No (Proprietary dispatch system)</td>
+          <td>No (Enterprise ERP integration)</td>
+          <td class="t-pos" style="color:var(--grn)">Yes (Natively listens to Beckn broadcasts)</td>
+        </tr>
+        <tr>
+          <td style="color:var(--t1)">Data Privacy (DPDP)</td>
+          <td>Stores full customer addresses &amp; PII</td>
+          <td>Manages rider profiles &amp; device storage</td>
+          <td>Tracks fleet coordinates &amp; telemetry</td>
+          <td class="t-pos" style="color:var(--grn);font-weight:700">100% compliant (Zero PII stored or kept)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pavan's Live Objections Solver & Dynamic Scale Calculator -->
+  <div class="g2 mb">
+    <div class="card">
+      <div class="label mb" style="margin-bottom:.5rem;color:var(--amb)">PAVAN'S OBJECTIONS: WATER-TIGHT COUNTERS</div>
+      <div style="display:flex;flex-direction:column;gap:.7rem">
+        <div style="border-bottom:1px solid var(--b1);padding-bottom:.5rem">
+          <div style="font-weight:600;color:var(--t1);font-size:.72rem">Objection 1: "Isn't this already done internally by Delhivery, Xpressbees, etc.?"</div>
+          <div style="font-size:.65rem;color:var(--t2);line-height:1.5;margin-top:.2rem">
+            <strong>The Truth:</strong> No. Logistics players only optimize <strong>inside their own silos</strong>. Delhivery will <em>never</em> share real-time rider locations with Xpressbees due to business competition and data privacy. MIDAS is the <strong>neutral metadata broker</strong> that operates above them, matching routes across competing carriers with zero data exposure.
+          </div>
+        </div>
+        <div style="border-bottom:1px solid var(--b1);padding-bottom:.5rem">
+          <div style="font-weight:600;color:var(--t1);font-size:.72rem">Objection 2: "What about Amazon/Flipkart optimizing logistics?"</div>
+          <div style="font-size:.65rem;color:var(--t2);line-height:1.5;margin-top:.2rem">
+            <strong>The Truth:</strong> Amazon operates on a 24-48 hour delivery window, allowing them to sort packages in large warehouses overnight. <strong>Quick Commerce (10-30 mins) has no sorting time</strong>. Zepto, Blinkit, and Swiggy Instamart run private, dedicated fleets that drive empty return runs. MIDAS coordinates on-the-fly consolidation for hyperlocal SLAs.
+          </div>
+        </div>
+        <div>
+          <div style="font-weight:600;color:var(--t1);font-size:.72rem">Objection 3: "Does this optimization actually make any difference at scale?"</div>
+          <div style="font-size:.65rem;color:var(--t2);line-height:1.5;margin-top:.2rem">
+            <strong>The Truth:</strong> Yes! In logistics, <strong>density is destiny</strong>. If you have only 10 orders in a zone, matching probability is 0%. If you have 10,000 orders in the same zone, matching probability reaches 98%+. High scale makes MIDAS <strong>exponentially more efficient</strong>, not less. Use the interactive calculator on the right to see the math.
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="card" style="border-color:rgba(0,240,122,.25);background:rgba(0,240,122,.015)">
+      <div class="label mb" style="margin-bottom:.5rem;color:var(--grn)">INTERACTIVE SCALE &amp; COMBINATORIAL EFFICIENCY CALCULATOR</div>
+      <div class="rng" style="margin-bottom:1.2rem">
+        <label>Daily Orders in Hub-Zone <span id="ec-ord-lbl" style="color:var(--grn)">2,500</span></label>
+        <input type="range" id="ec-ord" min="100" max="20000" step="100" value="2500" oninput="calcEcosystem()">
+      </div>
+      <div class="g2" style="gap:.5rem;margin-bottom:1rem">
+        <div style="background:var(--s2);border-radius:4px;padding:.5rem">
+          <div class="label" style="font-size:.44rem">Combinatorial Pairs (N²)</div>
+          <div style="font-family:var(--fo);font-size:1.1rem;color:var(--t1)" id="ec-pairs">3.1M</div>
+          <div style="font-size:.5rem;color:var(--t3)">Possible matching pathways</div>
+        </div>
+        <div style="background:var(--s2);border-radius:4px;padding:.5rem">
+          <div class="label" style="font-size:.44rem">Matching Probability</div>
+          <div style="font-family:var(--fo);font-size:1.1rem;color:var(--grn)" id="ec-prob">87%</div>
+          <div style="font-size:.5rem;color:var(--t3)">Overlaps mapped in &lt;2ms</div>
+        </div>
+        <div style="background:var(--s2);border-radius:4px;padding:.5rem">
+          <div class="label" style="font-size:.44rem">Trips Saved / Year</div>
+          <div style="font-family:var(--fo);font-size:1.1rem;color:var(--acc)" id="ec-trips">3.9 Lakhs</div>
+        </div>
+        <div style="background:var(--s2);border-radius:4px;padding:.5rem">
+          <div class="label" style="font-size:.44rem">Total Savings / Year</div>
+          <div style="font-family:var(--fo);font-size:1.1rem;color:var(--grn)" id="ec-save">₹1.48 Cr</div>
+        </div>
+      </div>
+      <div style="background:var(--s2);border-radius:6px;padding:.6rem;font-family:var(--fm);font-size:.58rem;line-height:1.65;color:var(--t2)">
+        <strong style="color:var(--grn)">⚡ Mathematical Proof:</strong> 
+        As orders scale from 100 to 20,000, matching probability scales log-logistically. This is because density forces more riders to converge on the same geo-hash zones at identical times. At peak density, MIDAS reduces the Cost-Per-Order (CPO) from <strong style="color:var(--red)">₹38–55</strong> down to <strong style="color:var(--grn)">₹23–31</strong> (a 38.9% saving) live on the streets.
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ══ ONDC VS DELHIVERY DEBATE ══ -->
+<div id="debate" class="pg">
+<div class="pg-hd">
+  <div><div class="pg-hd-title">ONDC VS <span class="hi">DELHIVERY COMPARISON</span></div><div class="pg-hd-sub">Why MIDAS works exponentially better for ONDC than closed-loop Quick Commerce</div></div>
+  <div class="fr"><span class="tag">STRATEGIC ANALYSIS</span></div>
+</div>
+<div class="pg-body">
+  
+  <!-- Verdict Hero Banner -->
+  <div class="why-hero" style="border-color:rgba(0,240,122,.3);background:linear-gradient(135deg,rgba(0,240,122,.05),rgba(0,210,255,.04));text-align:left;padding:1.5rem">
+    <div style="font-family:var(--fo);font-size:.65rem;letter-spacing:.16em;color:var(--grn);margin-bottom:.5rem">THE STRATEGIC VERDICT</div>
+    <div style="font-family:var(--fo);font-size:1.8rem;font-weight:900;line-height:1.05;margin-bottom:.7rem;color:var(--t1)">ONDC WINS BY A LANDSLIDE.</div>
+    <p style="font-size:.76rem;color:var(--t2);line-height:1.7;margin-bottom:1rem">
+      While Quick Commerce (Zepto) is a powerful logistics operator, <strong>MIDAS is structurally designed to work best on ONDC</strong>. Zepto is a closed-loop monopoly that owns its dark stores and riders. ONDC is a decentralized open public network that natively lacks a centralized delivery optimizer.
+    </p>
+    <div style="font-family:var(--fo);font-size:.65rem;color:var(--grn);letter-spacing:.1em;text-align:center;border-top:1px dashed var(--b2);padding-top:.8rem">
+      ONDC PROVIDES THE OPEN COMMUNICATION STANDARDS (BECKN) THAT MIDAS NEEDS TO OPERATE AT SCALE.
+    </div>
+  </div>
+
+  <!-- Comparison Grid -->
+  <div class="card mb">
+    <div class="fb mb" style="margin-bottom:.6rem"><span class="label" style="color:var(--acc)">Strategic Comparison: ONDC vs. Zepto for MIDAS</span><span class="chip c-c">Comparative Architecture</span></div>
+    <table class="tbl">
+      <thead>
+        <tr>
+          <th style="min-width:140px">Metric</th>
+          <th style="color:var(--sky)">DELHIVERY (Closed Quick Commerce)</th>
+          <th style="color:var(--grn);font-weight:700">ONDC (Open Network)</th>
+          <th>WHY IT MATTERS FOR MIDAS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="color:var(--t1)">Business Model</td>
+          <td>Closed Monopoly (Owns inventory, dark stores, and riders)</td>
+          <td style="color:var(--grn);font-weight:600">Unbundled G2B/B2B DPI (Open registries, separate LSPs)</td>
+          <td>ONDC registry matches MIDAS's asset-light software-broker architecture.</td>
+        </tr>
+        <tr>
+          <td style="color:var(--t1)">Strategic Incentive</td>
+          <td class="t-neg">Low (No incentive to share routes or riders with Swiggy/Blinkit)</td>
+          <td class="t-pos" style="color:var(--grn);font-weight:600">Extremely High (Needs to slash logistics costs to beat monopolies)</td>
+          <td>Zepto will resist sharing data. ONDC actively seeks optimization protocols to empower local merchants.</td>
+        </tr>
+        <tr>
+          <td style="color:var(--t1)">SLA Window</td>
+          <td class="t-neg">Strict 10-Minute Rush (Limits route matching time)</td>
+          <td class="t-pos" style="color:var(--grn);font-weight:600">Flexible 30-min, 2-hr, or next-day SLAs</td>
+          <td>Longer SLA windows give MIDAS's matching engine 4x more time to pool and merge routes.</td>
+        </tr>
+        <tr>
+          <td style="color:var(--t1)">Matching Density</td>
+          <td class="t-neg">Single-App Pool (~15% consolidation rate)</td>
+          <td class="t-pos" style="color:var(--grn);font-weight:600">Aggregated Network Pool (60%+ consolidation rate)</td>
+          <td>ONDC groups orders from Paytm, Magicpin, kiranas, and D2C brands, creating a massive local order density.</td>
+        </tr>
+        <tr>
+          <td style="color:var(--t1)">Integration Gate</td>
+          <td class="t-neg">Proprietary API barriers</td>
+          <td class="t-pos" style="color:var(--grn);font-weight:600">Beckn Protocol Standard (Decentralized multicasting)</td>
+          <td>MIDAS plugs natively into Beckn's open standard queries with zero custom development.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Deep Dive Sections -->
+  <div class="g2 mb">
+    
+    <div class="card">
+      <div style="font-family:var(--fo);font-size:.85rem;color:var(--sky);margin-bottom:.5rem;border-bottom:1px solid var(--b1);padding-bottom:.3rem">THE DELHIVERY LIMITATION</div>
+      <div style="font-size:.66rem;color:var(--t2);line-height:1.65">
+        Zepto operates a vertically integrated business. They make money by squeezing margins on inventory and maximizing rider trips. 
+        <ul style="margin-top:.4rem;padding-left:1rem">
+          <li><strong>Zero Cooperation:</strong> Zepto views Swiggy and Blinkit as existential threats. The corporate legal risk of sharing route geo-hashes prevents them from joining a shared network.</li>
+          <li style="margin-top:.3rem"><strong>Strict SLA Constraint:</strong> A 10-minute SLA means the rider must pack and leave in 3 minutes. The matching engine has less than 30 seconds to find a consolidated pair. This makes route batching extremely difficult.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card" style="border-color:rgba(0,240,122,.2)">
+      <div style="font-family:var(--fo);font-size:.85rem;color:var(--grn);margin-bottom:.5rem;border-bottom:1px solid var(--b1);padding-bottom:.3rem">THE ONDC ADVANTAGE</div>
+      <div style="font-size:.66rem;color:var(--t2);line-height:1.65">
+        ONDC is built specifically to unbundle e-commerce. Because the commerce (Paytm/Kirana) and logistics (Dunzo/Shadowfax) layers are already decoupled, ONDC has a structural gap.
+        <ul style="margin-top:.4rem;padding-left:1rem">
+          <li><strong>Logistics Fragmentation:</strong> Today on ONDC, if 5 local kirana merchants receive orders, 5 different delivery partners dispatch 5 riders. This leads to massive cost inflation.</li>
+          <li style="margin-top:.3rem"><strong>The MIDAS Interceptor:</strong> MIDAS acts as the ONDC Technology Service Provider (TSP) that intercepts all incoming Beckn multicasts, groups the routes dynamically, and allocates them to a single shared rider before dispatch.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Why ONDC Wins Summary Card -->
+  <div class="card" style="border-color:rgba(155,109,255,.2);background:rgba(155,109,255,.01)">
+    <div style="font-family:var(--fo);font-size:.7rem;color:var(--acc);margin-bottom:.5rem">SUMMARY: WHY THE ONDC DELEGATES WILL SIGN MIDAS</div>
+    <div style="font-size:.68rem;color:var(--t1);line-height:1.65">
+      During your pitch at T-Hub, make this point clear to ONDC delegates:
+      <br><br>
+      ONDC's biggest hurdle to beating Amazon is **last-mile delivery cost**. Amazon uses its scale to lower delivery fees, while ONDC's fragmented network drives delivery fees up. 
+      <br><br>
+      **MIDAS provides the ONDC network with Amazon-level delivery efficiency without a central authority.** We un-fragment the network by grouping deliveries dynamically on the Beckn protocol, cutting ONDC logistics CapEx by **50%+** and cost-per-order by **38.9%**.
+    </div>
+  </div>
+
 </div>
 </div>
 
@@ -1152,9 +1777,9 @@ var G={
   slaBreaches:0,slaDuringHybrid:0,slaDuringLatency:0,slaResolved:0,
   midasRev:0,settleTotal:0,
   plat:{
-    SWG:{o:0,saving:0,fee:0,debit:0,credit:0,tripCost:0,baseline:0},
-    ZPT:{o:0,saving:0,fee:0,debit:0,credit:0,tripCost:0,baseline:0},
-    BBY:{o:0,saving:0,fee:0,debit:0,credit:0,tripCost:0,baseline:0}
+    SFX:{o:0,saving:0,fee:0,debit:0,credit:0,tripCost:0,baseline:0},
+    DLV:{o:0,saving:0,fee:0,debit:0,credit:0,tripCost:0,baseline:0},
+    DNZ:{o:0,saving:0,fee:0,debit:0,credit:0,tripCost:0,baseline:0}
   },
   intake:[],transit:[],delivered:[],settlements:[],slaLedger:[],
   queue:18,pload:30,etaB:0,recentTs:[]
@@ -1165,60 +1790,60 @@ var ordS=0,invS=0,slaS=0;
 // ── HUBS (expanded — 40+ hubs across 5 cities) ──────────────────────
 var HUBS=[
   // HYDERABAD
-  {id:'SWG_HYD_KOND',plat:'SWG',city:'HYD',zone:'KONDAPUR',geo:'GH7F4X'},
-  {id:'ZPT_HYD_KOND',plat:'ZPT',city:'HYD',zone:'KONDAPUR',geo:'GH7F4X'},
-  {id:'BBY_HYD_KOND',plat:'BBY',city:'HYD',zone:'KONDAPUR',geo:'GH7F4X'},
-  {id:'SWG_HYD_BNJR',plat:'SWG',city:'HYD',zone:'BANJARA HILLS',geo:'GH7F5Y'},
-  {id:'ZPT_HYD_BNJR',plat:'ZPT',city:'HYD',zone:'BANJARA HILLS',geo:'GH7F5Y'},
-  {id:'BBY_HYD_BNJR',plat:'BBY',city:'HYD',zone:'BANJARA HILLS',geo:'GH7F5Y'},
-  {id:'SWG_HYD_JUBH',plat:'SWG',city:'HYD',zone:'JUBILEE HILLS',geo:'GH7G1Z'},
-  {id:'BBY_HYD_JUBH',plat:'BBY',city:'HYD',zone:'JUBILEE HILLS',geo:'GH7G1Z'},
-  {id:'SWG_HYD_HITC',plat:'SWG',city:'HYD',zone:'HITEC CITY',geo:'GH7F3W'},
-  {id:'ZPT_HYD_HITC',plat:'ZPT',city:'HYD',zone:'HITEC CITY',geo:'GH7F3W'},
-  {id:'BBY_HYD_HITC',plat:'BBY',city:'HYD',zone:'HITEC CITY',geo:'GH7F3W'},
-  {id:'SWG_HYD_NAMP',plat:'SWG',city:'HYD',zone:'NAMPALLY',geo:'GH7E9R'},
-  {id:'ZPT_HYD_NAMP',plat:'ZPT',city:'HYD',zone:'NAMPALLY',geo:'GH7E9R'},
-  {id:'SWG_HYD_SECB',plat:'SWG',city:'HYD',zone:'SECUNDERABAD',geo:'GH7H2Q'},
-  {id:'BBY_HYD_SECB',plat:'BBY',city:'HYD',zone:'SECUNDERABAD',geo:'GH7H2Q'},
+  {id:'SFX_HYD_KOND',plat:'SFX',city:'HYD',zone:'KONDAPUR',geo:'GH7F4X'},
+  {id:'DLV_HYD_KOND',plat:'DLV',city:'HYD',zone:'KONDAPUR',geo:'GH7F4X'},
+  {id:'DNZ_HYD_KOND',plat:'DNZ',city:'HYD',zone:'KONDAPUR',geo:'GH7F4X'},
+  {id:'SFX_HYD_BNJR',plat:'SFX',city:'HYD',zone:'BANJARA HILLS',geo:'GH7F5Y'},
+  {id:'DLV_HYD_BNJR',plat:'DLV',city:'HYD',zone:'BANJARA HILLS',geo:'GH7F5Y'},
+  {id:'DNZ_HYD_BNJR',plat:'DNZ',city:'HYD',zone:'BANJARA HILLS',geo:'GH7F5Y'},
+  {id:'SFX_HYD_JUBH',plat:'SFX',city:'HYD',zone:'JUBILEE HILLS',geo:'GH7G1Z'},
+  {id:'DNZ_HYD_JUBH',plat:'DNZ',city:'HYD',zone:'JUBILEE HILLS',geo:'GH7G1Z'},
+  {id:'SFX_HYD_HITC',plat:'SFX',city:'HYD',zone:'HITEC CITY',geo:'GH7F3W'},
+  {id:'DLV_HYD_HITC',plat:'DLV',city:'HYD',zone:'HITEC CITY',geo:'GH7F3W'},
+  {id:'DNZ_HYD_HITC',plat:'DNZ',city:'HYD',zone:'HITEC CITY',geo:'GH7F3W'},
+  {id:'SFX_HYD_NAMP',plat:'SFX',city:'HYD',zone:'NAMPALLY',geo:'GH7E9R'},
+  {id:'DLV_HYD_NAMP',plat:'DLV',city:'HYD',zone:'NAMPALLY',geo:'GH7E9R'},
+  {id:'SFX_HYD_SECB',plat:'SFX',city:'HYD',zone:'SECUNDERABAD',geo:'GH7H2Q'},
+  {id:'DNZ_HYD_SECB',plat:'DNZ',city:'HYD',zone:'SECUNDERABAD',geo:'GH7H2Q'},
   // BANGALORE
-  {id:'SWG_BLR_KORM',plat:'SWG',city:'BLR',zone:'KORAMANGALA',geo:'GH8A1B'},
-  {id:'ZPT_BLR_KORM',plat:'ZPT',city:'BLR',zone:'KORAMANGALA',geo:'GH8A1B'},
-  {id:'BBY_BLR_KORM',plat:'BBY',city:'BLR',zone:'KORAMANGALA',geo:'GH8A1B'},
-  {id:'SWG_BLR_INDR',plat:'SWG',city:'BLR',zone:'INDIRANAGAR',geo:'GH8A3D'},
-  {id:'ZPT_BLR_INDR',plat:'ZPT',city:'BLR',zone:'INDIRANAGAR',geo:'GH8A3D'},
-  {id:'BBY_BLR_WHIT',plat:'BBY',city:'BLR',zone:'WHITEFIELD',geo:'GH8B4E'},
-  {id:'SWG_BLR_WHIT',plat:'SWG',city:'BLR',zone:'WHITEFIELD',geo:'GH8B4E'},
-  {id:'ZPT_BLR_JAYN',plat:'ZPT',city:'BLR',zone:'JAYANAGAR',geo:'GH8A0C'},
-  {id:'SWG_BLR_JAYN',plat:'SWG',city:'BLR',zone:'JAYANAGAR',geo:'GH8A0C'},
-  {id:'BBY_BLR_JAYN',plat:'BBY',city:'BLR',zone:'JAYANAGAR',geo:'GH8A0C'},
+  {id:'SFX_BLR_KORM',plat:'SFX',city:'BLR',zone:'KORAMANGALA',geo:'GH8A1B'},
+  {id:'DLV_BLR_KORM',plat:'DLV',city:'BLR',zone:'KORAMANGALA',geo:'GH8A1B'},
+  {id:'DNZ_BLR_KORM',plat:'DNZ',city:'BLR',zone:'KORAMANGALA',geo:'GH8A1B'},
+  {id:'SFX_BLR_INDR',plat:'SFX',city:'BLR',zone:'INDIRANAGAR',geo:'GH8A3D'},
+  {id:'DLV_BLR_INDR',plat:'DLV',city:'BLR',zone:'INDIRANAGAR',geo:'GH8A3D'},
+  {id:'DNZ_BLR_WHIT',plat:'DNZ',city:'BLR',zone:'WHITEFIELD',geo:'GH8B4E'},
+  {id:'SFX_BLR_WHIT',plat:'SFX',city:'BLR',zone:'WHITEFIELD',geo:'GH8B4E'},
+  {id:'DLV_BLR_JAYN',plat:'DLV',city:'BLR',zone:'JAYANAGAR',geo:'GH8A0C'},
+  {id:'SFX_BLR_JAYN',plat:'SFX',city:'BLR',zone:'JAYANAGAR',geo:'GH8A0C'},
+  {id:'DNZ_BLR_JAYN',plat:'DNZ',city:'BLR',zone:'JAYANAGAR',geo:'GH8A0C'},
   // CHENNAI
-  {id:'SWG_CHN_ANNA',plat:'SWG',city:'CHN',zone:'ANNA NAGAR',geo:'GH8C3B'},
-  {id:'ZPT_CHN_ANNA',plat:'ZPT',city:'CHN',zone:'ANNA NAGAR',geo:'GH8C3B'},
-  {id:'SWG_CHN_TNAG',plat:'SWG',city:'CHN',zone:'T NAGAR',geo:'GH8C2A'},
-  {id:'BBY_CHN_TNAG',plat:'BBY',city:'CHN',zone:'T NAGAR',geo:'GH8C2A'},
-  {id:'ZPT_CHN_TNAG',plat:'ZPT',city:'CHN',zone:'T NAGAR',geo:'GH8C2A'},
-  {id:'SWG_CHN_ADYR',plat:'SWG',city:'CHN',zone:'ADYAR',geo:'GH8C1F'},
-  {id:'BBY_CHN_ADYR',plat:'BBY',city:'CHN',zone:'ADYAR',geo:'GH8C1F'},
-  {id:'SWG_CHN_VELA',plat:'SWG',city:'CHN',zone:'VELACHERY',geo:'GH8B9G'},
-  {id:'ZPT_CHN_VELA',plat:'ZPT',city:'CHN',zone:'VELACHERY',geo:'GH8B9G'},
+  {id:'SFX_CHN_ANNA',plat:'SFX',city:'CHN',zone:'ANNA NAGAR',geo:'GH8C3B'},
+  {id:'DLV_CHN_ANNA',plat:'DLV',city:'CHN',zone:'ANNA NAGAR',geo:'GH8C3B'},
+  {id:'SFX_CHN_TNAG',plat:'SFX',city:'CHN',zone:'T NAGAR',geo:'GH8C2A'},
+  {id:'DNZ_CHN_TNAG',plat:'DNZ',city:'CHN',zone:'T NAGAR',geo:'GH8C2A'},
+  {id:'DLV_CHN_TNAG',plat:'DLV',city:'CHN',zone:'T NAGAR',geo:'GH8C2A'},
+  {id:'SFX_CHN_ADYR',plat:'SFX',city:'CHN',zone:'ADYAR',geo:'GH8C1F'},
+  {id:'DNZ_CHN_ADYR',plat:'DNZ',city:'CHN',zone:'ADYAR',geo:'GH8C1F'},
+  {id:'SFX_CHN_VELA',plat:'SFX',city:'CHN',zone:'VELACHERY',geo:'GH8B9G'},
+  {id:'DLV_CHN_VELA',plat:'DLV',city:'CHN',zone:'VELACHERY',geo:'GH8B9G'},
   // MUMBAI
-  {id:'SWG_MUM_ANDR',plat:'SWG',city:'MUM',zone:'ANDHERI',geo:'GH7J8C'},
-  {id:'BBY_MUM_ANDR',plat:'BBY',city:'MUM',zone:'ANDHERI',geo:'GH7J8C'},
-  {id:'ZPT_MUM_ANDR',plat:'ZPT',city:'MUM',zone:'ANDHERI',geo:'GH7J8C'},
-  {id:'SWG_MUM_BAND',plat:'SWG',city:'MUM',zone:'BANDRA',geo:'GH7J5A'},
-  {id:'ZPT_MUM_BAND',plat:'ZPT',city:'MUM',zone:'BANDRA',geo:'GH7J5A'},
-  {id:'BBY_MUM_DADR',plat:'BBY',city:'MUM',zone:'DADAR',geo:'GH7J3B'},
-  {id:'SWG_MUM_DADR',plat:'SWG',city:'MUM',zone:'DADAR',geo:'GH7J3B'},
-  {id:'ZPT_MUM_THAN',plat:'ZPT',city:'MUM',zone:'THANE',geo:'GH7K1D'},
-  {id:'SWG_MUM_THAN',plat:'SWG',city:'MUM',zone:'THANE',geo:'GH7K1D'},
-  {id:'BBY_MUM_THAN',plat:'BBY',city:'MUM',zone:'THANE',geo:'GH7K1D'},
+  {id:'SFX_MUM_ANDR',plat:'SFX',city:'MUM',zone:'ANDHERI',geo:'GH7J8C'},
+  {id:'DNZ_MUM_ANDR',plat:'DNZ',city:'MUM',zone:'ANDHERI',geo:'GH7J8C'},
+  {id:'DLV_MUM_ANDR',plat:'DLV',city:'MUM',zone:'ANDHERI',geo:'GH7J8C'},
+  {id:'SFX_MUM_BAND',plat:'SFX',city:'MUM',zone:'BANDRA',geo:'GH7J5A'},
+  {id:'DLV_MUM_BAND',plat:'DLV',city:'MUM',zone:'BANDRA',geo:'GH7J5A'},
+  {id:'DNZ_MUM_DADR',plat:'DNZ',city:'MUM',zone:'DADAR',geo:'GH7J3B'},
+  {id:'SFX_MUM_DADR',plat:'SFX',city:'MUM',zone:'DADAR',geo:'GH7J3B'},
+  {id:'DLV_MUM_THAN',plat:'DLV',city:'MUM',zone:'THANE',geo:'GH7K1D'},
+  {id:'SFX_MUM_THAN',plat:'SFX',city:'MUM',zone:'THANE',geo:'GH7K1D'},
+  {id:'DNZ_MUM_THAN',plat:'DNZ',city:'MUM',zone:'THANE',geo:'GH7K1D'},
   // DELHI
-  {id:'SWG_DEL_CPLA',plat:'SWG',city:'DEL',zone:'CONNAUGHT PLACE',geo:'GH6N2K'},
-  {id:'ZPT_DEL_CPLA',plat:'ZPT',city:'DEL',zone:'CONNAUGHT PLACE',geo:'GH6N2K'},
-  {id:'BBY_DEL_LAJN',plat:'BBY',city:'DEL',zone:'LAJPAT NAGAR',geo:'GH6M8P'},
-  {id:'SWG_DEL_LAJN',plat:'SWG',city:'DEL',zone:'LAJPAT NAGAR',geo:'GH6M8P'},
-  {id:'ZPT_DEL_SAKE',plat:'ZPT',city:'DEL',zone:'SAKET',geo:'GH6M6Q'},
-  {id:'BBY_DEL_SAKE',plat:'BBY',city:'DEL',zone:'SAKET',geo:'GH6M6Q'},
+  {id:'SFX_DEL_CPLA',plat:'SFX',city:'DEL',zone:'CONNAUGHT PLACE',geo:'GH6N2K'},
+  {id:'DLV_DEL_CPLA',plat:'DLV',city:'DEL',zone:'CONNAUGHT PLACE',geo:'GH6N2K'},
+  {id:'DNZ_DEL_LAJN',plat:'DNZ',city:'DEL',zone:'LAJPAT NAGAR',geo:'GH6M8P'},
+  {id:'SFX_DEL_LAJN',plat:'SFX',city:'DEL',zone:'LAJPAT NAGAR',geo:'GH6M8P'},
+  {id:'DLV_DEL_SAKE',plat:'DLV',city:'DEL',zone:'SAKET',geo:'GH6M6Q'},
+  {id:'DNZ_DEL_SAKE',plat:'DNZ',city:'DEL',zone:'SAKET',geo:'GH6M6Q'},
 ];
 
 var CITIES=[
@@ -1232,8 +1857,8 @@ var CITIES=[
   {id:'AHM',name:'AHMEDABAD',state:'Gujarat',cls:'cc-ahm',online:false,orders:0,tier:'T3',win:'180s'},
 ];
 
-var PC={SWG:'#ff7a35',ZPT:'#38d4f8',BBY:'#00f07a'};
-var PCC={SWG:'c-o',ZPT:'c-sk',BBY:'c-g'};
+var PC={SFX:'#ff7a35',DLV:'#38d4f8',DNZ:'#00f07a'};
+var PCC={SFX:'c-o',DLV:'c-sk',DNZ:'c-g'};
 
 // ── UTILS ──────────────────────────────────────────────────────────
 function ri(a,b){return Math.floor(Math.random()*(b-a+1))+a}
@@ -1295,7 +1920,7 @@ function classify(o){
   if(G.plan==='A'){var s=cands.filter(function(c){return c.plat===o.plat});if(s.length)return'SELF_MATCH';}
   else if(G.plan==='B'){
     var s=cands.filter(function(c){return c.plat===o.plat});if(s.length)return'SELF_MATCH';
-    var fp=(['SWG','ZPT','BBY'].filter(function(p){return p!==o.plat}).sort())[0];
+    var fp=(['SFX','DLV','DNZ'].filter(function(p){return p!==o.plat}).sort())[0];
     var pr=cands.filter(function(c){return c.plat===fp});if(pr.length)return'PEER_MATCH';
   } else {
     var s=cands.filter(function(c){return c.plat===o.plat});
@@ -1333,7 +1958,7 @@ function tick(){
   for(var i=0;i<n;i++){
     var o=genOrder();o.label=classify(o);
     if(o.label==='CROSS_PLATFORM'){
-      o.relayPlat=pick(['SWG','ZPT','BBY'].filter(function(p){return p!==o.plat}));
+      o.relayPlat=pick(['SFX','DLV','DNZ'].filter(function(p){return p!==o.plat}));
       G.crossM++;
       if(!o.spanId){
         var rA=o.hub+'_R'+ri(10,99);
@@ -1341,7 +1966,7 @@ function tick(){
         var rB=(relayHub?relayHub.id:o.relayPlat+'_HUB')+'_R'+ri(10,99);
         o.spanId='SPAN_'+rA+'_'+rB+'_'+o.oid+'_'+ts();
       }
-    } else if(o.label==='PEER_MATCH'){o.relayPlat=['SWG','ZPT','BBY'].filter(function(p){return p!==o.plat}).sort()[0];G.peerM++;}
+    } else if(o.label==='PEER_MATCH'){o.relayPlat=['SFX','DLV','DNZ'].filter(function(p){return p!==o.plat}).sort()[0];G.peerM++;}
     else if(o.label==='SELF_MATCH')G.selfM++;
     else if(o.label==='RETURN_MATCH')G.retM++;
     else if(o.label==='HEAVY')G.splits++;
@@ -1386,7 +2011,7 @@ function renderHome(){
   $t('h-mrev',fmt(G.midasRev));$t('h-util',Math.min(98,35+pct)+'%');
   $t('h-cpct',pct+'%');$t('h-sla',G.slaBreaches);
   $t('h-rate',G.recentTs.length+'/min');
-  [['SWG','swg'],['ZPT','zpt'],['BBY','bby']].forEach(function(x){
+  [['SFX','sfx'],['DLV','dlv'],['DNZ','dnz']].forEach(function(x){
     var d=G.plat[x[0]],k=x[1];
     $t(k+'-o',d.o);$t(k+'-s',fmt(Math.max(0,d.saving)));$t(k+'-f',fmt(d.fee));
     var bar=document.getElementById(k+'-b');if(bar)bar.style.width=Math.min(100,d.o/Math.max(1,G.total)*300)+'%';
@@ -1398,17 +2023,25 @@ function oCard(o){
   var lc={SELF_MATCH:'c-g',PEER_MATCH:'c-sk',CROSS_PLATFORM:'c-p',ELIGIBLE:'c-a',HEAVY:'c-r',FAST_DIRECT:'c-r',RETURN_MATCH:'c-a',RETURN_PENDING:'c-a',SLA_BREACH:'c-r',DIRECT:'c-x'}[o.label]||'c-x';
   var tipHtml='TraceID: '+o.traceId+'\nInvoiceID: '+o.inv+'\nHub: '+o.hub+'\nGeoHash: '+o.geo+'\nCity: '+o.city+'\nWeight: '+o.wt+'kg\nLabel: '+o.label+'\nStatus: '+o.status+(o.spanId?'\nSpanID: '+o.spanId:'')+(o.relayPlat?'\nRelayPlatform: '+o.relayPlat:'')+'\nSLA: '+o.sla;
   var clickFn=o.spanId?'openQRFromCard(\''+o.spanId+'\',\''+o.plat+'\',\''+o.relayPlat+'\')':'';
-  return '<div class="ocard '+bc+'" onclick="'+clickFn+'" onmouseenter="showTip(this,\''+tipHtml.replace(/'/g,'\\\'').replace(/\n/g,'&#10;')+'\')" onmouseleave="hideTip()" title="Hover for details'+(o.spanId?' · Click for QR Handover':'')+'">'
-    +'<div class="oc-trace">'+o.traceId.substr(0,38)+'</div>'
-    +(o.spanId?'<div class="oc-span">'+o.spanId.substr(0,44)+'</div>':'')
-    +'<div class="oc-inv">'+o.inv+'</div>'
-    +'<div class="oc-hub">'+o.hub+' · '+o.geo+'</div>'
-    +'<div class="oc-row"><span class="chip '+PCC[o.plat]+'">'+o.plat+'</span>'
-    +'<span class="chip '+lc+'">'+o.label.replace(/_/g,' ')+'</span>'
-    +'<span class="chip c-x">'+o.wt+'kg</span>'
-    +(o.relayPlat?'<span class="chip c-p">→'+o.relayPlat+'</span>':'')
-    +(o.spanId?'<span class="chip c-pk">🔐 SPAN</span>':'')
-    +(o.isSLA?'<span class="chip c-r">⚠ SLA</span>':'')
+  
+  // Clean display mapping for client presentation
+  var displayHub = o.hub.split('_').slice(2).join(' ') || o.hub;
+  var cleanLabel = o.label.replace(/_/g, ' ');
+  if(cleanLabel === 'CROSS PLATFORM') cleanLabel = 'ONDC MATCHED';
+  if(cleanLabel === 'SELF MATCH') cleanLabel = 'PLATFORM BATCH';
+  
+  return '<div class="ocard '+bc+'" onclick="'+clickFn+'" onmouseenter="showTip(this,\''+tipHtml.replace(/'/g,'\\\'').replace(/\n/g,'&#10;')+'\')" onmouseleave="hideTip()" style="border-radius:6px; padding:10px; margin-bottom:6px; border-left-width:4px;" title="Hover for details'+(o.spanId?' · Click for QR Handover':'')+'">'
+    +'<div class="fb" style="margin-bottom:4px; font-weight:600; font-size:.74rem; color:var(--t1)">'
+    +'<span>Order ID: #'+o.oid+'</span>'
+    +'<span style="color:var(--t2); font-size:.65rem; font-family:var(--fm)">'+o.inv+'</span>'
+    +'</div>'
+    +'<div style="font-size:.68rem; color:var(--t2); margin-bottom:5px; font-weight:500;">Zone: <strong>'+displayHub+'</strong> · Geo: <strong style="color:var(--sky)">'+o.geo+'</strong></div>'
+    +'<div class="oc-row" style="display:flex; gap:3px; flex-wrap:wrap;"><span class="chip '+PCC[o.plat]+'" style="font-size:.54rem; padding:1px 5px;">'+(o.plat === 'SFX' ? 'Shadowfax' : o.plat === 'DLV' ? 'Delhivery' : 'Dunzo')+'</span>'
+    +'<span class="chip '+lc+'" style="font-size:.54rem; padding:1px 5px;">'+cleanLabel+'</span>'
+    +'<span class="chip c-x" style="font-size:.54rem; padding:1px 5px;">'+o.wt+'kg</span>'
+    +(o.relayPlat?'<span class="chip c-p" style="font-size:.54rem; padding:1px 5px;">➔ '+(o.relayPlat === 'SFX' ? 'Shadowfax' : o.relayPlat === 'DLV' ? 'Delhivery' : 'Dunzo')+'</span>':'')
+    +(o.spanId?'<span class="chip c-pk" style="font-size:.54rem; padding:1px 5px;">🔐 Handover SPAN</span>':'')
+    +(o.isSLA?'<span class="chip c-r" style="font-size:.54rem; padding:1px 5px;">⚠ SLA Alert</span>':'')
     +'</div></div>';
 }
 
@@ -1447,11 +2080,11 @@ function renderBalance(){
   var tb=document.getElementById('bs-tbody');if(!tb)return;
   var p=G.plat;
   var rows=[
-    ['Orders',p.SWG.o,p.ZPT.o,p.BBY.o,'—',G.total,'neu'],
-    ['Baseline Cost',fmt(p.SWG.baseline),fmt(p.ZPT.baseline),fmt(p.BBY.baseline),'—',fmt(p.SWG.baseline+p.ZPT.baseline+p.BBY.baseline),'neg'],
-    ['Actual Trip Cost',fmt(p.SWG.tripCost),fmt(p.ZPT.tripCost),fmt(p.BBY.tripCost),'—',fmt(p.SWG.tripCost+p.ZPT.tripCost+p.BBY.tripCost),'pos'],
-    ['MIDAS Fee',fmt(p.SWG.fee),fmt(p.ZPT.fee),fmt(p.BBY.fee),fmt(G.midasRev),fmt(p.SWG.fee+p.ZPT.fee+p.BBY.fee),'neg'],
-    ['Net Saving',fmt(Math.max(0,p.SWG.saving)),fmt(Math.max(0,p.ZPT.saving)),fmt(Math.max(0,p.BBY.saving)),fmt(Math.max(0,mp)),fmt(Math.max(0,ts_)),'pos']
+    ['Orders',p.SFX.o,p.DLV.o,p.DNZ.o,'—',G.total,'neu'],
+    ['Baseline Cost',fmt(p.SFX.baseline),fmt(p.DLV.baseline),fmt(p.DNZ.baseline),'—',fmt(p.SFX.baseline+p.DLV.baseline+p.DNZ.baseline),'neg'],
+    ['Actual Trip Cost',fmt(p.SFX.tripCost),fmt(p.DLV.tripCost),fmt(p.DNZ.tripCost),'—',fmt(p.SFX.tripCost+p.DLV.tripCost+p.DNZ.tripCost),'pos'],
+    ['MIDAS Fee',fmt(p.SFX.fee),fmt(p.DLV.fee),fmt(p.DNZ.fee),fmt(G.midasRev),fmt(p.SFX.fee+p.DLV.fee+p.DNZ.fee),'neg'],
+    ['Net Saving',fmt(Math.max(0,p.SFX.saving)),fmt(Math.max(0,p.DLV.saving)),fmt(Math.max(0,p.DNZ.saving)),fmt(Math.max(0,mp)),fmt(Math.max(0,ts_)),'pos']
   ];
   tb.innerHTML=rows.map(function(r,i){var isN=i===rows.length-1;return'<tr class="'+(isN?'hi-net':'')+'"><td style="color:var(--t1)">'+r[0]+'</td>'+[r[1],r[2],r[3]].map(function(v){return'<td class="'+(isN?'t-pos':'t-'+r[6])+'">'+v+'</td>';}).join('')+'<td class="'+(isN?'t-pos':'t-neu')+'">'+r[4]+'</td><td class="t-pos" style="font-weight:700">'+r[5]+'</td></tr>';}).join('');
 }
@@ -1536,7 +2169,7 @@ function renderCities(){
       +'<div><div class="label" style="font-size:.44rem">Packets</div><div style="font-family:var(--fo);font-size:.85rem;color:var(--t1)">'+c.orders+'</div></div>'
       +'<div><div class="label" style="font-size:.44rem">Status</div><div style="font-family:var(--fo);font-size:.75rem;color:'+(c.online?'var(--grn)':'var(--t3)')+'">'+( c.online?'ONLINE':'COMING')+'</div></div>'
       +'</div>'
-      +(c.online?'<div class="fr"><span class="chip c-o" style="font-size:.44rem">SWG</span><span class="chip c-sk" style="font-size:.44rem">ZPT</span><span class="chip c-g" style="font-size:.44rem">BBY</span></div>':'<span class="chip c-x" style="font-size:.44rem">Pending</span>')
+      +(c.online?'<div class="fr"><span class="chip c-o" style="font-size:.44rem">SFX</span><span class="chip c-sk" style="font-size:.44rem">DLV</span><span class="chip c-g" style="font-size:.44rem">DNZ</span></div>':'<span class="chip c-x" style="font-size:.44rem">Pending</span>')
       +'</div>';
   }).join('');
   $t('sc-hubs',HUBS.length);
@@ -1558,8 +2191,8 @@ function renderHubs(){
     gg.style.gridTemplateColumns='repeat('+Math.min(keys.length,6)+',1fr)';
     gg.innerHTML=keys.map(function(geo){
       var hubs=geoMap[geo];var plats=new Set(hubs.map(function(h){return h.plat}));var multi=plats.size>1;
-      var col=multi?'rgba(155,109,255,.2)':hubs[0].plat==='SWG'?'rgba(255,122,53,.1)':hubs[0].plat==='ZPT'?'rgba(56,212,248,.1)':'rgba(0,240,122,.08)';
-      var bc=multi?'rgba(155,109,255,.4)':hubs[0].plat==='SWG'?'rgba(255,122,53,.28)':hubs[0].plat==='ZPT'?'rgba(56,212,248,.28)':'rgba(0,240,122,.22)';
+      var col=multi?'rgba(155,109,255,.2)':hubs[0].plat==='SFX'?'rgba(255,122,53,.1)':hubs[0].plat==='DLV'?'rgba(56,212,248,.1)':'rgba(0,240,122,.08)';
+      var bc=multi?'rgba(155,109,255,.4)':hubs[0].plat==='SFX'?'rgba(255,122,53,.28)':hubs[0].plat==='DLV'?'rgba(56,212,248,.28)':'rgba(0,240,122,.22)';
       return'<div class="geo-cell" style="background:'+col+';border-color:'+bc+'" onclick="'+(multi?'highlightZone(\''+geo+'\')':'')+'">'
         +'<div style="font-family:var(--fm);font-size:.54rem;color:var(--acc);margin-bottom:1px">'+geo+'</div>'
         +'<div style="font-family:var(--fh);font-size:.65rem;color:var(--t1)">'+hubs[0].zone.substr(0,10)+'</div>'
@@ -1570,7 +2203,7 @@ function renderHubs(){
   }
   var hg=document.getElementById('hub-cards');if(!hg)return;
   hg.innerHTML=ch.map(function(h){
-    var platCls={SWG:'border-left:3px solid var(--ora)',ZPT:'border-left:3px solid var(--sky)',BBY:'border-left:3px solid var(--grn)'}[h.plat]||'';
+    var platCls={SFX:'border-left:3px solid var(--ora)',DLV:'border-left:3px solid var(--sky)',DNZ:'border-left:3px solid var(--grn)'}[h.plat]||'';
     var multiPlatInGeo=HUBS.filter(function(x){return x.geo===h.geo&&x.plat!==h.plat}).length>0;
     return'<div class="card" style="'+platCls+'">'
       +'<div class="fb mb" style="margin-bottom:.4rem">'
@@ -1587,7 +2220,7 @@ function highlightZone(geo){alert('GeoHash '+geo+': '+HUBS.filter(function(h){re
 // ── TRACE BUILDER ────────────────────────────────────────────────
 var lastTraceO=null;
 function buildTrace(){
-  var plat=(document.getElementById('tb-p')||{}).value||'SWG';
+  var plat=(document.getElementById('tb-p')||{}).value||'SFX';
   var zone=(document.getElementById('tb-z')||{}).value||'HYD-KOND';
   var geo=(document.getElementById('tb-g')||{}).value||'GH7F4X';
   var wt=parseFloat((document.getElementById('tb-w')||{}).value||12.5);
@@ -1625,7 +2258,7 @@ function buildTrace(){
   var spa=document.getElementById('tb-span-area');if(!spa)return;
   if(type==='X'){
     var rA=plat+'_'+zone.replace(/-/g,'')+'_R'+ri(10,99);
-    var otherPlat=plat==='SWG'?'ZPT':'SWG';
+    var otherPlat=plat==='SFX'?'DLV':'SFX';
     var rB=otherPlat+'_'+zone.replace(/-/g,'')+'_R'+ri(10,99);
     var spanId='SPAN_'+rA+'_'+rB+'_ORD'+ri(10000,99999)+'_'+t;
     spa.innerHTML='<div style="margin-top:.7rem;background:rgba(155,109,255,.06);border:1px solid rgba(155,109,255,.22);border-radius:4px;padding:.7rem">'
@@ -1698,8 +2331,8 @@ function openQRFromCard(spanId,fromPlat,toPlat){
   modal.classList.add('open');
 }
 function openQRDemo(){
-  var spanId='SPAN_SWG_HYD_KOND_R012_ZPT_HYD_KOND_R044_ORD88812_143522';
-  openQRFromCard(spanId,'SWG','ZPT');
+  var spanId='SPAN_SFX_HYD_KOND_R012_DLV_HYD_KOND_R044_ORD88812_143522';
+  openQRFromCard(spanId,'SFX','DLV');
 }
 function closeQR(){var m=document.getElementById('qr-modal');if(m)m.classList.remove('open');}
 function resetQRFull(){
@@ -1716,12 +2349,12 @@ function scanQR(){
   var log=document.getElementById('qr-log');
   var checks=[
     {id:'chk1',det:'chk1-d',delay:400,ok:'QR payload matches order record ORD88812 ✓'},
-    {id:'chk2',det:'chk2-d',delay:900,ok:'ZPT_HYD_KOND_R044 status: ACTIVE ✓'},
+    {id:'chk2',det:'chk2-d',delay:900,ok:'DLV_HYD_KOND_R044 status: ACTIVE ✓'},
     {id:'chk3',det:'chk3-d',delay:1400,ok:'Session token 7f2a9c matches SPAN_ID session ✓'},
   ];
   checks.forEach(function(ck){setTimeout(function(){var e=document.getElementById(ck.id);if(e){e.className='chk-icon chk-ok';e.textContent='✓';}var d=document.getElementById(ck.det);if(d)d.textContent=ck.ok;},ck.delay);});
   setTimeout(function(){
-    if(log)log.textContent='['+now()+'] QR scan received from ZPT_HYD_KOND_R044\n['+now()+'] Check (a): QR payload ↔ order record → PASS\n['+now()+'] Check (b): ZPT_R044 ACTIVE → PASS\n['+now()+'] Check (c): session token 7f2a9c → VALID → PASS\n['+now()+'] ✓ ALL 3 PASS SIMULTANEOUSLY\n['+now()+'] ATOMIC DB WRITE: SWG_R012 → ZPT_R044\n['+now()+'] SPAN_ID UNLOCKED. Custody log entry written.\n['+now()+'] Session: GPS + masked phone transmitted.';
+    if(log)log.textContent='['+now()+'] QR scan received from DLV_HYD_KOND_R044\n['+now()+'] Check (a): QR payload ↔ order record → PASS\n['+now()+'] Check (b): DLV_R044 ACTIVE → PASS\n['+now()+'] Check (c): session token 7f2a9c → VALID → PASS\n['+now()+'] ✓ ALL 3 PASS SIMULTANEOUSLY\n['+now()+'] ATOMIC DB WRITE: SFX_R012 → DLV_R044\n['+now()+'] SPAN_ID UNLOCKED. Custody log entry written.\n['+now()+'] Session: GPS + masked phone transmitted.';
     var qs=document.getElementById('qr-session');if(qs)qs.style.display='block';
     var gps=document.getElementById('qr-gps');if(gps)gps.textContent='17.4401°N, 78.3489°E';
     var ph=document.getElementById('qr-phone');if(ph)ph.textContent='XXXXX73621';
@@ -1741,12 +2374,12 @@ function openQRDemoInPage(){
   var svgA=document.getElementById('qr-A-static');if(svgA)makeQRSVG(svgA,42);
   var checks=[
     {id:'dc1',det:'dc1-d',delay:400,ok:'QR payload matches order record ORD88812 ✓'},
-    {id:'dc2',det:'dc2-d',delay:900,ok:'ZPT_HYD_KOND_R044 status: ACTIVE ✓'},
+    {id:'dc2',det:'dc2-d',delay:900,ok:'DLV_HYD_KOND_R044 status: ACTIVE ✓'},
     {id:'dc3',det:'dc3-d',delay:1400,ok:'Session token 7f2a9c matches SPAN_ID session ✓'},
   ];
   checks.forEach(function(ck){setTimeout(function(){var e=document.getElementById(ck.id);if(e){e.className='chk-icon chk-ok';e.textContent='✓';}var d=document.getElementById(ck.det);if(d)d.textContent=ck.ok;},ck.delay);});
   setTimeout(function(){
-    if(log)log.textContent='['+now()+'] QR scan received from ZPT_HYD_KOND_R044\n['+now()+'] Check (a): PASS · Check (b): PASS · Check (c): PASS\n['+now()+'] ATOMIC DB WRITE: remove SWG_R012 → add ZPT_R044\n['+now()+'] Duplicate custody: STRUCTURALLY IMPOSSIBLE\n['+now()+'] SPAN_ID UNLOCKED. Session active.\n['+now()+'] GPS + masked phone → ZPT_R044 (temp session only)';
+    if(log)log.textContent='['+now()+'] QR scan received from DLV_HYD_KOND_R044\n['+now()+'] Check (a): PASS · Check (b): PASS · Check (c): PASS\n['+now()+'] ATOMIC DB WRITE: remove SFX_R012 → add DLV_R044\n['+now()+'] Duplicate custody: STRUCTURALLY IMPOSSIBLE\n['+now()+'] SPAN_ID UNLOCKED. Session active.\n['+now()+'] GPS + masked phone → DLV_R044 (temp session only)';
     var ds=document.getElementById('demo-session');if(ds)ds.style.display='block';
   },1800);
 }
@@ -1754,10 +2387,10 @@ function openQRDemoInPage(){
 // ── SIM CONTROLS ─────────────────────────────────────────────────
 function startSim(){if(G.sim)return;G.sim=true;G.iv=setInterval(tick,1350);var sd=document.getElementById('sim-dot');if(sd)sd.style.background='var(--grn)';glog('<span class="ok">['+now()+'] Hub-aware sim started · '+HUBS.length+' hubs · '+CITIES.filter(function(c){return c.online}).length+' cities online</span>');}
 function stopSim(){G.sim=false;clearInterval(G.iv);}
-function spawnOrder(){if(!G.sim)startSim();var o=genOrder();o.label=classify(o);if(o.label==='CROSS_PLATFORM'){o.relayPlat=pick(['SWG','ZPT','BBY'].filter(function(p){return p!==o.plat}));G.crossM++;if(!o.spanId){var rA=o.hub+'_R'+ri(10,99);var rh=pick(HUBS.filter(function(h){return h.plat===o.relayPlat&&h.geo===o.geo}))||pick(HUBS.filter(function(h){return h.plat===o.relayPlat}));var rB=(rh?rh.id:o.relayPlat+'_HUB')+'_R'+ri(10,99);o.spanId='SPAN_'+rA+'_'+rB+'_'+o.oid+'_'+ts();}}else if(o.label==='SELF_MATCH')G.selfM++;else if(o.label==='PEER_MATCH'){o.relayPlat=['SWG','ZPT','BBY'].filter(function(p){return p!==o.plat}).sort()[0];G.peerM++;}G.intake.unshift(o);G.total++;applyFin(o);renderAll();}
+function spawnOrder(){if(!G.sim)startSim();var o=genOrder();o.label=classify(o);if(o.label==='CROSS_PLATFORM'){o.relayPlat=pick(['SFX','DLV','DNZ'].filter(function(p){return p!==o.plat}));G.crossM++;if(!o.spanId){var rA=o.hub+'_R'+ri(10,99);var rh=pick(HUBS.filter(function(h){return h.plat===o.relayPlat&&h.geo===o.geo}))||pick(HUBS.filter(function(h){return h.plat===o.relayPlat}));var rB=(rh?rh.id:o.relayPlat+'_HUB')+'_R'+ri(10,99);o.spanId='SPAN_'+rA+'_'+rB+'_'+o.oid+'_'+ts();}}else if(o.label==='SELF_MATCH')G.selfM++;else if(o.label==='PEER_MATCH'){o.relayPlat=['SFX','DLV','DNZ'].filter(function(p){return p!==o.plat}).sort()[0];G.peerM++;}G.intake.unshift(o);G.total++;applyFin(o);renderAll();}
 function spawnBurst(n){for(var i=0;i<n;i++)setTimeout(spawnOrder,i*180);}
 function spawnReturn(){var o=genOrder({wt:.1,isReturn:true});o.isReturn=true;o.label='RETURN_PENDING';o.traceId='RTN_'+o.traceId;G.intake.unshift(o);G.total++;G.retM++;applyFin(o);renderAll();}
-function spawnSplit(){var h=pick(HUBS.filter(function(h){return h.plat==='SWG'}));var o=genOrder({wt:72,hub:h});o.isHeavy=true;o.label='HEAVY';G.splits++;G.intake.unshift(o);G.total++;applyFin(o);renderAll();}
+function spawnSplit(){var h=pick(HUBS.filter(function(h){return h.plat==='SFX'}));var o=genOrder({wt:72,hub:h});o.isHeavy=true;o.label='HEAVY';G.splits++;G.intake.unshift(o);G.total++;applyFin(o);renderAll();}
 function spawnSLA(){
   var o=genOrder({isSLA:true});o.label='SLA_BREACH';o.isSLA=true;
   addSLABreach(o);G.total++;G.intake.unshift(o);applyFin(o);renderAll();
@@ -1788,6 +2421,28 @@ function calcROI(){
     +'<div style="font-size:.56rem;color:var(--t3);margin-top:2px;font-family:var(--fm)">Plan '+(G.planD?G.plan+'+D':G.plan)+' · ₹'+f+'/order</div></div>';
 }
 
+function calcEcosystem(){
+  var orders=parseInt((document.getElementById('ec-ord')||{}).value||2500);
+  $t('ec-ord-lbl', fN(orders));
+  var pairs = Math.round(orders * (orders - 1) / 2);
+  if(pairs >= 1e6) {
+    $t('ec-pairs', (pairs/1e6).toFixed(1) + 'M');
+  } else {
+    $t('ec-pairs', fN(pairs));
+  }
+  // Math for probability: scales log-logistically with density
+  var prob = Math.round((1 - Math.exp(-orders / 1400)) * 100);
+  $t('ec-prob', prob + '%');
+  
+  // Calculate savings: trips saved per year (say 40% of orders are saved at 100% match)
+  var tripsSaved = Math.round(orders * (prob/100) * 0.43) * 365;
+  $t('ec-trips', fN(tripsSaved));
+  
+  // Financial savings: tripsSaved * CPO (say ₹38 average cost)
+  var saveAmt = tripsSaved * 38 * 0.389; // CPO reduced by 38.9%
+  $t('ec-save', fmt(saveAmt));
+}
+
 // ── PATENT ───────────────────────────────────────────────────────
 var NOVEL_ELS=['Cross-platform geo-hash-zone matching','6-field TraceID with embedded geo-hash (O(1))','Anonymous hub-token exchange (zero PII)','3-mode adaptive stress engine per hub zone','SPAN_ID 3-check atomic QR custody (Rider A→B)','DPDP 2023 temp session destruction (C8)','City-tier consolidation window (C12)','Return-trip cross-platform matching (C3)','InvoiceID auto-bound to TraceID at dispatch','Cross-platform auto-settlement ledger','SLA breach ledger (hash-chained, tamper-evident)'];
 var PA_ROWS=[
@@ -1811,7 +2466,7 @@ function buildPA(){
 }
 
 // ── NAV ──────────────────────────────────────────────────────────
-var PAGES=['home','how','scale','ops','trace','stress','qr-demo','sla','settle','balance','why','plans','patent','about'];
+var PAGES=['home','overview','how','scale','ops','trace','stress','qr-demo','sla','settle','balance','why','plans','ecosystem','debate','patent','about'];
 function go(id){
   PAGES.forEach(function(p){var el=document.getElementById(p);if(el)el.classList.toggle('on',p===id);});
   document.querySelectorAll('.nav-item').forEach(function(el,i){el.classList.toggle('on',PAGES[i]===id);});
@@ -1821,11 +2476,45 @@ function go(id){
   if(id==='scale'){renderCities();renderHubs();}
   if(id==='sla')renderSLAPage();
   if(id==='qr-demo'){var svgA=document.getElementById('qr-A-static');if(svgA)makeQRSVG(svgA,42);}
+  if(id==='ecosystem')calcEcosystem();
 }
 
 // ── INIT ────────────────────────────────────────────────────────
+var currentSlide = 0;
+function showSlide(idx) {
+  var slides = document.querySelectorAll('.ppt-slide');
+  if (!slides.length) return;
+  if (idx < 0) idx = slides.length - 1;
+  if (idx >= slides.length) idx = 0;
+  currentSlide = idx;
+  slides.forEach(function(s, i) {
+    s.style.display = (i === idx) ? 'block' : 'none';
+  });
+  $t('slide-num', 'Slide ' + (idx + 1) + ' of ' + slides.length);
+  
+  // Update Slide 8 dynamic calculation reference
+  if (idx === 7) {
+    var orders = parseInt((document.getElementById('ec-ord')||{}).value||2500);
+    var prob = 1 - Math.exp(-orders / 1400);
+    var tripsSaved = Math.round(orders * prob * 0.43) * 365;
+    var saveAmt = tripsSaved * 38 * 0.389;
+    $t('ppt-save-val', fmt(saveAmt));
+  }
+}
+function nextSlide() { showSlide(currentSlide + 1); }
+function prevSlide() { showSlide(currentSlide - 1); }
+
+// Keyboard navigation for slides
+document.addEventListener('keydown', function(e) {
+  var whyPage = document.getElementById('why');
+  if (whyPage && whyPage.classList.contains('on')) {
+    if (e.key === 'ArrowRight') nextSlide();
+    if (e.key === 'ArrowLeft') prevSlide();
+  }
+});
+
 window.onload=function(){
-  setPlan('C');buildTrace();calcROI();buildPA();renderCities();renderHubs();renderAll();
+  setPlan('C');buildTrace();calcROI();buildPA();renderCities();renderHubs();renderAll();calcEcosystem();
   var svgA=document.getElementById('qr-A-static');if(svgA)makeQRSVG(svgA,42);
 };
 </script>
