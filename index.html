@@ -294,6 +294,9 @@ html,body{height:100vh;overflow:hidden;background:var(--bg);color:var(--t1);font
     <div class="tab" onclick="sw(2)"><div class="n">03</div><div class="t">Zero-Knowledge Ledger</div></div>
     <div class="tab" onclick="sw(3)"><div class="n">04</div><div class="t">Fractional Settlement</div></div>
     <div class="tab" onclick="sw(4)"><div class="n">05</div><div class="t">Upstream Brokerage</div></div>
+    <div class="tab" onclick="sw(5)"><div class="n">06</div><div class="t">Executive Strategy PPT</div></div>
+    <div class="tab" onclick="sw(6)"><div class="n">07</div><div class="t">Checkout Transparency</div></div>
+    <div class="tab" onclick="sw(7)"><div class="n">08</div><div class="t">Patent Specifications</div></div>
   </div>
   
   <div id="stats-strip">
@@ -375,6 +378,21 @@ html,body{height:100vh;overflow:hidden;background:var(--bg);color:var(--t1);font
           <span class="setting-desc">Orders scoring above this similarity threshold are consolidated even if they exceed standard batch limits (up to 5 max).</span>
         </div>
 
+        <div class="setting-grp" style="border-top: 1px solid var(--border); padding-top: 10px; margin-top: 10px;">
+          <div class="setting-hdr">
+            <span class="setting-lbl" style="color:var(--acc2); font-weight:800;">⚡ Real-Time Network Simulation</span>
+          </div>
+          <div style="display:flex; gap:8px; margin-top:6px;">
+            <button onclick="addRandomOrderSim()" style="flex:1; background:linear-gradient(135deg, var(--acc2), var(--acc)); color:#000; border:none; padding:8px; border-radius:4px; font-family:var(--fm); font-size:0.6rem; font-weight:800; cursor:pointer; box-shadow:0 0 10px rgba(0,217,255,0.25); transition:all 0.2s;">
+              + Add Random Order
+            </button>
+            <button onclick="clearRandomOrdersSim()" style="background:transparent; border:1px solid var(--border); color:var(--t2); padding:8px; border-radius:4px; font-family:var(--fm); font-size:0.6rem; font-weight:700; cursor:pointer; transition:all 0.2s;" onmouseover="this.style.borderColor='var(--red)'; this.style.color='var(--red)';" onmouseout="this.style.borderColor='var(--border)'; this.style.color='var(--t2)';">
+              Clear Extra
+            </button>
+          </div>
+          <span class="setting-desc">Injects randomly generated ONDC client orders into the live coordinate space to demonstrate MIDAS's automatic dynamic consolidation.</span>
+        </div>
+
         <div class="formula-box">
           <strong>Match Similarity Index (M.S.I.) Formula:</strong><br>
           MSI = 100% - (ΔDist × 25% + θ_dev × 50% + ΔTime × 25%)<br>
@@ -386,7 +404,7 @@ html,body{height:100vh;overflow:hidden;background:var(--bg);color:var(--t1);font
           <div class="metric-grid">
             <div class="metric-box">
               <span class="metric-lbl">Total Orders</span>
-              <span class="metric-val">10</span>
+              <span class="metric-val" id="metric-orders-total">10</span>
             </div>
             <div class="metric-box">
               <span class="metric-lbl">Total Local Riders</span>
@@ -408,12 +426,48 @@ html,body{height:100vh;overflow:hidden;background:var(--bg);color:var(--t1);font
         </div>
         <div class="why-split-box">
           <div style="font-weight:700; color:var(--acc); font-size:0.6rem; display:flex; align-items:center; gap:4px; margin-bottom:4px">
-            💡 HYPERLOCAL 10KM SERVICE & RIDER RELAY
+            💡 HYPERLOCAL 10KM SERVICE & VIRTUAL RELAYS
           </div>
           <div style="font-size:0.55rem; color:var(--t2); line-height:1.4">
-            Within a 10km hyperlocal radius, avoiding trucks is highly efficient in traffic. MIDAS matches orders from nearby sellers to the same delivery boy for direct pick-and-dispatch.
+            MIDAS eliminates static physical hubs. The Relay Nodes on our network diagram are <strong>dynamic, virtual handover coordinates</strong> computed on-the-fly.
             <br><br>
-            If a single rider cannot make the full pickup loop, a secondary neighborhood runner collects from the seller and performs a <strong>direct hand-off</strong> to the primary rider who is already travelling nearby the delivery route, maximizing neighborhood rider utilization (10 active neighborhood riders).
+            By intercepting the gateway feed, MIDAS coordinates:
+            <ul style="margin:4px 0 0 10px; padding:0; color:var(--grn); list-style-type:square;">
+              <li><strong>Who has what:</strong> Detailed order labels & packet properties.</li>
+              <li><strong>Where they are:</strong> High-precision geohashes of active riders.</li>
+              <li><strong>Whom to deliver:</strong> Consolidated buyer destinations.</li>
+              <li><strong>How far & Who is nearby:</strong> Live proximity scores for optimal handshakes.</li>
+            </ul>
+            <br>
+            A single rider can execute a direct multi-pickup sweep across sellers, or handshake on-the-fly with a nearby runner on the street.
+          </div>
+        </div>
+
+        <div class="why-split-box" style="border: 1px solid rgba(0, 217, 255, 0.3); background: rgba(0, 217, 255, 0.03); margin-top: 8px;">
+          <div style="font-weight:700; color:var(--acc); font-size:0.6rem; display:flex; align-items:center; gap:4px; margin-bottom:4px">
+            🔥 MIDAS GAME-CHANGING SWAP HOOK
+          </div>
+          <div style="font-size:0.55rem; color:var(--t1); line-height:1.4">
+            <strong>The 1-Second Beckn-Relay Swap:</strong> Enables Dunzo & Shadowfax riders to physically trade packages on the street!
+            If a Shadowfax rider is already headed to a target building, a Dunzo rider can transfer their cargo to them at a street Relay Hub.
+            <br><br>
+            Both riders split payouts via the <strong>Fractional Settlement Ledger</strong>. This converts competitor friction into ecosystem efficiency—compelling platforms like Swiggy & Zepto to integrate with ONDC.
+          </div>
+        </div>
+
+        <div class="why-split-box" style="border: 1px solid rgba(0, 230, 118, 0.3); background: rgba(0, 230, 118, 0.02); margin-top: 8px;">
+          <div style="font-weight:700; color:var(--grn); font-size:0.6rem; display:flex; align-items:center; gap:4px; margin-bottom:4px">
+            ⚡ 3-TIER CHECKOUT & BACKGROUND CACHING
+          </div>
+          <div style="font-size:0.55rem; color:var(--t1); line-height:1.4">
+            <strong>Redis Pre-Checkout Cache:</strong> Calculates matching routes *before* checkout as items are added to the cart, responding in under 3ms.
+            <br><br>
+            <strong>The 3-Tier Optimization Model:</strong>
+            <ul style="margin: 4px 0 0 12px; padding: 0;">
+              <li style="margin-bottom:2px;"><strong>Tier 1 (Pre-Pay Hold):</strong> Opt-in to wait 60s at checkout to secure the exact discounted fee upfront.</li>
+              <li style="margin-bottom:2px;"><strong>Tier 2 (Prep Window Match):</strong> Instant standard checkout; routes are merged in the background during the kitchen prep/cooking window (10-15m ETA).</li>
+              <li><strong>Tier 3 (In-Transit Fallback):</strong> Fallback to point-to-point dispatch; if consolidated in-transit via street swap, customer receives a <strong>Surprise Wallet Cashback</strong>.</li>
+            </ul>
           </div>
         </div>
       </div>
@@ -655,15 +709,26 @@ html,body{height:100vh;overflow:hidden;background:var(--bg);color:var(--t1);font
           <!-- Populated dynamically -->
         </tbody>
       </table>
-
-      <div style="background:rgba(0,217,255,0.05); border:1px solid rgba(0,217,255,0.15); border-radius:8px; padding:16px; font-size:0.7rem; line-height:1.5;">
-        💡 <strong>How Fractional Settlement Works inside the Beckn Protocol:</strong><br>
-        Standard ONDC payouts require direct buyer-to-single-rider settlements. Under the MIDAS multi-hop relay model, the matched transaction fee is fractionally distributed:
-        <ul>
-          <li><strong>First-Mile Runner</strong> gets ₹12-15 for the short neighborhood collection (Seller ➔ Relay Node).</li>
-          <li><strong>Primary Last-Mile Rider</strong> receives the main bulk payout (Relay Node ➔ Buyer) dynamically accumulated across multiple consolidated orders.</li>
-          <li>The buyer's app automatically splits the payment at the ONDC settlement registry, ensuring instantaneous rider payout clearance.</li>
-        </ul>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:16px;">
+        <div style="background:rgba(0,217,255,0.03); border:1px solid rgba(0,217,255,0.15); border-radius:8px; padding:16px; font-size:0.65rem; line-height:1.5; text-align:left;">
+          💡 <strong>How Fractional Settlement Works inside the Beckn Protocol:</strong><br>
+          Standard ONDC payouts require direct buyer-to-single-rider settlements. Under the MIDAS multi-hop relay model, the matched transaction fee is fractionally distributed:
+          <ul style="margin: 6px 0 0 15px; padding:0;">
+            <li style="margin-bottom:4px;"><strong>First-Mile Runner:</strong> Gets ₹12-15 for the short neighborhood collection (Seller ➔ Relay Node).</li>
+            <li style="margin-bottom:4px;"><strong>Primary Last-Mile Rider:</strong> Receives the main bulk payout (Relay Node ➔ Buyer) dynamically accumulated across multiple consolidated orders.</li>
+            <li>The buyer's app automatically splits the payment at the ONDC settlement registry, ensuring instantaneous rider payout clearance.</li>
+          </ul>
+        </div>
+        
+        <div style="background:rgba(0,230,118,0.03); border:1px solid rgba(0,230,118,0.15); border-radius:8px; padding:16px; font-size:0.65rem; line-height:1.5; text-align:left;">
+          💳 <strong>The 3-Tier Checkout & Quoting Protocol:</strong><br>
+          MIDAS matches orders on the fly without freezes using background Redis caching and a 3-tier customer experience model:
+          <ul style="margin: 6px 0 0 15px; padding:0;">
+            <li style="margin-bottom:4px;"><strong>Tier 1 (Instant Pre-Pay Hold):</strong> User waits 60s at checkout. If matches consolidate within the hold buffer, they pay the exact low rate immediately.</li>
+            <li style="margin-bottom:4px;"><strong>Tier 2 (Prep-Window Matching):</strong> Standard checkout upfront. While the merchant prepares the order (cooking ETA), MIDAS runs background calculations, disclosing the final consolidated fee mid-transit.</li>
+            <li><strong>Tier 3 (Post-Checkout Cashback Fallback):</strong> Dispatches standard. If a route consolidates later in-transit (street-level swaps), the user is refunded a surprise cashback.</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -719,6 +784,616 @@ html,body{height:100vh;overflow:hidden;background:var(--bg);color:var(--t1);font
           <div style="font-family:var(--fm); font-size:0.6rem; color:var(--acc2); text-transform:uppercase; font-weight:700;">Real-Time Brokerage Console log</div>
           <div id="brokerage-console" style="background:#020609; border:1px solid var(--border); border-radius:6px; padding:12px; font-family:var(--fm); font-size:0.58rem; color:var(--grn); height:calc(100vh - 300px); overflow-y:auto; line-height:1.5; text-align:left;">
             <!-- Console outputs -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 5: Interactive Slide Presentation -->
+  <div class="tab-page" id="pg5">
+    <div class="content-pad" style="max-width:1200px; margin:0 auto;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+        <div>
+          <div class="pg-title">🎬 EXECUTIVE STRATEGY PPT</div>
+          <div class="pg-desc">Interactive slide deck detailing the ONDC logistics deadlock, startups context, matching strategies, and decentralized architecture compatibility.</div>
+        </div>
+        <div>
+          <!-- Clickable button to download pptx -->
+          <a href="midas_presentation.pptx" download class="btn" style="text-decoration:none; padding:10px 18px; display:inline-flex; align-items:center; gap:8px; background:linear-gradient(135deg, var(--acc2), var(--acc)); font-family:var(--fm); font-size:0.75rem; color:#020609; font-weight:800; border-radius:6px; cursor:pointer;">
+            📥 Download PowerPoint (.pptx)
+          </a>
+        </div>
+      </div>
+      
+      <!-- Slide Viewer Frame -->
+      <div style="background:var(--bg3); border:1px solid var(--border); border-radius:12px; padding:20px; box-shadow:0 10px 30px rgba(0,0,0,0.5); display:flex; flex-direction:column; gap:20px; align-items:center;">
+        
+        <!-- Widescreen slide screen simulation (16:9) -->
+        <div id="slide-viewer-canvas" style="position:relative; width:100%; max-width:960px; height:540px; background:var(--bg); border:1.5px solid var(--border-hl); border-radius:8px; overflow:hidden; box-shadow:inset 0 0 40px rgba(0,217,255,0.04);">
+          <!-- Slide content loaded here dynamically -->
+        </div>
+
+        <!-- Navigation bar -->
+        <div style="display:flex; justify-content:space-between; align-items:center; width:100%; max-width:960px; border-top:1px solid rgba(255,255,255,0.1); padding-top:14px;">
+          <button class="btn btn-sm" onclick="prevSlide()" style="font-family:var(--fm); font-size:0.7rem; font-weight:800; padding:6px 16px;">◀ Previous Slide</button>
+          <span id="slide-counter-label" style="font-family:var(--fm); font-size:0.75rem; color:var(--acc); font-weight:700;">Slide 1 of 6: Title Slide</span>
+          <button class="btn btn-sm" onclick="nextSlide()" style="font-family:var(--fm); font-size:0.7rem; font-weight:800; padding:6px 16px;">Next Slide ▶</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 6: Checkout Transparency Console -->
+  <div class="tab-page" id="pg6">
+    <div class="content-pad">
+      <div class="pg-title">🔍 CHECKOUT TRANSPARENCY CONSOLE</div>
+      <div class="pg-desc">Auditing and visualizing fee calculations, matching window timelines, and payout settlements for each checkout tier scenario in real time.</div>
+
+      <!-- Tier Selector Cards -->
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:20px;">
+        <div id="btn-t1" class="w-card" style="cursor:pointer; border-color:var(--acc); background:rgba(0,217,255,0.03);" onclick="selectTierSim(1)">
+          <div class="w-icon">⏱️</div>
+          <div class="w-title" style="color:var(--acc);">Tier 1: Pre-Pay Hold</div>
+          <div class="w-desc">Opt-in to wait 60s at checkout. Locks in the exact lower consolidated fee upfront before payment capture.</div>
+        </div>
+        <div id="btn-t2" class="w-card" style="cursor:pointer;" onclick="selectTierSim(2)">
+          <div class="w-icon">🍳</div>
+          <div class="w-title">Tier 2: Prep-Window Match</div>
+          <div class="w-desc">Instant standard payment. MIDAS consolidates routes during the 10-15 min kitchen cooking window, updating the final fee mid-prep.</div>
+        </div>
+        <div id="btn-t3" class="w-card" style="cursor:pointer;" onclick="selectTierSim(3)">
+          <div class="w-icon">🎁</div>
+          <div class="w-title">Tier 3: In-Transit Fallback</div>
+          <div class="w-desc">Starts point-to-point. If a match occurs later in-transit (street-level swap), a surprise wallet cashback is refunded upon dropoff.</div>
+        </div>
+      </div>
+
+      <!-- Live Simulator Frame -->
+      <div style="display:grid; grid-template-columns:1.2fr 1fr; gap:20px; background:var(--bg3); border:1px solid var(--border); border-radius:12px; padding:20px; height:calc(100vh - 380px); overflow:hidden;">
+        <!-- Left: Scenario Specs and calculations -->
+        <div style="display:flex; flex-direction:column; gap:16px; overflow-y:auto; padding-right:10px;">
+          <div style="border-bottom:1px solid rgba(0,217,255,0.1); padding-bottom:10px; display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <div id="sim-scenario-title" style="font-size:1.1rem; font-weight:800; color:#fff;">Tier 1 Example: Paradise Biryani to Hitech City</div>
+              <div id="sim-scenario-tag" style="font-family:var(--fm); font-size:0.6rem; color:var(--acc2); margin-top:2px;">SCENARIO PROFILE: STANDARD FOOD (4.2 KM DISTANCE)</div>
+            </div>
+            <button id="sim-run-btn" class="btn" style="padding:8px 16px; font-family:var(--fm); font-size:0.75rem; font-weight:800; border-radius:4px;" onclick="runSimulation()">⚡ Run Simulation</button>
+          </div>
+
+          <!-- Interactive Match / Pricing Controls -->
+          <div style="background:rgba(10,25,36,0.6); border:1px solid var(--border); border-radius:8px; padding:15px; display:flex; flex-direction:column; gap:12px;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <div>
+                <span style="font-family:var(--fm); font-size:0.6rem; color:var(--acc2); text-transform:uppercase; font-weight:700; display:block;">Corridor Match Status</span>
+                <span style="font-size:0.55rem; color:var(--t2);">Toggles route consolidation path & splits</span>
+              </div>
+              <!-- Segmented Toggles -->
+              <div style="display:flex; background:#000; border-radius:4px; border:1px solid var(--border); padding:2px; gap:2px;">
+                <button id="sim-status-match" style="background:var(--acc); color:#000; border:none; padding:5px 12px; font-family:var(--fm); font-size:0.55rem; font-weight:800; border-radius:3px; cursor:pointer; transition:all 0.2s;" onclick="toggleSimMatch(true)">MIDAS Engine ON</button>
+                <button id="sim-status-nomatch" style="background:transparent; color:var(--t2); border:none; padding:5px 12px; font-family:var(--fm); font-size:0.55rem; font-weight:800; border-radius:3px; cursor:pointer; transition:all 0.2s;" onclick="toggleSimMatch(false)">MIDAS Engine OFF</button>
+              </div>
+            </div>
+
+            <!-- Discount Price Decider Slider -->
+            <div id="sim-discount-control-box" style="display:flex; flex-direction:column; gap:6px; border-top:1px solid rgba(255,255,255,0.05); padding-top:10px;">
+              <div style="display:flex; justify-content:space-between; font-size:0.65rem;">
+                <span style="color:var(--t2);">Consolidation Discount Level:</span>
+                <span style="font-family:var(--fm); color:var(--grn); font-weight:800;" id="sim-slider-label">55% Discount (Consolidated Rate)</span>
+              </div>
+              <div style="display:flex; align-items:center; gap:10px;">
+                <span style="font-size:0.55rem; color:var(--t3);">30%</span>
+                <input type="range" id="sim-discount-slider" min="30" max="75" value="55" step="5" style="flex-grow:1; accent-color:var(--acc); cursor:pointer; height:4px; background:rgba(255,255,255,0.1); border-radius:2px;" oninput="updateSimPrices()">
+                <span style="font-size:0.55rem; color:var(--t3);">75%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Formula & Calculation Details -->
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+            <div style="background:rgba(0,0,0,0.2); border:1px solid var(--border); border-radius:8px; padding:12px;">
+              <div style="font-family:var(--fm); font-size:0.58rem; color:var(--t3); text-transform:uppercase; margin-bottom:6px; font-weight:700;">Standard Distance Calculation</div>
+              <div id="sim-standard-formula" style="font-size:0.75rem; color:#fff; font-weight:700; margin-bottom:4px;">Base Rate: ₹35 + (₹4 × 4.2 km)</div>
+              <div id="sim-standard-quote-card" style="font-size:0.75rem; color:var(--red); font-weight:800;">Standard Quote: ₹52.00</div>
+              <div style="font-size:0.55rem; color:var(--t2); margin-top:4px; line-height:1.3;">Standard point-to-point dispatch without corridor batching.</div>
+            </div>
+            
+            <div style="background:rgba(0,230,118,0.03); border:1px solid rgba(0,230,118,0.2); border-radius:8px; padding:12px;">
+              <div style="font-family:var(--fm); font-size:0.58rem; color:var(--grn); text-transform:uppercase; margin-bottom:6px; font-weight:700;">MIDAS Consolidated Calculation</div>
+              <div id="sim-midas-formula" style="font-size:0.75rem; color:#fff; font-weight:700; margin-bottom:4px;">Consolidated rate: 45% of Standard Fee</div>
+              <div style="font-size:0.75rem; color:var(--grn); font-weight:800;" id="sim-midas-quote">MIDAS Quote: ₹23.00</div>
+              <div style="font-size:0.55rem; color:var(--t2); margin-top:4px; line-height:1.3;" id="sim-savings-note">Net Buyer Saving: ₹29.00 (55% Saved Upfront)</div>
+            </div>
+          </div>
+
+          <!-- Time Windows and State Tracker -->
+          <div style="background:rgba(10,25,36,0.6); border:1px solid var(--border); border-radius:8px; padding:15px; display:flex; flex-direction:column; gap:10px;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span style="font-family:var(--fm); font-size:0.6rem; color:var(--acc2); text-transform:uppercase; font-weight:700;">Active Optimization Timeline</span>
+              <span id="sim-timer-label" style="font-family:var(--fm); font-size:0.75rem; color:var(--acc); font-weight:800;">STATUS: IDLE</span>
+            </div>
+            
+            <!-- Custom Progress Bar -->
+            <div style="width:100%; height:14px; background:rgba(255,255,255,0.04); border-radius:4px; position:relative; overflow:hidden;">
+              <div id="sim-progress-bar" style="position:absolute; left:0; top:0; height:100%; width:0%; background:linear-gradient(90deg, var(--acc2), var(--acc)); transition: width 0.1s linear;"></div>
+              <span id="sim-progress-label" style="position:absolute; width:100%; text-align:center; top:0.5px; font-family:var(--fm); font-size:0.55rem; color:#fff; font-weight:800; text-shadow:0 1px 2px #000;">0% COMPLETE</span>
+            </div>
+            
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; font-size:0.65rem;">
+              <div>
+                <span style="color:var(--t3);">Time Window:</span> <span id="sim-window-value" style="color:#fff; font-weight:700;">60 Seconds hold</span>
+              </div>
+              <div>
+                <span style="color:var(--t3);">Perishable Tag:</span> <span id="sim-tag-value" style="color:#fff; font-weight:700;">STANDARD</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Payout Settlement Log -->
+          <div style="background:rgba(0,0,0,0.2); border:1px solid var(--border); border-radius:8px; padding:15px;">
+            <div style="font-family:var(--fm); font-size:0.6rem; color:var(--acc2); text-transform:uppercase; margin-bottom:8px; font-weight:700;">Transparency Settlement Ledgers</div>
+            <div style="display:grid; grid-template-columns:1.2fr 1fr; gap:16px;">
+              <div style="display:flex; flex-direction:column; gap:6px; font-size:0.65rem;">
+                <div style="display:flex; justify-content:space-between;"><span style="color:var(--t3)">Standard P2P Fee:</span> <span style="font-family:var(--fm)" id="sim-ledger-standard">₹52.00</span></div>
+                <div style="display:flex; justify-content:space-between;"><span style="color:var(--t3)">MIDAS Consolidated:</span> <span style="font-family:var(--fm); color:var(--grn); font-weight:700;" id="sim-ledger-midas">₹23.00</span></div>
+                <div style="display:flex; justify-content:space-between; border-top:1px solid rgba(255,255,255,0.05); padding-top:4px; font-weight:800;"><span style="color:var(--t2)">Payment Captured:</span> <span style="font-family:var(--fm); color:var(--acc);" id="sim-ledger-capture">₹23.00</span></div>
+              </div>
+              <div style="border-left:1px solid var(--border); padding-left:16px; display:flex; flex-direction:column; gap:4px; font-size:0.6rem;">
+                <div style="font-weight:700; color:var(--t1); margin-bottom:2px;">Fractional Split:</div>
+                <div style="color:var(--t2);">🛵 Runner: <span id="sim-split-runner" style="color:#fff; font-family:var(--fm);">₹7.00 (32%)</span></div>
+                <div style="color:var(--t2);">🛵 Rider: <span id="sim-split-rider" style="color:#fff; font-family:var(--fm);">₹14.00 (60%)</span></div>
+                <div style="color:var(--t2);">⚙ Platform: <span id="sim-split-gate" style="color:#fff; font-family:var(--fm);">₹2.00 (8%)</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dynamic Itinerary Ledger -->
+          <div style="background:rgba(10,25,36,0.5); border:1px solid var(--border); border-radius:8px; padding:12px; margin-top:8px;">
+            <div style="font-family:var(--fm); font-size:0.6rem; color:var(--acc2); text-transform:uppercase; margin-bottom:6px; font-weight:700;">Consolidated Route Itinerary Details</div>
+            <div id="sim-itinerary-box" style="font-size:0.6rem; line-height:1.4;">
+              <div style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:4px; margin-bottom:4px;">
+                <span style="color:var(--t3)">Travel Profile:</span>
+                <span id="sim-itin-profile" style="color:#fff; font-weight:700;">Traditional (Siloed dispatches)</span>
+              </div>
+              <div id="sim-itin-steps" style="color:var(--t2); font-family:var(--fm); display:flex; flex-direction:column; gap:3px;">
+                <div>🛵 Courier 1: S1 ➔ B1 directly (4.2 km)</div>
+                <div>🛵 Courier 2: S2 ➔ B2 directly (3.8 km)</div>
+              </div>
+              <div style="display:flex; justify-content:space-between; margin-top:6px; border-top:1.5px dashed rgba(0,217,255,0.1); padding-top:4px; font-weight:800; font-size:0.62rem;">
+                <span style="color:var(--t1)">Total Distance Traveled:</span>
+                <span id="sim-itin-total-dist" style="color:var(--acc)">8.0 km</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Merchant Awareness Registry -->
+          <div style="background:rgba(10,25,36,0.5); border:1px solid var(--border); border-radius:8px; padding:12px; margin-top:8px;">
+            <div style="font-family:var(--fm); font-size:0.6rem; color:var(--acc2); text-transform:uppercase; margin-bottom:6px; font-weight:700;">Merchant Dispatch & LSP Proximity Awareness</div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; font-size:0.58rem; line-height:1.35;">
+              <div style="background:rgba(0,0,0,0.2); padding:6px; border-radius:4px; border:1px solid rgba(255,255,255,0.03);">
+                <div style="font-weight:700; color:var(--amb); margin-bottom:4px;">🏪 SELLER 1 PORTAL</div>
+                <div style="color:var(--t3);">Assigned LSP: <span id="sim-aware-lsp1" style="color:#fff;">--</span></div>
+                <div style="color:var(--t3);">Dispatch Queue: <span id="sim-aware-queue1" style="color:#fff;">--</span></div>
+                <div style="color:var(--t3);">Rider Proximity: <span id="sim-aware-eta1" style="color:#fff;">--</span></div>
+              </div>
+              <div style="background:rgba(0,0,0,0.2); padding:6px; border-radius:4px; border:1px solid rgba(255,255,255,0.03);">
+                <div style="font-weight:700; color:var(--amb); margin-bottom:4px;">🏪 SELLER 2 PORTAL</div>
+                <div style="color:var(--t3);">Assigned LSP: <span id="sim-aware-lsp2" style="color:#fff;">--</span></div>
+                <div style="color:var(--t3);">Dispatch Queue: <span id="sim-aware-queue2" style="color:#fff;">--</span></div>
+                <div style="color:var(--t3);">Rider Proximity: <span id="sim-aware-eta2" style="color:#fff;">--</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Live Visual Map & Logs -->
+        <div style="display:flex; flex-direction:column; gap:12px; height:100%;">
+          <div style="font-family:var(--fm); font-size:0.6rem; color:var(--acc2); text-transform:uppercase; font-weight:700;">Live Simulation Visualizer</div>
+          <!-- Visual Route Canvas Simulation -->
+          <div style="position:relative; width:100%; height:160px; background:#020609; border:1px solid var(--border); border-radius:6px; overflow:hidden;">
+            <style>
+              @keyframes sim-radar-pulse {
+                0% { transform: scale(0.3); opacity: 1; }
+                100% { transform: scale(2.0); opacity: 0; }
+              }
+              .sim-radar-wave {
+                position: absolute;
+                border: 1px dashed var(--acc);
+                border-radius: 50%;
+                animation: sim-radar-pulse 1.8s infinite linear;
+                pointer-events: none;
+              }
+              .sim-radar-wave-green {
+                position: absolute;
+                border: 2px solid var(--grn);
+                border-radius: 50%;
+                animation: sim-radar-pulse 1.2s infinite ease-out;
+                pointer-events: none;
+              }
+            </style>
+
+            <!-- Status Legend Overlay -->
+            <div id="sim-legend-text" style="position:absolute; right:10px; top:10px; font-family:var(--fm); font-size:0.5rem; text-transform:uppercase; font-weight:700; color:var(--acc2); z-index:5;">MIDAS Standby</div>
+
+            <!-- Scanning Radar Rings (Centered on geohash zones) -->
+            <div id="sim-radar1" class="sim-radar-wave" style="left:47%; top:47%; width:90px; height:90px; display:none; margin-left:-45px; margin-top:-45px; z-index:2;"></div>
+            <div id="sim-radar2" class="sim-radar-wave" style="left:13%; top:22%; width:60px; height:60px; display:none; margin-left:-30px; margin-top:-30px; z-index:2;"></div>
+            <div id="sim-radar3" class="sim-radar-wave" style="left:13%; top:68%; width:60px; height:60px; display:none; margin-left:-30px; margin-top:-30px; z-index:2;"></div>
+
+
+
+            <!-- SVG: All route lines + animated order packages on them -->
+            <svg id="sim-svg" style="position:absolute; left:0; top:0; width:100%; height:100%; z-index:1;" viewBox="0 0 800 240" preserveAspectRatio="none">
+              <defs>
+                <marker id="arr-grn" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+                  <polygon points="0 0, 6 3, 0 6" fill="#00ff76" opacity="0.8"/>
+                </marker>
+                <marker id="arr-red" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+                  <polygon points="0 0, 6 3, 0 6" fill="#ff4466" opacity="0.8"/>
+                </marker>
+                <marker id="arr-acc" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+                  <polygon points="0 0, 6 3, 0 6" fill="#00d9ff" opacity="0.8"/>
+                </marker>
+              </defs>
+
+              <!-- Ghost background guide lines (always visible, dim) -->
+              <line x1="112" y1="53"  x2="656" y2="53"  stroke="rgba(255,255,255,0.05)" stroke-width="2" stroke-dasharray="5,4"/>
+              <line x1="112" y1="163" x2="656" y2="163" stroke="rgba(255,255,255,0.05)" stroke-width="2" stroke-dasharray="5,4"/>
+
+              <!-- TRADITIONAL MODE: S1→B1 and S2→B2 separate red lines -->
+              <line id="sim-line-trad1" x1="112" y1="53"  x2="656" y2="53"  stroke="rgba(255,68,102,0.0)"  stroke-width="2.5" stroke-dasharray="6,4" marker-end="url(#arr-red)"/>
+              <line id="sim-line-trad2" x1="112" y1="163" x2="656" y2="163" stroke="rgba(255,68,102,0.0)"  stroke-width="2.5" stroke-dasharray="6,4" marker-end="url(#arr-red)"/>
+
+              <!-- MIDAS CONSOLIDATED MODE: S1→S2→B1→B2 cyan loop -->
+              <!-- Leg 1: S1(112,53) → S2(112,163) vertical collect -->
+              <line id="sim-line-midas1" x1="112" y1="53"  x2="112" y2="163" stroke="rgba(0,217,255,0.07)" stroke-width="2"/>
+              <!-- Leg 2: S2(112,163) → B1(656,53) diagonal delivery -->
+              <line id="sim-line-midas2" x1="112" y1="163" x2="656" y2="53"  stroke="rgba(0,217,255,0.07)" stroke-width="2"/>
+              <!-- Leg 3: B1(656,53) → B2(656,163) vertical drop -->
+              <line id="sim-line-midas3" x1="656" y1="53"  x2="656" y2="163" stroke="rgba(0,217,255,0.07)" stroke-width="2"/>
+
+              <!-- ACTIVE TRADITIONAL LINES (animated, shown when MIDAS OFF) -->
+              <line id="sim-active-trad1" x1="112" y1="53"  x2="112" y2="53"  stroke="#ff4466" stroke-width="3" marker-end="url(#arr-red)" style="display:none; filter:drop-shadow(0 0 6px #ff4466);"/>
+              <line id="sim-active-trad2" x1="112" y1="163" x2="112" y2="163" stroke="#ff4466" stroke-width="3" marker-end="url(#arr-red)" style="display:none; filter:drop-shadow(0 0 6px #ff4466);"/>
+
+              <!-- ACTIVE MIDAS LINES (shown when MIDAS ON) -->
+              <line id="sim-active-midas1" x1="112" y1="53"  x2="112" y2="53"  stroke="#00d9ff" stroke-width="3" style="display:none; filter:drop-shadow(0 0 8px #00d9ff);"/>
+              <line id="sim-active-midas2" x1="112" y1="163" x2="112" y2="163" stroke="#00d9ff" stroke-width="3" marker-end="url(#arr-acc)" style="display:none; filter:drop-shadow(0 0 8px #00d9ff);"/>
+              <line id="sim-active-midas3" x1="656" y1="53"  x2="656" y2="53"  stroke="#00ff76" stroke-width="3" marker-end="url(#arr-grn)" style="display:none; filter:drop-shadow(0 0 8px #00ff76);"/>
+
+              <!-- ORDER PACKAGE DOT 1: travels along its route line -->
+              <!-- TRADITIONAL: S1(112,53) → B1(656,53) -->
+              <!-- MIDAS: rides inside the consolidated loop -->
+              <circle id="sim-order-dot1" cx="112" cy="53" r="5" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" style="display:none;">
+                <animate id="sim-dot1-anim" attributeName="cx" from="112" to="112" dur="3s" repeatCount="indefinite" begin="0s"/>
+                <animate id="sim-dot1-anim-y" attributeName="cy" from="53" to="53" dur="3s" repeatCount="indefinite" begin="0s"/>
+              </circle>
+              <!-- Label for dot 1 -->
+              <text id="sim-order-lbl1" x="135" y="40" font-size="8" fill="rgba(255,255,255,0.4)" font-family="monospace" style="display:none;">Order #902 (Insulin)</text>
+
+              <!-- ORDER PACKAGE DOT 2: S2(112,163) → B2(656,163) -->
+              <circle id="sim-order-dot2" cx="112" cy="163" r="5" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" style="display:none;">
+                <animate id="sim-dot2-anim" attributeName="cx" from="112" to="112" dur="3s" repeatCount="indefinite" begin="1.5s"/>
+                <animate id="sim-dot2-anim-y" attributeName="cy" from="163" to="163" dur="3s" repeatCount="indefinite" begin="1.5s"/>
+              </circle>
+              <!-- Label for dot 2 -->
+              <text id="sim-order-lbl2" x="135" y="180" font-size="8" fill="rgba(255,255,255,0.4)" font-family="monospace" style="display:none;">Order #915 (Grocery)</text>
+            </svg>
+
+
+            <!-- Simple Node Grid (Absolute position) -->
+            <!-- Seller 1 -->
+            <div id="sim-node-seller1" style="position:absolute; left:8%; top:12%; background:var(--bg2); border:1.5px solid var(--amb); width:38px; height:38px; border-radius:6px; z-index:3; display:flex; flex-direction:column; align-items:center; justify-content:center; transition: all 0.3s;">
+              <span style="font-size:0.9rem;">🏪</span>
+              <span style="font-size:0.42rem; color:var(--amb); font-weight:700; position:absolute; bottom:-12px; white-space:nowrap;">SELLER 1</span>
+            </div>
+            <!-- Seller 2 -->
+            <div id="sim-node-seller2" style="position:absolute; left:8%; top:58%; background:var(--bg2); border:1.5px solid var(--amb); width:38px; height:38px; border-radius:6px; z-index:3; display:flex; flex-direction:column; align-items:center; justify-content:center; transition: all 0.3s;">
+              <span style="font-size:0.9rem;">🏪</span>
+              <span style="font-size:0.42rem; color:var(--amb); font-weight:700; position:absolute; bottom:-12px; white-space:nowrap;">SELLER 2</span>
+            </div>
+            <!-- Buyer 1 -->
+            <div id="sim-node-buyer1" style="position:absolute; left:82%; top:12%; background:var(--bg2); border:1.5px solid var(--grn); width:38px; height:38px; border-radius:6px; z-index:3; display:flex; flex-direction:column; align-items:center; justify-content:center; transition: all 0.3s;">
+              <span style="font-size:0.9rem;">📍</span>
+              <span style="font-size:0.42rem; color:var(--grn); font-weight:700; position:absolute; bottom:-12px; white-space:nowrap;">BUYER 1</span>
+            </div>
+            <!-- Buyer 2 -->
+            <div id="sim-node-buyer2" style="position:absolute; left:82%; top:58%; background:var(--bg2); border:1.5px solid var(--grn); width:38px; height:38px; border-radius:6px; z-index:3; display:flex; flex-direction:column; align-items:center; justify-content:center; transition: all 0.3s;">
+              <span style="font-size:0.9rem;">📍</span>
+              <span style="font-size:0.42rem; color:var(--grn); font-weight:700; position:absolute; bottom:-12px; white-space:nowrap;">BUYER 2</span>
+            </div>
+            
+            <!-- Traditional Mode Riders (Separate dispatches) -->
+            <div id="sim-rider-trad1" style="position:absolute; left:14%; top:15%; font-size:1.1rem; z-index:4; display:none; transform: translateX(-50%);">🛵</div>
+            <div id="sim-rider-trad2" style="position:absolute; left:14%; top:61%; font-size:1.1rem; z-index:4; display:none; transform: translateX(-50%);">🛵</div>
+
+            <!-- MIDAS Mode Rider (Single consolidated courier loop) -->
+            <div id="sim-rider-midas2" style="position:absolute; left:14%; top:15%; font-size:1.1rem; z-index:4; display:none; transform: translateX(-50%);">🛵</div>
+          </div>
+
+          <!-- Live Log Console -->
+          <div style="display:flex; flex-direction:column; gap:6px; flex-grow:1; min-height:0;">
+            <div style="font-family:var(--fm); font-size:0.6rem; color:var(--acc2); text-transform:uppercase; font-weight:700;">Live Audit Trace Logs</div>
+            <div id="sim-trace-logs" style="background:#020609; border:1px solid var(--border); border-radius:6px; padding:12px; font-family:var(--fm); font-size:0.55rem; color:var(--grn); overflow-y:auto; flex-grow:1; line-height:1.5; text-align:left;">
+              <div style="color:var(--t3)">[SIM] Console ready. Click "⚡ Run Simulation" to begin tracking.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 7: PATENT SPECIFICATION -->
+  <div class="tab-page" id="pg7" style="overflow-y:auto;">
+    <div class="content-pad" style="height:auto; min-height:100%; box-sizing:border-box;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+        <div>
+          <div class="pg-title">PROVISIONAL PATENT SPECIFICATION</div>
+          <div class="pg-desc" style="margin-bottom:0;">Official Form 2 filing documentation under the Patents Act, 1970 and Patent Rules, 2003. Confidential &amp; Patent Pending.</div>
+        </div>
+        <button onclick="downloadPatentDoc()" style="background:var(--acc); color:#000; border:none; padding:8px 16px; border-radius:4px; font-family:var(--fm); font-size:0.65rem; font-weight:800; cursor:pointer; display:flex; align-items:center; gap:6px; box-shadow:0 0 10px rgba(0,217,255,0.3); transition:all 0.2s;">
+          📥 Download Patent Specification (.doc)
+        </button>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 2.5fr; gap:20px; height:calc(100vh - 190px); overflow:hidden;">
+        <!-- Left Sidebar: Patent Metadata -->
+        <div style="background:var(--bg3); border:1px solid var(--border); border-radius:8px; padding:15px; overflow-y:auto; display:flex; flex-direction:column; gap:12px; text-align:left;">
+          <div style="font-family:var(--fm); font-size:0.6rem; color:var(--acc2); text-transform:uppercase; font-weight:700; border-bottom:1px solid var(--border); padding-bottom:6px;">Filing Information</div>
+          
+          <div style="font-size:0.6rem; line-height:1.45; display:flex; flex-direction:column; gap:8px;">
+            <div><strong style="color:var(--t1);">Patent Office:</strong><br><span style="color:var(--t2);">CHENNAI, INDIA</span></div>
+            <div><strong style="color:var(--t1);">Application Type:</strong><br><span style="color:var(--t2);">Ordinary Application — Provisional Specification</span></div>
+            <div><strong style="color:var(--t1);">Status:</strong><br><span style="color:var(--grn); font-weight:700; display:flex; align-items:center; gap:4px;">● PATENT PENDING (CONFIDENTIAL)</span></div>
+            <div><strong style="color:var(--t1);">Inventors:</strong><br>
+              <span style="color:var(--t2); display:block; margin-top:2px;">1. Vootla Gokul Prabhu (Indian)</span>
+              <span style="color:var(--t2); display:block;">2. Rallabandi Sarala Kumari (Indian)</span>
+            </div>
+            <div><strong style="color:var(--t1);">Filing Date:</strong><br><span style="color:var(--t2);">Assigned on submission (Priority Date)</span></div>
+          </div>
+
+          <div style="font-family:var(--fm); font-size:0.6rem; color:var(--acc2); text-transform:uppercase; font-weight:700; border-bottom:1px solid var(--border); padding-bottom:6px; margin-top:10px;">Technical Index</div>
+          <div style="display:flex; flex-direction:column; gap:4px; font-size:0.58rem; font-family:var(--fm);">
+            <a href="#pat-title" style="color:var(--t3); text-decoration:none; padding:4px 6px; border-radius:3px; transition:all 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.05)'; this.style.color='#fff';" onmouseout="this.style.background='transparent'; this.style.color='var(--t3)';">1. Title of Invention</a>
+            <a href="#pat-abstract" style="color:var(--t3); text-decoration:none; padding:4px 6px; border-radius:3px; transition:all 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.05)'; this.style.color='#fff';" onmouseout="this.style.background='transparent'; this.style.color='var(--t3)';">2. Abstract</a>
+            <a href="#pat-field" style="color:var(--t3); text-decoration:none; padding:4px 6px; border-radius:3px; transition:all 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.05)'; this.style.color='#fff';" onmouseout="this.style.background='transparent'; this.style.color='var(--t3)';">3. Field of Invention</a>
+            <a href="#pat-bg" style="color:var(--t3); text-decoration:none; padding:4px 6px; border-radius:3px; transition:all 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.05)'; this.style.color='#fff';" onmouseout="this.style.background='transparent'; this.style.color='var(--t3)';">4. Technical Problems</a>
+            <a href="#pat-objects" style="color:var(--t3); text-decoration:none; padding:4px 6px; border-radius:3px; transition:all 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.05)'; this.style.color='#fff';" onmouseout="this.style.background='transparent'; this.style.color='var(--t3)';">5. Objects of Invention</a>
+            <a href="#pat-desc" style="color:var(--t3); text-decoration:none; padding:4px 6px; border-radius:3px; transition:all 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.05)'; this.style.color='#fff';" onmouseout="this.style.background='transparent'; this.style.color='var(--t3)';">6. Detailed Description</a>
+            <a href="#pat-consolidate" style="color:var(--t3); text-decoration:none; padding:4px 6px; border-radius:3px; transition:all 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.05)'; this.style.color='#fff';" onmouseout="this.style.background='transparent'; this.style.color='var(--t3)';">7. Consolidation Logic</a>
+            <a href="#pat-pricing" style="color:var(--t3); text-decoration:none; padding:4px 6px; border-radius:3px; transition:all 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.05)'; this.style.color='#fff';" onmouseout="this.style.background='transparent'; this.style.color='var(--t3)';">8. Fee Calculation</a>
+            <a href="#pat-claims" style="color:var(--t3); text-decoration:none; padding:4px 6px; border-radius:3px; transition:all 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.05)'; this.style.color='#fff';" onmouseout="this.style.background='transparent'; this.style.color='var(--t3)';">9. Statement of Claims</a>
+          </div>
+
+          <div style="background:rgba(255,68,102,0.05); border:1px solid rgba(255,68,102,0.2); border-radius:6px; padding:10px; font-size:0.52rem; line-height:1.4; color:var(--t2); margin-top:auto;">
+            <strong style="color:var(--red);">⚠️ SECTION 3(k) ELIGIBILITY:</strong><br>
+            Under Indian law, software producing concrete, measurable physical effects (reducing server load, controlling rider kinetics, preventing vehicle trips) is patentable per <em>Ferid Allani v. Union of India</em>.
+          </div>
+        </div>
+
+        <!-- Right Content Area: Detailed Document Viewer -->
+        <div style="background:var(--bg3); border:1px solid var(--border); border-radius:8px; padding:25px; overflow-y:auto; display:flex; flex-direction:column; gap:20px; text-align:left; scroll-behavior:smooth; font-family:var(--fm);">
+          <div style="text-align:center; border-bottom:2px solid var(--border); padding-bottom:15px;">
+            <h1 style="font-family:var(--fo); font-size:1.2rem; color:#fff; margin:0 0 6px 0; font-weight:800; text-transform:uppercase;">FORM 2</h1>
+            <h2 style="font-family:var(--fm); font-size:0.8rem; color:var(--t1); margin:0 0 6px 0; font-weight:700;">THE PATENTS ACT, 1970 (39 OF 1970) & THE PATENTS RULES, 2003</h2>
+            <h3 style="font-family:var(--fm); font-size:0.75rem; color:var(--acc); margin:0; font-weight:800; letter-spacing:1px; text-decoration:underline;">PROVISIONAL SPECIFICATION</h3>
+          </div>
+
+          <!-- Section 1 -->
+          <div id="pat-title" style="border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:10px;">
+            <h3 style="color:var(--acc2); font-size:0.75rem; margin:0 0 8px 0; font-weight:700; text-transform:uppercase;">1. Title of Invention</h3>
+            <p style="font-size:0.68rem; color:#fff; font-weight:800; line-height:1.45; margin:0; background:rgba(0,0,0,0.2); padding:10px; border-radius:6px; border:1px solid var(--border);">
+              MULTI-PLATFORM DELIVERY ORDER CONSOLIDATION SYSTEM WITH STRUCTURED TRACE IDENTIFIERS, RETURN-ORDER MATCHING, AND QR-VERIFIED INTER-CARRIER HANDOVER
+            </p>
+          </div>
+
+          <!-- Section 2 -->
+          <div id="pat-abstract" style="border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:10px;">
+            <h3 style="color:var(--acc2); font-size:0.75rem; margin:0 0 8px 0; font-weight:700; text-transform:uppercase;">2. Abstract</h3>
+            <p style="font-size:0.65rem; color:var(--t2); line-height:1.5; margin:0;">
+              A computer-implemented middleware system that sits between multiple competing e-commerce delivery platforms and their delivery networks. When an order arrives, the system reads the platform code, creation time, destination zone, and cart weight supplied by the platform and assembles them into a single structured identifier called a Trace ID. The system then assigns a processing label to that identifier — such as HEAVY_WEIGHT, INTRA_CONSOLIDATED, INTER_CONSOLIDATED, RETURN_PENDING, SPAN_DETECTED, or DIRECT_ASSIGNED — based solely on reading the identifier string, without querying a database. Each label determines the processing path: heavy orders go directly to dispatch; eligible orders are matched by weight with other orders going to the same zone, within the same platform first and across platforms second; a recently dispatched partner still near the hub is notified if a same-zone order arrives shortly after dispatch; customers may add forgotten items before packing starts, paying a fee that grows with time; return orders from completed deliveries are held in a dedicated section and matched against outbound orders going to the same origin zone within a set time window, eliminating separate return trips; when an order must change hands between partners from different platforms, a handover identifier called a SPAN_ID is created, and the receiving partner receives only the delivery address and a masked phone number through a session that ends when delivery is confirmed. Every order is guaranteed to reach a dispatched state. No customer personal data crosses platform boundaries at any point.
+            </p>
+          </div>
+
+          <!-- Section 3 -->
+          <div id="pat-field" style="border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:10px;">
+            <h3 style="color:var(--acc2); font-size:0.75rem; margin:0 0 8px 0; font-weight:700; text-transform:uppercase;">3. Field of the Invention</h3>
+            <p style="font-size:0.65rem; color:var(--t2); line-height:1.5; margin:0;">
+              This invention relates to a computer-implemented logistics coordination system that manages delivery orders across multiple independent e-commerce platforms. The system generates structured order identifiers, assigns processing labels based on those identifiers, matches outbound and return orders for combined trips, notifies recently dispatched partners of late same-zone orders, supports controlled order changes before dispatch, handles authenticated transfers between partners from different platforms, and keeps customer personal data isolated throughout.
+            </p>
+          </div>
+
+          <!-- Section 4 -->
+          <div id="pat-bg" style="border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:10px;">
+            <h3 style="color:var(--acc2); font-size:0.75rem; margin:0 0 8px 0; font-weight:700; text-transform:uppercase;">4. Background and Technical Problem Statement</h3>
+            <div style="font-size:0.65rem; color:var(--t2); line-height:1.5; display:flex; flex-direction:column; gap:8px;">
+              <div><strong>Problem 1 — Duplicate route coverage:</strong> Partners from competing platforms travel to the same delivery zone simultaneously with no mutual awareness. This creates massive physical congestion and duplicates road coverage.</div>
+              <div><strong>Problem 2 — Underused vehicle capacity:</strong> Riders carry only their own platform's orders, often a single small item. No cross-platform pairing by weight exists to maximize physical capacity before dispatch.</div>
+              <div><strong>Problem 3 — No fast cross-platform order identification:</strong> Standard order IDs carry no structural metadata. Finding consolidation opportunities requires expensive, database-heavy joins.</div>
+              <div><strong>Problem 4 — Empty return trips:</strong> After completing final-mile deliveries, riders return to the origin hub empty, resulting in wasted fuel and mileage.</div>
+              <div><strong>Problem 5 — No way to reach a dispatched partner for a late same-zone order:</strong> Once a rider is dispatched, same-zone orders arriving moments later generate a second independent trip, rather than modifying the active rider's route.</div>
+              <div><strong>Problem 6 — No order modification after placement:</strong> Forgotten items generate a separate order and redundant logistics leg.</div>
+              <div><strong>Problem 7 — No authenticated inter-carrier order transfer:</strong> Competing networks lack a secure, fraud-resistant protocol for riders to exchange packages on the street.</div>
+              <div><strong>Problem 8 — Customer data exposure:</strong> Relay handovers expose full personal details (PII) to competing platform riders.</div>
+            </div>
+          </div>
+
+          <!-- Section 5 -->
+          <div id="pat-objects" style="border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:10px;">
+            <h3 style="color:var(--acc2); font-size:0.75rem; margin:0 0 8px 0; font-weight:700; text-transform:uppercase;">5. Objects of the Invention</h3>
+            <p style="font-size:0.65rem; color:var(--t2); line-height:1.5; margin:0;">
+              The primary objectives are: to encode platform, time, zone, and weight into a single string identifier (Trace ID) to run matching operations without database lookups; to route heavy orders directly; to match outbound/return orders to eliminate empty mileage; to send hold notifications to recently dispatched nearby riders; to issue secure handover SPAN_IDs verified via QR code scan; and to isolate customer PII compliant with the Digital Personal Data Protection Act, 2023.
+            </p>
+          </div>
+
+          <!-- Section 6 -->
+          <div id="pat-desc" style="border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:10px;">
+            <h3 style="color:var(--acc2); font-size:0.75rem; margin:0 0 8px 0; font-weight:700; text-transform:uppercase;">6. Detailed Description of the Invention</h3>
+            <div style="font-size:0.65rem; color:var(--t2); line-height:1.5; display:flex; flex-direction:column; gap:10px;">
+              <div><strong>Structured Order Identifier — Trace ID Format:</strong><br>
+                <code style="color:var(--acc); background:rgba(0,0,0,0.3); padding:4px 6px; border-radius:4px; display:inline-block; margin-top:4px;">TRACE_ID = [PLATFORM_CODE]_[HHMMSS]_[ZONE_CODE]_[WEIGHT_KG]</code><br>
+                Example: <code style="color:var(--grn)">SHF_123045_500081_03.50</code> (Shadowfax, 12:30:45 PM, geohash 500081, 3.50 kg).
+              </div>
+              <div><strong>Return Order format:</strong><br>
+                <code style="color:var(--acc); background:rgba(0,0,0,0.3); padding:4px 6px; border-radius:4px; display:inline-block; margin-top:4px;">RETURN_TRACE_ID = RTN_[PLATFORM_CODE]_[HHMMSS]_[ORIGIN_ZONE]_[WEIGHT_KG]</code>
+              </div>
+              <div><strong>Step-by-Step Processing Pipeline:</strong><br>
+                - <strong>Step 1: Order Intake & Modification Window:</strong> Holds orders for 60-120 seconds for potential item additions.
+                <table style="width:100%; border-collapse:collapse; margin-top:6px; font-size:0.6rem;">
+                  <thead>
+                    <tr style="background:rgba(255,255,255,0.05); text-align:left; border-bottom:1px solid var(--border);">
+                      <th style="padding:6px;">Time Window</th>
+                      <th style="padding:6px;">Fee</th>
+                      <th style="padding:6px;">Technical Reason</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr style="border-bottom:1px solid rgba(255,255,255,0.03);">
+                      <td style="padding:6px; color:#fff;">0 - 60 seconds</td>
+                      <td style="padding:6px; color:var(--grn);">INR 1.00</td>
+                      <td style="padding:6px;">Intake processing cost recovery</td>
+                    </tr>
+                    <tr>
+                      <td style="padding:6px; color:#fff;">61 - 120 seconds</td>
+                      <td style="padding:6px; color:var(--grn);">INR 2.00</td>
+                      <td style="padding:6px;">Route calculation reschedule fee</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div>- <strong>Step 2: Weight Check:</strong> If weight exceeds MAX_TRIP_WEIGHT (default 45 kg), bypasses matching and dispatches immediately as `HEAVY_WEIGHT`.</div>
+              <div>- <strong>Step 3: Parallel Order Matching:</strong> Checks same-platform and cross-platform orders for weight compatibility and arrival time to resolve ties. Creates an `INTRA_CONSOLIDATED` or `INTER_CONSOLIDATED` log.</div>
+              <div>- <strong>Step 4: Return Order Matching:</strong> Creates a `RETURN_TRACE_ID` when a rider completes delivery, matching them with outbound orders back to their origin zone to eliminate empty trips.</div>
+              <div>- <strong>Step 5: Predictive Transaction Hold:</strong> Holds order for up to 90 seconds if checkout activity indicates a neighboring buyer is currently processing a payment.</div>
+              <div>- <strong>Step 6: Forced Proximity Hold:</strong> Holds a confirmed order at the hub for 60 seconds if a dispatched rider is still within 500-1000m and has weight capacity.</div>
+              <div>- <strong>Step 7: Handover Identifier and QR Verification:</strong> Generates a `SPAN_ID` for street swaps:
+                <code style="color:var(--acc); background:rgba(0,0,0,0.3); padding:4px; border-radius:4px; display:block; margin-top:4px;">SPAN_[ORIGIN_PARTNER_ID]_[RELAY_PARTNER_ID]_[ORDER_REFERENCE]_[TIMESTAMP]</code>
+                Ownership is transferred via single database transaction upon scanning the packet QR code.
+              </div>
+              <div>- <strong>Step 8: Direct Assignment Fallback:</strong> If no match is found, dispatches as standard `DIRECT_ASSIGNED`.</div>
+            </div>
+          </div>
+
+          <!-- Section 7 -->
+          <div id="pat-consolidate" style="border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:10px;">
+            <h3 style="color:var(--acc2); font-size:0.75rem; margin:0 0 8px 0; font-weight:700; text-transform:uppercase;">7. How Consolidation Happens (MIDAS Algorithms)</h3>
+            <p style="font-size:0.65rem; color:var(--t2); line-height:1.5; margin:0;">
+              MIDAS reads the structured metadata in incoming order headers. Instead of running expensive spatial queries on database tables, it maps the destination geohash zone. As orders are logged, the gateway checks for overlaps in active zones. 
+              If two orders originate in the same geohash cluster (or neighboring 2km sectors) and fall within the same 10-15 minute time window:
+              <br><br>
+              <strong>Consolidated Run Execution:</strong> Rather than dispatching Rider 1 from Seller 1 and Rider 2 from Seller 2 separately, the system selects a single active rider. The rider visits Seller 1, sweeps to Seller 2, packs both items, and drops them sequentially to Buyer 1 and Buyer 2. 
+            </p>
+          </div>
+
+          <!-- Section 8 -->
+          <div id="pat-pricing" style="border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:10px;">
+            <h3 style="color:var(--acc2); font-size:0.75rem; margin:0 0 8px 0; font-weight:700; text-transform:uppercase;">8. Delivery Fee Calculation & Payout Splits</h3>
+            <p style="font-size:0.65rem; color:var(--t2); line-height:1.5; margin:0;">
+              MIDAS enforces a strictly transparent pricing structure that replaces arbitrary delivery pricing:
+              <br><br>
+              1. <strong>Standard Delivery Fee:</strong> calculated based on distance: \(Fee = ₹35.00 + (₹4.00 \times Distance\_in\_km)\).
+              <br>
+              2. <strong>Consolidated MIDAS Fee:</strong> when route overlap is established, the delivery fee for both buyers is consolidated. The consolidated fee is priced at <strong>45% of the combined standard fee</strong> (yielding a 55% direct upfront saving for each buyer).
+              <br>
+              3. <strong>Fractional Settlement Splits:</strong> The consolidated fee is split dynamically:
+              <br>
+              - <strong>Platform Gateway:</strong> receives 8% of the transaction fee.
+              <br>
+              - <strong>Runner (Proximity Swaps):</strong> receives 32% if a street relay swap occurs.
+              <br>
+              - <strong>Last-mile Rider:</strong> receives the remaining balance (92% if direct multi-stop, 60% if street swap relay).
+            </p>
+          </div>
+
+          <!-- Section 9 -->
+          <div id="pat-claims" style="border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:10px;">
+            <h3 style="color:var(--acc2); font-size:0.75rem; margin:0 0 8px 0; font-weight:700; text-transform:uppercase;">9. Statement of Claims (Provisional)</h3>
+            <div style="font-size:0.65rem; color:var(--t2); line-height:1.5; display:flex; flex-direction:column; gap:8px;">
+              <div><strong>Claim 1:</strong> A computer-implemented system for delivery order consolidation across competing platforms, comprising a Trace ID generator encoding platform, time, zone, and weight; a label-assignment module; and a multi-step execution pipeline selected by the assigned label.</div>
+              <div><strong>Claim 2:</strong> The system of Claim 1, wherein same-platform and different-platform candidates are searched simultaneously and selected by proximity and weight capacity.</div>
+              <div><strong>Claim 3:</strong> The system of Claim 1, further comprising a return-order matching module holding completed delivery traces to assign outbound runs to returning empty riders.</div>
+              <div><strong>Claim 4:</strong> The system of Claim 1, further comprising a proximity-gated hold notification sending hold notifications to riders still near the dispatch hub.</div>
+              <div><strong>Claim 5:</strong> The system of Claim 1, further comprising a modification window accepting items before packing, charging a time-scaled fee.</div>
+              <div><strong>Claim 6:</strong> The system of Claim 1, further comprising a handover identifier (SPAN_ID) created for inter-carrier transfers.</div>
+              <div><strong>Claim 7:</strong> The system of Claim 6, wherein ownership transfer is verified via a three-check QR scan.</div>
+              <div><strong>Claim 8:</strong> The system of Claim 6, wherein the receiving partner receives only GPS coordinates and a masked phone number.</div>
+              <div><strong>Claim 9:</strong> The system of Claim 1, wherein custody logs are maintained in an append-only ledger database.</div>
+              <div><strong>Claim 10:</strong> A computer-implemented method executing the steps of Claims 1 to 9.</div>
+              <div><strong>Claim 11:</strong> A non-transitory computer-readable medium storing instructions carrying out the system.</div>
+            </div>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border); padding-top:15px; margin-top:10px; font-size:0.6rem; color:var(--t3);">
+            <div><strong>Inventor 1:</strong> /Vootla Gokul Prabhu/ (22/04/2026)</div>
+            <div><strong>Inventor 2:</strong> /Rallabandi Sarala Kumari/ (22/04/2026)</div>
+          </div>
+
+          <!-- Section 10: MIDAS Open Protocol -->
+          <div id="pat-openprotocol" style="margin-top:20px; background:rgba(0,217,255,0.04); border:1.5px solid rgba(0,217,255,0.2); border-radius:10px; padding:18px;">
+            <h3 style="color:var(--acc); font-size:0.8rem; margin:0 0 12px 0; font-weight:900; text-transform:uppercase; letter-spacing:1px;">10. MIDAS as an Open Protocol — Third-Party Integration</h3>
+            <p style="font-size:0.65rem; color:var(--t2); line-height:1.6; margin:0 0 14px 0;">
+              MIDAS is designed as a <strong style="color:#fff;">platform-agnostic logistics abstraction middleware</strong>. Any delivery platform — Apollo Pharmacy, MedPlus, Swiggy Instamart, Zepto, Blinkit, or a standalone D2C brand — can plug into MIDAS with a <strong style="color:var(--acc);">single API call</strong> using the open Beckn protocol standard. MIDAS manages the consolidation, the ride matching, and the payout settlement invisibly. The partner only sees: cheaper delivery fees and faster ETAs.
+            </p>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:16px;">
+              <div style="background:rgba(0,0,0,0.3); border:1px solid var(--border); border-radius:8px; padding:12px;">
+                <div style="font-size:0.6rem; color:var(--acc2); font-weight:800; text-transform:uppercase; margin-bottom:8px;">📡 How a partner integrates</div>
+                <div style="font-size:0.6rem; color:var(--t2); line-height:1.5; display:flex; flex-direction:column; gap:4px;">
+                  <div>① Register platform on <strong style="color:#fff;">MIDAS Gateway Registry</strong> (one-time)</div>
+                  <div>② On every new order, call <code style="color:var(--grn); background:rgba(0,0,0,0.4); padding:1px 5px; border-radius:3px;">POST /midas/v1/intercept</code></div>
+                  <div>③ MIDAS returns a <strong style="color:var(--acc);">Trace ID + Consolidation Status + Rider ETA</strong></div>
+                  <div>④ Platform shows consolidated fee to user — <strong style="color:var(--grn);">no further work needed</strong></div>
+                </div>
+              </div>
+              <div style="background:rgba(0,0,0,0.3); border:1px solid var(--border); border-radius:8px; padding:12px;">
+                <div style="font-size:0.6rem; color:var(--acc2); font-weight:800; text-transform:uppercase; margin-bottom:8px;">🔒 What MIDAS guarantees</div>
+                <div style="font-size:0.6rem; color:var(--t2); line-height:1.5; display:flex; flex-direction:column; gap:4px;">
+                  <div>✅ <strong style="color:#fff;">Zero PII sharing</strong> — buyer details never leave your platform</div>
+                  <div>✅ <strong style="color:#fff;">Atomic payout split</strong> — settled per completed delivery</div>
+                  <div>✅ <strong style="color:#fff;">ONDC compliant</strong> — Beckn protocol compatible natively</div>
+                  <div>✅ <strong style="color:#fff;">No exclusivity</strong> — you keep your fleet, MIDAS only consolidates</div>
+                </div>
+              </div>
+            </div>
+
+            <div style="font-size:0.6rem; color:var(--t3); font-family:var(--fm); font-weight:700; text-transform:uppercase; margin-bottom:8px; letter-spacing:1px;">Live API Call Example</div>
+            <div style="background:#020609; border:1px solid rgba(0,217,255,0.15); border-radius:8px; padding:14px; font-family:var(--fm); font-size:0.62rem; line-height:1.7; overflow-x:auto;">
+              <div style="color:var(--t3);">// Apollo Pharmacy places a new order — single MIDAS intercept call</div>
+              <div><span style="color:var(--amb);">POST</span> <span style="color:var(--acc);">https://midas.ondc.in/v1/intercept</span></div>
+              <div style="color:var(--t3); margin-top:4px;">Authorization: Bearer &lt;APOLLO_MIDAS_KEY&gt;</div>
+              <div style="color:var(--t3);">Content-Type: application/json</div>
+              <br>
+              <div><span style="color:var(--pur);">Request Body:</span></div>
+              <div style="margin-left:12px;">{</div>
+              <div style="margin-left:24px;"><span style="color:var(--acc2);">&quot;platform_code&quot;</span>: <span style="color:var(--grn);">&quot;APOLLO&quot;</span>,</div>
+              <div style="margin-left:24px;"><span style="color:var(--acc2);">&quot;order_id&quot;</span>: <span style="color:var(--grn);">&quot;APL-ORD-20240701-9823&quot;</span>,</div>
+              <div style="margin-left:24px;"><span style="color:var(--acc2);">&quot;product_type&quot;</span>: <span style="color:var(--grn);">&quot;CRITICAL_RUSH&quot;</span>,</div>
+              <div style="margin-left:24px;"><span style="color:var(--acc2);">&quot;seller_geohash&quot;</span>: <span style="color:var(--grn);">&quot;tdr1u5&quot;</span>,</div>
+              <div style="margin-left:24px;"><span style="color:var(--acc2);">&quot;buyer_geohash&quot;</span>: <span style="color:var(--grn);">&quot;tdr1ub&quot;</span>,</div>
+              <div style="margin-left:24px;"><span style="color:var(--acc2);">&quot;weight_kg&quot;</span>: <span style="color:var(--acc);">0.32</span>,</div>
+              <div style="margin-left:24px;"><span style="color:var(--acc2);">&quot;created_at&quot;</span>: <span style="color:var(--grn);">&quot;2024-07-01T09:14:30Z&quot;</span></div>
+              <div style="margin-left:12px;">}</div>
+              <br>
+              <div><span style="color:var(--pur);">MIDAS Response (98ms):</span></div>
+              <div style="margin-left:12px;">{</div>
+              <div style="margin-left:24px;"><span style="color:var(--acc2);">&quot;trace_id&quot;</span>: <span style="color:var(--grn);">&quot;APOLLO_091430_tdr1u5_0.32&quot;</span>,</div>
+              <div style="margin-left:24px;"><span style="color:var(--acc2);">&quot;label&quot;</span>: <span style="color:var(--red);">&quot;DIRECT_ASSIGNED&quot;</span>,  <span style="color:var(--t3);">// EMERGENCY: no consolidation</span></div>
+              <div style="margin-left:24px;"><span style="color:var(--acc2);">&quot;rider_id&quot;</span>: <span style="color:var(--grn);">&quot;MDP-R4&quot;</span>,</div>
+              <div style="margin-left:24px;"><span style="color:var(--acc2);">&quot;eta_minutes&quot;</span>: <span style="color:var(--acc);">4</span>,</div>
+              <div style="margin-left:24px;"><span style="color:var(--acc2);">&quot;standard_fee&quot;</span>: <span style="color:var(--acc);">43.00</span>,</div>
+              <div style="margin-left:24px;"><span style="color:var(--acc2);">&quot;midas_fee&quot;</span>: <span style="color:var(--grn);">43.00</span>,  <span style="color:var(--t3);">// emergency = no discount</span></div>
+              <div style="margin-left:24px;"><span style="color:var(--acc2);">&quot;pii_protected&quot;</span>: <span style="color:var(--grn);">true</span></div>
+              <div style="margin-left:12px;">}</div>
+            </div>
+
+            <div style="margin-top:14px; font-size:0.6rem; color:var(--t3); font-family:var(--fm); font-weight:700; text-transform:uppercase; margin-bottom:8px; letter-spacing:1px;">Partners That Can Join MIDAS Today</div>
+            <div style="display:flex; flex-wrap:wrap; gap:8px;">
+              ${['Apollo Pharmacy','MedPlus','Swiggy Instamart','Zepto','Blinkit','Tata 1mg','Dunzo','Rapido','Ola Delivery','D2C Brands (via ONDC)'].map(p => `<span style="font-family:var(--fm);font-size:0.58rem;font-weight:700;color:var(--t1);background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:20px;padding:3px 10px;">${p}</span>`).join('')}
+            </div>
+            <div style="margin-top:10px; font-size:0.58rem; color:var(--t3); line-height:1.5;">
+              * MIDAS does not require partners to share customer data, payment credentials, or proprietary route algorithms. Only the <strong style="color:#fff;">geohash origin, destination, product type, and weight</strong> are shared — nothing else. All PII remains inside the originating platform's secure boundary.
+            </div>
           </div>
         </div>
       </div>
@@ -850,11 +1525,32 @@ function drawFeed(){
   let html = '';
   ORDERS.forEach((o, i) => {
     const isPharmacy = o.tag === 'CRITICAL RUSH';
-    const borderStyle = isPharmacy ? 'border-left: 3px solid var(--red); box-shadow: 0 0 15px rgba(255, 68, 102, 0.25);' : '';
+    const isNew = o.isRandom;
+    const batch = BATCHES.find(b => b.orders.some(bo => bo.id === o.id));
+    const isConsolidated = batch && batch.orders.length > 1;
+    
+    let borderColor = isPharmacy ? 'var(--red)' : isNew ? (isConsolidated ? 'var(--grn)' : 'var(--amb)') : 'var(--border)';
+    let boxShadow = isPharmacy ? '0 0 15px rgba(255,68,102,0.25)' : isNew ? (isConsolidated ? '0 0 15px rgba(0,255,118,0.2)' : '0 0 15px rgba(255,200,0,0.15)') : 'none';
+    
+    const borderStyle = `border-left: 3px solid ${borderColor}; box-shadow: ${boxShadow};`;
     const prodStyle = isPharmacy ? 'color: var(--red);' : '';
+    
+    let statusBadge = '';
+    if (isNew && isConsolidated) {
+      statusBadge = `<span style="font-family:var(--fm);font-size:0.48rem;font-weight:900;color:var(--grn);background:rgba(0,255,118,0.1);border:1px solid rgba(0,255,118,0.3);border-radius:3px;padding:1px 5px;margin-left:6px;animation:pulse 1s infinite;">✅ CONSOLIDATED</span>`;
+    } else if (isNew && !isConsolidated && !isPharmacy) {
+      statusBadge = `<span style="font-family:var(--fm);font-size:0.48rem;font-weight:900;color:var(--amb);background:rgba(255,200,0,0.1);border:1px solid rgba(255,200,0,0.3);border-radius:3px;padding:1px 5px;margin-left:6px;">🔶 SOLO</span>`;
+    } else if (isNew && isPharmacy) {
+      statusBadge = `<span style="font-family:var(--fm);font-size:0.48rem;font-weight:900;color:var(--red);background:rgba(255,68,102,0.1);border:1px solid rgba(255,68,102,0.3);border-radius:3px;padding:1px 5px;margin-left:6px;">🚨 EMERGENCY</span>`;
+    } else if (!isNew && isConsolidated) {
+      statusBadge = `<span style="font-family:var(--fm);font-size:0.48rem;font-weight:800;color:var(--acc2);border-radius:3px;padding:1px 5px;margin-left:6px;">BATCH</span>`;
+    } else {
+      statusBadge = `<span style="font-family:var(--fm);font-size:0.48rem;color:var(--t3);padding:1px 5px;margin-left:6px;">SOLO</span>`;
+    }
+    
     html += `
       <div class="ocard" style="animation-delay:${i*0.05}s; ${borderStyle}">
-        <div class="oc-hdr"><span>${o.id}</span><span class="oc-app">${o.app}</span></div>
+        <div class="oc-hdr"><span>${o.id}</span>${statusBadge}<span class="oc-app">${o.app}</span></div>
         <div class="oc-prod" style="${prodStyle}">${o.prod}</div>
         <div class="oc-route">
           <div><span class="i">📦</span>${o.s} · ${o.sLoc}</div>
@@ -865,6 +1561,7 @@ function drawFeed(){
   });
   f.innerHTML = html;
 }
+
 
 const SVG_W = 1200;
 const SVG_H = 800;
@@ -1119,54 +1816,103 @@ function drawMap(){
   ORDERS.forEach((o, i) => {
     const hub = HUBS.find(h => h.id === o.h);
     const isPharmacy = o.tag === 'CRITICAL RUSH';
+    const isNew = !!o.isRandom;
+    const batch = BATCHES.find(b => b.orders.some(bo => bo.id === o.id));
+    const isConsolidated = batch && batch.orders.length > 1;
     
-    // Path Seller -> Hub (dashed, Red if pharmacy, else Amber)
-    const sellerLineColor = isPharmacy ? 'var(--red)' : 'var(--amb)';
-    pHTML += `<line id="path-s${i}" x1="${mx(o.sx)}" y1="${my(o.sy)}" x2="${mx(hub.x)}" y2="${my(hub.y)}" class="m-dashed path-clickable" style="stroke:${sellerLineColor}" onclick="showTrace('${o.id}')"/>`;
+    // Color logic
+    let sellerColor = isPharmacy ? 'var(--red)' : isNew ? (isConsolidated ? 'var(--grn)' : 'var(--amb)') : 'var(--amb)';
+    let buyerColor  = isPharmacy ? 'var(--red)' : isNew ? (isConsolidated ? 'var(--grn)' : 'var(--amb)') : 'var(--grn)';
+    let lineColor   = isPharmacy ? 'var(--red)' : isNew ? (isConsolidated ? 'var(--grn)' : 'var(--amb)') : 'var(--amb)';
     
-    // Dynamic matching connection search animation (Expanding Radar Rings)
-    nHTML += `
-      <circle cx="${mx(o.sx)}" cy="${my(o.sy)}" r="10" fill="none" stroke="${isPharmacy ? 'var(--red)' : 'var(--acc)'}" stroke-width="1.5" opacity="0.8">
-        <animate attributeName="r" values="10;45" dur="2s" repeatCount="indefinite" />
-        <animate attributeName="opacity" values="0.8;0" dur="2s" repeatCount="indefinite" />
-      </circle>
-    `;
+    // Path Seller -> Hub (dashed)
+    const lineFilter = isNew ? `filter:drop-shadow(0 0 6px ${isConsolidated ? '#00ff76' : '#ffc800'});` : '';
+    pHTML += `<line id="path-s${i}" x1="${mx(o.sx)}" y1="${my(o.sy)}" x2="${mx(hub.x)}" y2="${my(hub.y)}" class="m-dashed path-clickable" style="stroke:${lineColor}; stroke-width:${isNew ? 2.5 : 1.5}; ${lineFilter}" onclick="showTrace('${o.id}')"/>`;
+    
+    // For NEW orders: big outer glow ring around BOTH seller and buyer
+    if (isNew) {
+      const ringColor = isPharmacy ? '#ff4466' : isConsolidated ? '#00ff76' : '#ffc800';
+      const ringColorFade = isPharmacy ? 'rgba(255,68,102,0)' : isConsolidated ? 'rgba(0,255,118,0)' : 'rgba(255,200,0,0)';
+      
+      // Seller big pulsing ring
+      nHTML += `
+        <circle cx="${mx(o.sx)}" cy="${my(o.sy)}" r="28" fill="none" stroke="${ringColor}" stroke-width="3" opacity="0.9">
+          <animate attributeName="r" values="28;70;28" dur="1.5s" repeatCount="indefinite" />
+          <animate attributeName="opacity" values="0.9;0;0.9" dur="1.5s" repeatCount="indefinite" />
+          <animate attributeName="stroke-width" values="3;1;3" dur="1.5s" repeatCount="indefinite" />
+        </circle>
+        <circle cx="${mx(o.sx)}" cy="${my(o.sy)}" r="24" fill="none" stroke="${ringColor}" stroke-width="2" opacity="0.5">
+          <animate attributeName="r" values="24;55" dur="1.5s" begin="0.3s" repeatCount="indefinite" />
+          <animate attributeName="opacity" values="0.5;0" dur="1.5s" begin="0.3s" repeatCount="indefinite" />
+        </circle>
+      `;
+      
+      // Buyer big pulsing ring
+      nHTML += `
+        <circle cx="${mx(o.bx)}" cy="${my(o.by)}" r="28" fill="none" stroke="${ringColor}" stroke-width="3" opacity="0.9">
+          <animate attributeName="r" values="28;70;28" dur="1.5s" begin="0.75s" repeatCount="indefinite" />
+          <animate attributeName="opacity" values="0.9;0;0.9" dur="1.5s" begin="0.75s" repeatCount="indefinite" />
+        </circle>
+      `;
+    }
+    
+    // Radar search ring on seller (existing orders: subtle, new orders: suppressed since they have the big ring)
+    if (!isNew) {
+      nHTML += `
+        <circle cx="${mx(o.sx)}" cy="${my(o.sy)}" r="10" fill="none" stroke="${isPharmacy ? 'var(--red)' : 'var(--acc)'}" stroke-width="1.5" opacity="0.8">
+          <animate attributeName="r" values="10;45" dur="2s" repeatCount="indefinite" />
+          <animate attributeName="opacity" values="0.8;0" dur="2s" repeatCount="indefinite" />
+        </circle>
+      `;
+    }
 
     // Active LSP discovery rays
     const targetX = mx(o.sx) + (i % 2 === 0 ? 45 : -45);
     const targetY = my(o.sy) + 55;
     pHTML += `<line x1="${mx(o.sx)}" y1="${my(o.sy)}" x2="${targetX}" y2="${targetY}" stroke="${isPharmacy ? 'rgba(255, 68, 102, 0.25)' : 'rgba(0, 217, 255, 0.25)'}" stroke-width="1" stroke-dasharray="2 3" />`;
 
-    // Seller Node (Red if Pharmacy)
+    // Seller Node
+    const sellerBorderWidth = isNew ? 3 : 1.5;
+    const sellerBoxClass = isPharmacy ? 'n-box-pharmacy' : (isNew ? '' : 'n-box');
+    const sellerBoxStyle = isNew 
+      ? `fill:rgba(4,10,14,0.95); stroke:${sellerColor}; stroke-width:${sellerBorderWidth}; filter:drop-shadow(0 0 8px ${isConsolidated ? '#00ff76' : isPharmacy ? '#ff4466' : '#ffc800'});`
+      : '';
     nHTML += `
-      <g transform="translate(${mx(o.sx)},${my(o.sy)})">
-        <rect x="-24" y="-18" width="48" height="36" class="${isPharmacy ? 'n-box-pharmacy' : 'n-box'}" />
-        <text y="4" text-anchor="middle" font-size="14">${isPharmacy ? '🚨' : '📦'}</text>
-        <text y="-24" text-anchor="middle" class="n-txt" style="fill:${isPharmacy ? 'var(--red)' : 'var(--amb)'}">${o.s}</text>
+      <g transform="translate(${mx(o.sx)},${my(o.sy)})" onclick="showTrace('${o.id}')" style="cursor:pointer;">
+        <rect x="-28" y="-20" width="${isNew ? 56 : 48}" height="${isNew ? 40 : 36}" ${isNew ? `style="${sellerBoxStyle}"` : `class="${sellerBoxClass}"`} rx="4" />
+        <text y="4" text-anchor="middle" font-size="${isNew ? 16 : 14}">${isPharmacy ? '🚨' : isNew ? '🆕' : '📦'}</text>
+        <text y="-28" text-anchor="middle" class="n-txt" style="fill:${sellerColor}; font-size:${isNew ? '11px' : '9px'}; font-weight:${isNew ? 900 : 700};">${o.s}</text>
+        ${isNew ? `<text y="32" text-anchor="middle" font-family="var(--fm)" font-size="7" font-weight="900" fill="${sellerColor}">${isConsolidated ? '✅ MERGED' : isPharmacy ? '🚨 BYPASS' : '🔶 SOLO'}</text>` : ''}
       </g>
     `;
 
-    // Buyer Node (Red if Pharmacy) with ETA display
+    // Buyer Node
+    const buyerBorderWidth = isNew ? 3 : 1.5;
+    const buyerBoxStyle = isNew 
+      ? `fill:rgba(4,10,14,0.95); stroke:${buyerColor}; stroke-width:${buyerBorderWidth}; filter:drop-shadow(0 0 8px ${isConsolidated ? '#00ff76' : isPharmacy ? '#ff4466' : '#ffc800'});`
+      : '';
     nHTML += `
-      <g transform="translate(${mx(o.bx)},${my(o.by)})">
-        <rect x="-24" y="-18" width="48" height="36" class="${isPharmacy ? 'b-box-pharmacy' : 'b-box'}" />
-        <text y="4" text-anchor="middle" font-size="14">📍</text>
-        <text y="-24" text-anchor="middle" class="b-txt" style="fill:${isPharmacy ? 'var(--red)' : 'var(--grn)'}">${o.b}</text>
-        <text y="30" text-anchor="middle" font-family="var(--fm)" font-size="10" fill="var(--t2)">${o.bLoc}</text>
-        <text y="43" text-anchor="middle" font-family="var(--fm)" font-size="8" fill="${isPharmacy ? 'var(--red)' : 'var(--grn)'}" font-weight="700">
-          ${isPharmacy ? 'ETA MET (RUSH) ✓' : 'ETA MET ✓'}
+      <g transform="translate(${mx(o.bx)},${my(o.by)})" onclick="showTrace('${o.id}')" style="cursor:pointer;">
+        <rect x="-28" y="-20" width="${isNew ? 56 : 48}" height="${isNew ? 40 : 36}" ${isNew ? `style="${buyerBoxStyle}"` : `class="${isPharmacy ? 'b-box-pharmacy' : 'b-box'}"`} rx="4" />
+        <text y="4" text-anchor="middle" font-size="${isNew ? 16 : 14}">📍</text>
+        <text y="-28" text-anchor="middle" class="b-txt" style="fill:${buyerColor}; font-size:${isNew ? '11px' : '9px'}; font-weight:${isNew ? 900 : 700};">${o.b}</text>
+        <text y="30" text-anchor="middle" font-family="var(--fm)" font-size="${isNew ? 9 : 10}" fill="var(--t2)">${o.bLoc}</text>
+        <text y="${isNew ? 44 : 43}" text-anchor="middle" font-family="var(--fm)" font-size="${isNew ? 8 : 8}" fill="${buyerColor}" font-weight="700">
+          ${isNew ? (isConsolidated ? '🔗 CONSOLIDATED DROP' : isPharmacy ? '🚨 RUSH DELIVERY' : '🔶 SOLO DROP') : (isPharmacy ? 'ETA MET (RUSH) ✓' : 'ETA MET ✓')}
         </text>
       </g>
     `;
 
-    // Animated packet: Seller -> Hub (Red if Pharmacy)
-    const pktColor = isPharmacy ? 'var(--red)' : '#fff';
+    // Animated packet: Seller -> Hub
+    const pktColor = isPharmacy ? 'var(--red)' : isNew ? (isConsolidated ? 'var(--grn)' : 'var(--amb)') : '#fff';
+    const pktSize  = isNew ? 5.5 : 3.5;
     pktHTML += `
-      <circle r="3.5" class="pkt" fill="${pktColor}">
+      <circle r="${pktSize}" class="pkt" fill="${pktColor}" ${isNew ? `style="filter:drop-shadow(0 0 4px ${pktColor});"` : ''}>
         <animateMotion dur="${3 + Math.random()*2}s" repeatCount="indefinite" path="M${mx(o.sx)},${my(o.sy)} L${mx(hub.x)},${my(hub.y)}" />
       </circle>
     `;
   });
+
 
   // Draw batch sequential paths and delivery routes
   BATCHES.forEach(b => {
@@ -1611,25 +2357,72 @@ function showTrace(id) {
       </div>
     </div>
 
+    <!-- MIDAS DECISION ENGINE BLOCK -->
+    <div style="margin-top:16px; background:rgba(0,0,0,0.3); border:1.5px solid ${isConsolidated ? 'rgba(0,255,118,0.3)' : 'rgba(255,200,0,0.25)'}; border-radius:10px; padding:16px">
+      <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;">
+        <div style="font-size:1.4rem;">${isConsolidated ? '🔗' : '🚦'}</div>
+        <div>
+          <div style="font-family:var(--fm); font-size:0.6rem; color:var(--t3); text-transform:uppercase; font-weight:700; letter-spacing:1px;">MIDAS Decision Engine</div>
+          <div style="font-family:var(--fo); font-size:1.0rem; font-weight:900; color:${isConsolidated ? 'var(--grn)' : 'var(--amb)'}; letter-spacing:1px;">${isConsolidated ? '✅ CONSOLIDATED' : '🔶 SOLO DISPATCH'}</div>
+        </div>
+        <div style="margin-left:auto; text-align:right;">
+          <div style="font-size:0.55rem; color:var(--t3); font-family:var(--fm);">Route Similarity Score</div>
+          <div style="font-family:var(--fm); font-size:1.3rem; font-weight:900; color:${matchPercent >= 80 ? 'var(--grn)' : matchPercent >= 60 ? 'var(--amb)' : 'var(--red)'}">${matchPercent}%</div>
+        </div>
+      </div>
+
+      <!-- Step-by-step MIDAS checks -->
+      <div style="font-size:0.6rem; font-family:var(--fm); font-weight:700; color:var(--t3); text-transform:uppercase; letter-spacing:1px; margin-bottom:8px;">MIDAS Processing Pipeline — Step Results</div>
+      <div style="display:flex; flex-direction:column; gap:5px; font-size:0.62rem;">
+        ${(() => {
+          const steps = [];
+          // Step 1: Weight / criticality check
+          const step1pass = o.criticality !== 'EMERGENCY';
+          steps.push({ label: 'Step 1 — Criticality & Emergency Check', pass: step1pass, note: step1pass ? `Tag: ${o.criticality} — Consolidation NOT blocked` : '🚨 EMERGENCY tag detected → FORCED solo bypass. No holds, no batching. Point-to-point dispatch.' });
+          // Step 2: Zone cluster check
+          const hubOrdersInZone = ORDERS.filter(x => x.h === o.h && x.id !== o.id);
+          const step2pass = hubOrdersInZone.length > 0;
+          steps.push({ label: 'Step 2 — Zone Cluster Scan (Same Hub Area)', pass: step2pass, note: step2pass ? `${hubOrdersInZone.length} order(s) found in Hub Zone ${o.h}. Eligible candidates available.` : `No other orders in Hub Zone ${o.h} at this time window. Zero candidates found.` });
+          // Step 3: Similarity index check
+          const step3pass = isConsolidated && matchPercent >= 80;
+          const step3blocked = !step2pass;
+          steps.push({ label: 'Step 3 — Geospatial Similarity Index (Route Angle Overlap)', pass: step3pass, blocked: step3blocked, note: step3blocked ? 'Skipped — no candidates from Step 2.' : (step3pass ? `Angle delta < 25°. Similarity ${matchPercent}% ≥ 80% threshold → MATCH confirmed.` : `Similarity ${matchPercent}% < 80% threshold OR angle divergence too high → Match rejected.`) });
+          // Step 4: Batch capacity check
+          const step4pass = isConsolidated;
+          const step4blocked = !step2pass || step3blocked;
+          steps.push({ label: 'Step 4 — Batch Capacity & Sequence Optimization', pass: step4pass, blocked: step4blocked, note: step4blocked ? 'Skipped — no qualified match from Step 3.' : (step4pass ? `Batch has capacity. Sequential route optimized: Hub → ${b ? b.route.map(r => r.bLoc).join(' → ') : 'Buyer'}` : 'Batch full OR weight capacity exceeded → Order cannot join this batch.') });
+          // Step 5: dispatch
+          steps.push({ label: 'Step 5 — Final Dispatch Decision', pass: isConsolidated, note: isConsolidated ? `Order merged into Batch ${b ? b.id : 'N/A'} with ${peers.length} peer(s). Rider dispatched on shared sequential multi-stop loop. Fee discounted 55%.` : `No valid consolidation found. Order dispatched as SOLO on standard route. Standard fee applies.` });
+          
+          return steps.map(s => `
+            <div style="display:flex; align-items:flex-start; gap:8px; padding:7px 10px; border-radius:6px; background:${s.blocked ? 'rgba(255,255,255,0.02)' : s.pass ? 'rgba(0,255,118,0.05)' : 'rgba(255,200,0,0.05)'}; border:1px solid ${s.blocked ? 'rgba(255,255,255,0.05)' : s.pass ? 'rgba(0,255,118,0.15)' : 'rgba(255,200,0,0.15)'}; opacity:${s.blocked ? '0.45' : '1'};">
+              <div style="font-size:0.9rem; flex-shrink:0; margin-top:1px;">${s.blocked ? '⬜' : s.pass ? '✅' : '⚠️'}</div>
+              <div>
+                <div style="font-weight:700; color:${s.blocked ? 'var(--t3)' : s.pass ? '#fff' : 'var(--amb)'}; margin-bottom:2px;">${s.label}</div>
+                <div style="color:${s.blocked ? 'var(--t3)' : s.pass ? 'var(--grn)' : 'var(--amb)'}; line-height:1.4;">${s.note}</div>
+              </div>
+            </div>
+          `).join('');
+        })()}
+      </div>
+    </div>
+
     <!-- SELLER STAGE MATCH DETAILS & NEARBY PARTNERS -->
-    <div style="margin-top:16px; background:rgba(0,0,0,0.2); border:1px solid var(--border); border-radius:8px; padding:12px">
-      <div class="trace-title-mini" style="margin-bottom:8px">🤝 Seller-Stage Logistics Bid Match Matrix (At Interception)</div>
+    <div style="margin-top:14px; background:rgba(0,0,0,0.15); border:1px solid var(--border); border-radius:8px; padding:12px">
+      <div class="trace-title-mini" style="margin-bottom:8px">🤝 Active LSP Bid Matrix — Seller Stage</div>
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px">
         <div>
-          <div class="telemetry-row"><span class="telemetry-lbl">Dynamic Similarity Index:</span><span class="telemetry-val" style="color:var(--acc2)">${matchPercent}%</span></div>
-          <div class="telemetry-row"><span class="telemetry-lbl">Consolidation Decision:</span><span class="telemetry-val">${isConsolidated ? 'CONSOLIDATED' : 'BYPASS / SPLIT'}</span></div>
-          <div style="font-size:0.6rem; color:var(--t2); line-height:1.4">
-            ${isConsolidated 
-              ? `Order matches real-time similarity parameters. Optimized on a single sequential route to minimize congestion.`
-              : `Order bypass-routed independently. Critical priority dictates direct immediate dispatch.`}
-          </div>
+          <div class="telemetry-row"><span class="telemetry-lbl">Route Similarity Score:</span><span class="telemetry-val" style="color:var(--acc2)">${matchPercent}%</span></div>
+          <div class="telemetry-row"><span class="telemetry-lbl">Consolidation Decision:</span><span class="telemetry-val" style="color:${isConsolidated ? 'var(--grn)' : 'var(--amb)'}; font-weight:800;">${isConsolidated ? '✅ CONSOLIDATED' : '🔶 SOLO'}</span></div>
+          <div class="telemetry-row"><span class="telemetry-lbl">Assigned Batch:</span><span class="telemetry-val">${b ? b.id : 'None'}</span></div>
+          <div class="telemetry-row"><span class="telemetry-lbl">Batch Size:</span><span class="telemetry-val">${isConsolidated ? (peers.length + 1) + ' orders' : '1 order (solo)'}</span></div>
         </div>
         <div style="border-left:1px solid var(--border); padding-left:16px">
-          <div style="font-size:0.6rem; font-weight:700; color:var(--t1); margin-bottom:4px">Nearby Delivery Partners (Seller stage):</div>
+          <div style="font-size:0.6rem; font-weight:700; color:var(--t1); margin-bottom:6px">Nearby Delivery Partners (Seller stage):</div>
           ${nearbyLSPs.map(lsp => `
-            <div style="display:flex; justify-content:space-between; font-size:0.65rem; margin-bottom:3px">
-              <span style="color:var(--t2)">🛵 ${lsp.name} (${lsp.dist} away)</span>
-              <span style="font-family:var(--fm); color:${lsp.match >= 90 ? 'var(--grn)' : 'var(--t3)'}">${lsp.match}% match</span>
+            <div style="display:flex; justify-content:space-between; font-size:0.62rem; margin-bottom:5px; padding:3px 6px; border-radius:4px; background:rgba(255,255,255,0.02);">
+              <span style="color:var(--t2)">🛵 ${lsp.name} <span style="color:var(--t3);">(${lsp.dist})</span></span>
+              <span style="font-family:var(--fm); color:${lsp.match >= 90 ? 'var(--grn)' : lsp.match >= 80 ? 'var(--acc2)' : 'var(--t3)'}; font-weight:700;">${lsp.match}% compat</span>
             </div>
           `).join('')}
         </div>
@@ -1637,18 +2430,18 @@ function showTrace(id) {
     </div>
 
     <!-- CONSOLIDATION peers -->
-    <div style="margin-top:16px">
-      <div class="trace-title-mini" style="margin-bottom:8px">👥 Consolidated Cargo Peers in this Delivery Bag (${peers.length + 1} orders total)</div>
+    <div style="margin-top:14px">
+      <div class="trace-title-mini" style="margin-bottom:8px">👥 Cargo Peers in this Delivery Bag (${peers.length + 1} order${peers.length > 0 ? 's' : ''} total)</div>
       ${peers.length > 0 ? peers.map(p => {
         let pTag = p.tag === 'CRITICAL RUSH' ? '<span style="color:var(--red); font-size:0.6rem; font-weight:800;">[🚨 CRITICAL RUSH]</span>' : '';
         const orderIdx = b.route.indexOf(p) + 1;
         return `
           <div class="consol-box">
             <div class="c-id">${p.id} ${pTag} <span style="font-size:0.65rem; color:var(--t2); margin-left:10px">Stop ${orderIdx}</span></div>
-            <div class="c-stat">👤 ${p.user} <span style="margin:0 8px">|</span> 🛍️ ${p.prod} <span style="margin:0 8px">|</span> 📍 Destination: ${p.bLoc}</div>
+            <div class="c-stat">👤 ${p.user} <span style="margin:0 8px">|</span> 🛍️ ${p.prod} <span style="margin:0 8px">|</span> 📍 ${p.bLoc}</div>
           </div>
         `;
-      }).join('') : `<div style="font-size:0.75rem; color:var(--t3)">No consolidation peers. This order was bypass-routed directly.</div>`}
+      }).join('') : `<div style="font-size:0.7rem; color:var(--t3); padding:10px; background:rgba(255,200,0,0.04); border:1px solid rgba(255,200,0,0.1); border-radius:6px;">⚠️ No consolidated peers found for this order at the time of dispatch. MIDAS searched Zone ${o.h} but found no compatible same-direction candidates within the matching window. Dispatched solo at standard rate.</div>`}
     </div>
   `;
 
@@ -1772,21 +2565,21 @@ function populateFractionalSettlements() {
 
 const consoleLogs = [
   "📡 Intercepted ONDC corridor: Jubilee Hills ➔ Hitech City",
-  "⚡ OpenTelemetry trace context initialized: 304b46c65ba8d14d872c0827284b1d62",
+  "⚡ Continuous Caching: Pre-calculating active delivery zones inside 2km radius...",
+  "💾 Redis Cache hit: Found active overlapping runner (2.1ms lookup)",
   "🔍 Bid request broadcasted to unbundled LSPs...",
   "🛵 Shadowfax submitted logistics bid: ₹42 (SLA: 18 min)",
   "🛵 Dunzo submitted logistics bid: ₹48 (SLA: 15 min)",
   "🤝 Awarded contract to Shadowfax (94% corridor match)",
   "🔒 Zero-Knowledge Proof verified for handover endpoint TR-901",
   "📡 Intercepted ONDC corridor: Begumpet ➔ Ameerpet",
-  "⚡ OpenTelemetry trace context initialized: 5a2f8b8a9c3d4e5f6a7b8c9d0e1f2a3b",
-  "🛵 Dunzo submitted logistics bid: ₹38 (SLA: 12 min)",
-  "🤝 Awarded contract to Dunzo (91% corridor match)",
-  "🔒 Zero-Knowledge Proof verified for handover endpoint TR-902",
-  "🚨 Critical pharmacy insulin order TR-908 identified",
-  "⚡ EMERGENCY BYPASS TRACE: Cuter-gateway buffer set to 0ms",
-  "🛵 Rapido submitted logistics bid (RUSH MODE): ₹58 (SLA: 8 min)",
-  "🤝 Awarded contract to Rapido (Direct single drop SLA protection)"
+  "🛒 Cart Update: User adding items... running background path checks...",
+  "🍦 SKU Ice-Cream Protocol: Perishable 'ICE-CREAM' SKU detected in TR-903",
+  "⚡ IMMEDIATE DISPATCH: Bypassing gateway buffer (0ms queue hold)",
+  "🛵 Dunzo rider (MDP-R3) dispatched immediately to protect SLA",
+  "🤝 In-transit matching check: Scanning for overlapping drops during route...",
+  "🎁 Surprise Cashback Triggered: ₹20 refunded to buyer wallet for TR-903",
+  "🔒 Zero-Knowledge Proof verified for handover endpoint TR-903"
 ];
 
 let logIndex = 0;
@@ -1805,6 +2598,1246 @@ function appendConsoleLog() {
   logIndex = (logIndex + 1) % consoleLogs.length;
 }
 
+const slidesData = [
+  `
+  <div style="height:100%; display:flex; flex-direction:column; justify-content:center; padding:40px; text-align:left; position:relative; box-sizing:border-box;">
+    <div style="position:absolute; right:60px; top:180px; width:150px; height:150px; background:rgba(0,217,255,0.06); border:2px solid var(--acc); border-radius:12px; clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);"></div>
+    <div style="font-family:var(--fo); font-size:0.75rem; letter-spacing:0.15em; color:var(--acc); margin-bottom:10px;">EXECUTIVE PITCH DECK · SLIDE 1</div>
+    <h1 style="font-family:var(--fo); font-size:2.8rem; font-weight:900; color:#fff; line-height:1.2; margin:0 0 10px 0; letter-spacing:1px;">M I D A S</h1>
+    <h2 style="font-family:var(--fo); font-size:1.6rem; color:var(--acc2); font-weight:700; margin:0 0 15px 0;">Solving ONDC's Logistics Deadlock</h2>
+    <p style="font-family:var(--fm); font-size:0.85rem; color:var(--t2); max-width:650px; line-height:1.6; margin:0 0 30px 0;">
+      A software-driven, neutral logistics orchestration protocol layer intercepting, consolidating, and fractionally settling overlapping hyperlocal routes across competing networks in real-time.
+    </p>
+    <div style="font-size:0.6rem; color:var(--t3); font-weight:bold; font-family:var(--fm);">PATENT REF: IN202641051096  |  Beckn Protocol Compliant TSP</div>
+  </div>
+  `,
+  `
+  <div style="padding:40px; text-align:left; height:100%; box-sizing:border-box;">
+    <div style="font-family:var(--fo); font-size:0.6rem; color:var(--acc); letter-spacing:1.5px; margin-bottom:8px;">ONDC CURRENT STATE · SLIDE 2</div>
+    <h2 style="font-family:var(--fo); font-size:1.4rem; color:#fff; margin:0 0 15px 0; font-weight:800;">ONDC Hyperlocal Logistics Issues</h2>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+      <div style="background:rgba(255,179,0,0.04); border:1px solid rgba(255,179,0,0.15); border-radius:8px; padding:12px;">
+        <h3 style="font-size:0.8rem; color:var(--amb); margin:0 0 6px 0; font-weight:700;">❌ Exorbitant Delivery Fees</h3>
+        <p style="font-size:0.65rem; color:var(--t2); line-height:1.4; margin:0;">Buyers pay flat, individual delivery fees (₹55 - ₹70) for every single order, preventing ONDC transactions from being cost-viable for daily low-ticket purchases.</p>
+      </div>
+      <div style="background:rgba(255,179,0,0.04); border:1px solid rgba(255,179,0,0.15); border-radius:8px; padding:12px;">
+        <h3 style="font-size:0.8rem; color:var(--amb); margin:0 0 6px 0; font-weight:700;">❌ Post-Preparation Dispatch Delays</h3>
+        <p style="font-size:0.65rem; color:var(--t2); line-height:1.4; margin:0;">Sellers dispatch orders to carriers only after kitchen/bagging completion. This creates 15-20 min idle wait times for riders, delays deliveries, and ruins food quality.</p>
+      </div>
+      <div style="background:rgba(255,179,0,0.04); border:1px solid rgba(255,179,0,0.15); border-radius:8px; padding:12px;">
+        <h3 style="font-size:0.8rem; color:var(--amb); margin:0 0 6px 0; font-weight:700;">❌ Competitor Fleet Silos</h3>
+        <p style="font-size:0.65rem; color:var(--t2); line-height:1.4; margin:0;">Logistics Service Providers operate in isolation. Multiple riders from different carriers are dispatched to deliver to the exact same buildings simultaneously.</p>
+      </div>
+      <div style="background:rgba(255,179,0,0.04); border:1px solid rgba(255,179,0,0.15); border-radius:8px; padding:12px;">
+        <h3 style="font-size:0.8rem; color:var(--amb); margin:0 0 6px 0; font-weight:700;">❌ Wastage of Resources</h3>
+        <p style="font-size:0.65rem; color:var(--t2); line-height:1.4; margin:0;">Siloed routes lead to low carrier density, high mileage overlap, excessive fuel burn, and high driver churn due to low productivity.</p>
+      </div>
+    </div>
+  </div>
+  `,
+  `
+  <div style="padding:40px; text-align:left; height:100%; box-sizing:border-box;">
+    <div style="font-family:var(--fo); font-size:0.6rem; color:var(--acc); letter-spacing:1.5px; margin-bottom:8px;">STARTUP LANDSCAPE · SLIDE 3</div>
+    <h2 style="font-family:var(--fo); font-size:1.4rem; color:#fff; margin:0 0 15px 0; font-weight:800;">Competitors & Startups: The Real Consolidation Gap</h2>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+      <div style="background:rgba(10,25,36,0.6); border:1px solid var(--border); border-radius:8px; padding:15px;">
+        <h3 style="font-size:0.85rem; color:var(--acc2); margin:0 0 8px 0; font-weight:700;">📦 LSP Aggregators (Shiprocket, Delhivery, Xpressbees)</h3>
+        <ul style="font-size:0.62rem; color:var(--t2); padding-left:15px; margin:0; line-height:1.5; text-align:left;">
+          <li style="margin-bottom:6px;"><strong>What They Are:</strong> Shipping aggregators that combine multiple courier APIs into a single dashboard.</li>
+          <li style="margin-bottom:6px;"><strong>How They Solve:</strong> They display a list of shipping options, letting the seller choose based on price or speed.</li>
+          <li style="margin-bottom:6px;"><strong>Real % Solved: ONLY 10% - 15%.</strong> They resolve selection choice, but do NOT pool cargo or swap packages. Riders still travel overlapping routes, duplicating mileage.</li>
+          <li><strong>DPDP Compliance:</strong> Broadcast buyer name, phone, and address openly to riders, exposing customer PII.</li>
+        </ul>
+      </div>
+      <div style="background:rgba(10,25,36,0.6); border:1px solid var(--border); border-radius:8px; padding:15px;">
+        <h3 style="font-size:0.85rem; color:var(--pur); margin:0 0 8px 0; font-weight:700;">🛵 Last-Mile Specialists (Shadowfax, Loadshare, Grab)</h3>
+        <ul style="font-size:0.62rem; color:var(--t2); padding-left:15px; margin:0; line-height:1.5; text-align:left;">
+          <li style="margin-bottom:6px;"><strong>What They Are:</strong> On-demand fleet networks providing last-mile/hyperlocal deliveries.</li>
+          <li style="margin-bottom:6px;"><strong>How They Solve:</strong> They supply physical networks of delivery boys to execute dispatches.</li>
+          <li style="margin-bottom:6px;"><strong>Real % Solved: ONLY 10% - 15%.</strong> Because they operate in silos, different riders from different carriers drive to the exact same buildings simultaneously with separate packages.</li>
+          <li><strong>Data sharing block:</strong> Competitors cannot share driver telemetry or coordinate routes due to anti-trust and commercial secrecy.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  `,
+  `
+  <div style="padding:40px; text-align:left; height:100%; box-sizing:border-box;">
+    <div style="font-family:var(--fo); font-size:0.6rem; color:var(--acc); letter-spacing:1.5px; margin-bottom:8px;">CORE PROTOCOL · SLIDE 4</div>
+    <h2 style="font-family:var(--fo); font-size:1.4rem; color:#fff; margin:0 0 15px 0; font-weight:800;">How MIDAS Works: Core Technical Principles</h2>
+    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px;">
+      <div style="background:rgba(10,25,36,0.6); border:1px solid var(--border); border-radius:8px; padding:15px; text-align:center;">
+        <div style="font-size:1.6rem; font-weight:900; color:var(--acc); margin-bottom:6px;">01</div>
+        <h3 style="font-size:0.8rem; color:#fff; margin:0 0 6px 0; font-weight:700;">ONDC API Interception</h3>
+        <p style="font-size:0.62rem; color:var(--t2); line-height:1.4; margin:0;">MIDAS sits directly on the ONDC gateway. It intercepts order requests at the gateway level, temporarily holding them in a secure 45-second buffer to scan for path overlaps before calling LSPs.</p>
+      </div>
+      <div style="background:rgba(10,25,36,0.6); border:1px solid var(--border); border-radius:8px; padding:15px; text-align:center;">
+        <div style="font-size:1.6rem; font-weight:900; color:var(--acc); margin-bottom:6px;">02</div>
+        <h3 style="font-size:0.8rem; color:#fff; margin:0 0 6px 0; font-weight:700;">TraceID & SpanID Tracing</h3>
+        <p style="font-size:0.62rem; color:var(--t2); line-height:1.4; margin:0;">Generates a unique TraceID for the entire order journey. Specific SpanIDs track individual legs (Seller ➔ Relay Node, Relay Node ➔ last-mile rider), verifying secure custody handovers.</p>
+      </div>
+      <div style="background:rgba(10,25,36,0.6); border:1px solid var(--border); border-radius:8px; padding:15px; text-align:center;">
+        <div style="font-size:1.6rem; font-weight:900; color:var(--acc); margin-bottom:6px;">03</div>
+        <h3 style="font-size:0.8rem; color:#fff; margin:0 0 6px 0; font-weight:700;">Pre-Prep Dispatch Sync</h3>
+        <p style="font-size:0.62rem; color:var(--t2); line-height:1.4; margin:0;">MIDAS reads food preparation time dynamically. It forecasts transit windows and dispatches riders *during* preparation, matching their arrival exactly to store handoff, eliminating wait time.</p>
+      </div>
+    </div>
+  </div>
+  `,
+  `
+  <div style="padding:40px; text-align:left; height:100%; box-sizing:border-box;">
+    <div style="font-family:var(--fo); font-size:0.6rem; color:var(--acc); letter-spacing:1.5px; margin-bottom:8px;">SCENARIO 1 RESOLUTION · SLIDE 5</div>
+    <h2 style="font-family:var(--fo); font-size:1.4rem; color:#fff; margin:0 0 12px 0; font-weight:800;">Fix 1: On-The-Fly Matching via Background Caching</h2>
+    <div style="display:grid; grid-template-columns:1fr 1.1fr; gap:16px;">
+      <div style="background:rgba(10,25,36,0.6); border:1px solid var(--border); border-radius:8px; padding:15px;">
+        <h3 style="font-size:0.85rem; color:var(--amb); margin:0 0 6px 0; font-weight:700;">🛑 The Problem: Checkout Latency</h3>
+        <p style="font-size:0.62rem; color:var(--t2); line-height:1.4; margin-bottom:8px;">
+          Calculating complex matching routes *at checkout* causes latency, app freezes, and user drop-offs.
+        </p>
+        <p style="font-size:0.62rem; color:var(--t2); line-height:1.4; margin:0;">
+          Traditional systems try to run heavy spatial math on the fly, which fails to scale under peak loads.
+        </p>
+      </div>
+      <div style="background:rgba(10,25,36,0.6); border:1.5px solid var(--acc); border-radius:8px; padding:15px;">
+        <h3 style="font-size:0.85rem; color:var(--acc); margin:0 0 6px 0; font-weight:700;">⚡ The Solution: Continuous Background Caching</h3>
+        <p style="font-size:0.62rem; color:var(--t2); line-height:1.4; margin-bottom:8px;">
+          <strong>Pre-Checkout Calculations:</strong> While the user is adding items to their cart, MIDAS runs lightweight checks in the background using Redis caches.
+        </p>
+        <p style="font-size:0.62rem; color:var(--t2); line-height:1.4; margin:0;">
+          <strong>Instant Lookup:</strong> At checkout, the system runs a simple "Yes/No" lookup against pre-calculated active routes, resolving matches instantly in <3 milliseconds.
+        </p>
+      </div>
+    </div>
+  </div>
+  `,
+  `
+  <div style="padding:40px; text-align:left; height:100%; box-sizing:border-box;">
+    <div style="font-family:var(--fo); font-size:0.6rem; color:var(--acc); letter-spacing:1.5px; margin-bottom:8px;">SCENARIO 2 RESOLUTION · SLIDE 6</div>
+    <h2 style="font-family:var(--fo); font-size:1.4rem; color:#fff; margin:0 0 10px 0; font-weight:800;">Fix 2: The 3-Tier Checkout & Routing Protocol</h2>
+    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px;">
+      <div style="background:rgba(10,25,36,0.6); border:1px solid var(--border); border-radius:8px; padding:12px; text-align:left;">
+        <h3 style="font-size:0.75rem; color:var(--acc); margin:0 0 4px 0; font-weight:700;">1️⃣ Tier 1: Pre-Pay Hold</h3>
+        <p style="font-size:0.58rem; color:var(--t2); line-height:1.4; margin:0;">
+          <strong>Wait & Match Opt-In:</strong> Buyers can choose to wait 60 seconds at checkout. If a match is found during the hold, they pay the exact discounted fee upfront directly (no cashback needed).
+        </p>
+      </div>
+      <div style="background:rgba(10,25,36,0.6); border:1.5px solid var(--acc); border-radius:8px; padding:12px; text-align:left;">
+        <h3 style="font-size:0.75rem; color:var(--acc2); margin:0 0 4px 0; font-weight:700;">2️⃣ Tier 2: Prep Window</h3>
+        <p style="font-size:0.58rem; color:var(--t2); line-height:1.4; margin:0;">
+          <strong>Kitchen ETA Matching:</strong> If no wait is chosen, standard checkout executes. While food is cooked (10-15m prep ETA), MIDAS runs background math and discloses savings mid-transit before dispatch.
+        </p>
+      </div>
+      <div style="background:rgba(10,25,36,0.6); border:1px solid var(--border); border-radius:8px; padding:12px; text-align:left;">
+        <h3 style="font-size:0.75rem; color:var(--grn); margin:0 0 4px 0; font-weight:700;">3️⃣ Tier 3: In-Transit Fallback</h3>
+        <p style="font-size:0.58rem; color:var(--t2); line-height:1.4; margin:0;">
+          <strong>Post-Checkout Cashback:</strong> If prep-matching fails, rider dispatches standard. If a match occurs later in-transit (street swap), it consolidates and refunds ₹20 surprise cashback to the buyer's wallet.
+        </p>
+      </div>
+    </div>
+  </div>
+  `,
+  `
+  <div style="padding:40px; text-align:left; height:100%; box-sizing:border-box;">
+    <div style="font-family:var(--fo); font-size:0.6rem; color:var(--acc); letter-spacing:1.5px; margin-bottom:8px;">ETHICAL LOGISTICS · SLIDE 7</div>
+    <h2 style="font-family:var(--fo); font-size:1.4rem; color:#fff; margin:0 0 15px 0; font-weight:800;">Rider Welfare, Accident Prevention & Sustainability</h2>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+      <div style="background:rgba(0,230,118,0.04); border:1px solid rgba(0,230,118,0.15); border-radius:8px; padding:12px;">
+        <h3 style="font-size:0.8rem; color:var(--grn); margin:0 0 4px 0; font-weight:700;">🛡️ Accident Prevention & Safe Speeds</h3>
+        <p style="font-size:0.62rem; color:var(--t2); line-height:1.4; margin:0;">By dividing routes into local neighborhood collections and bulk corridors, riders are never pressured to speed. Speed is capped at a safe 30 km/h, securing driver health and public road safety.</p>
+      </div>
+      <div style="background:rgba(0,230,118,0.04); border:1px solid rgba(0,230,118,0.15); border-radius:8px; padding:12px;">
+        <h3 style="font-size:0.8rem; color:var(--grn); margin:0 0 4px 0; font-weight:700;">🛋️ Fatigue Lockout Engine</h3>
+        <p style="font-size:0.62rem; color:var(--t2); line-height:1.4; margin:0;">Automatically locks out riders for a mandatory 10-minute rest state after completing 5 consecutive drops, rotating active auxiliary neighborhood runners into service to prevent exhaustion.</p>
+      </div>
+      <div style="background:rgba(0,230,118,0.04); border:1px solid rgba(0,230,118,0.15); border-radius:8px; padding:12px;">
+        <h3 style="font-size:0.8rem; color:var(--grn); margin:0 0 4px 0; font-weight:700;">🌳 Reduced Carbon Footprint</h3>
+        <p style="font-size:0.62rem; color:var(--t2); line-height:1.4; margin:0;">Consolidating final-mile delivery runs eliminates duplicate trips. Reduces overall road transit mileage by up to 85%, saving 180g of CO2 emissions per order.</p>
+      </div>
+      <div style="background:rgba(0,230,118,0.04); border:1px solid rgba(0,230,118,0.15); border-radius:8px; padding:12px;">
+        <h3 style="font-size:0.8rem; color:var(--grn); margin:0 0 4px 0; font-weight:700;">⚡ Resource & Vehicle Optimization</h3>
+        <p style="font-size:0.62rem; color:var(--t2); line-height:1.4; margin:0;">Optimizes driver hours, minimizes battery wear on electric vehicles, reduces city traffic gridlock, and cuts down empty return runs.</p>
+      </div>
+    </div>
+  </div>
+  `,
+  `
+  <div style="padding:40px; text-align:left; height:100%; box-sizing:border-box;">
+    <div style="font-family:var(--fo); font-size:0.6rem; color:var(--acc); letter-spacing:1.5px; margin-bottom:8px;">ECOSYSTEM VALUES · SLIDE 8</div>
+    <h2 style="font-family:var(--fo); font-size:1.4rem; color:#fff; margin:0 0 15px 0; font-weight:800;">ONDC Alignment: Wallet, Time, and Climate Value</h2>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+      <div style="background:rgba(10,25,36,0.6); border:1px solid var(--border); border-radius:8px; padding:12px;">
+        <h3 style="font-size:0.8rem; color:var(--acc2); margin:0 0 4px 0; font-weight:700;">₹ Payout & Fee Savings</h3>
+        <p style="font-size:0.62rem; color:var(--t2); line-height:1.4; margin:0;">Route consolidation drops delivery fees by up to 65%, keeping money directly in the customer's wallet and making digital commerce accessible to small-budget households.</p>
+      </div>
+      <div style="background:rgba(10,25,36,0.6); border:1px solid var(--border); border-radius:8px; padding:12px;">
+        <h3 style="font-size:0.8rem; color:var(--acc2); margin:0 0 4px 0; font-weight:700;">⏱ Delivery Time Optimization</h3>
+        <p style="font-size:0.62rem; color:var(--t2); line-height:1.4; margin:0;">Synchronized kitchen dispatches and local relay loops cut final transit delays, delivering parcels up to 35% faster without endangering drivers.</p>
+      </div>
+      <div style="background:rgba(10,25,36,0.6); border:1px solid var(--border); border-radius:8px; padding:12px;">
+        <h3 style="font-size:0.8rem; color:var(--acc2); margin:0 0 4px 0; font-weight:700;">🌳 Environmental Integrity</h3>
+        <p style="font-size:0.62rem; color:var(--t2); line-height:1.4; margin:0;">Minimizes urban traffic gridlock, slashes city road wear, and reduces tailpipe emissions, aligning digital growth with clean climate goals.</p>
+      </div>
+      <div style="background:rgba(10,25,36,0.6); border:1px solid var(--border); border-radius:8px; padding:12px;">
+        <h3 style="font-size:0.8rem; color:var(--acc2); margin:0 0 4px 0; font-weight:700;">🌍 Achieving the True ONDC Vision</h3>
+        <p style="font-size:0.62rem; color:var(--t2); line-height:1.4; margin:0;">Equips unbundled merchants on ONDC with logistics efficiencies that match closed monopolies (Swiggy, Amazon), fulfilling ONDC's democratic mandate.</p>
+      </div>
+    </div>
+  </div>
+  `
+];
+
+function renderSlide(idx) {
+  currentSlide = idx;
+  const container = document.getElementById('slide-viewer-canvas');
+  if (container) {
+    container.innerHTML = slidesData[currentSlide];
+  }
+  const counter = document.getElementById('slide-counter-label');
+  if (counter) {
+    const titles = [
+      "Title Slide",
+      "ONDC Logistics Problems",
+      "Competitors & Startups",
+      "MIDAS Core Principles",
+      "Background Caching Fix",
+      "3-Tier Checkout Protocol",
+      "Rider Welfare & Safety",
+      "Ecosystem Value & ONDC Vision"
+    ];
+    counter.textContent = `Slide ${currentSlide + 1} of 8: ${titles[currentSlide]}`;
+  }
+}
+
+function prevSlide() {
+  if (currentSlide > 0) renderSlide(currentSlide - 1);
+}
+
+function nextSlide() {
+  if (currentSlide < slidesData.length - 1) renderSlide(currentSlide + 1);
+}
+   // --- 3-TIER SIMULATION LOGIC ---
+let currentSimTier = 1;
+let simInterval = null;
+let simMatchStatus = true; // default match found
+let isSimRunning = false;
+let simCurrentStep = 0;
+
+function toggleSimMatch(status) {
+  simMatchStatus = status;
+  
+  // Highlight buttons
+  const btnMatch = document.getElementById('sim-status-match');
+  const btnNoMatch = document.getElementById('sim-status-nomatch');
+  const legend = document.getElementById('sim-legend-text');
+  
+  if (status) {
+    btnMatch.style.background = 'var(--acc)';
+    btnMatch.style.color = '#000';
+    btnNoMatch.style.background = 'transparent';
+    btnNoMatch.style.color = 'var(--t2)';
+    
+    document.getElementById('sim-discount-slider').disabled = false;
+    document.getElementById('sim-discount-control-box').style.opacity = '1';
+    
+    legend.textContent = "MIDAS ACTIVE: Consolidated final-mile loop (1 Rider)";
+    legend.style.color = "var(--grn)";
+  } else {
+    btnMatch.style.background = 'transparent';
+    btnMatch.style.color = 'var(--t2)';
+    btnNoMatch.style.background = 'var(--red)';
+    btnNoMatch.style.color = '#fff';
+    
+    document.getElementById('sim-discount-slider').disabled = true;
+    document.getElementById('sim-discount-control-box').style.opacity = '0.4';
+    
+    legend.textContent = "MIDAS OFF: 2 separate deliveries dispatched separately";
+    legend.style.color = "var(--red)";
+  }
+  
+  // Update path guides based on status
+  updatePathGuides();
+  // Update pricing cards immediately
+  updateSimPrices();
+}
+
+function updatePathGuides() {
+  const trad1 = document.getElementById('sim-line-trad1');
+  const trad2 = document.getElementById('sim-line-trad2');
+  const midas1 = document.getElementById('sim-line-midas1');
+  const midas2 = document.getElementById('sim-line-midas2');
+  const midas3 = document.getElementById('sim-line-midas3');
+
+  if (simMatchStatus) {
+    trad1.style.display = 'none';
+    trad2.style.display = 'none';
+    midas1.style.display = 'block';
+    midas2.style.display = 'block';
+    midas3.style.display = 'block';
+  } else {
+    trad1.style.display = 'block';
+    trad2.style.display = 'block';
+    midas1.style.display = 'none';
+    midas2.style.display = 'none';
+    midas3.style.display = 'none';
+  }
+}
+
+function updateSimPrices() {
+  const discount = parseInt(document.getElementById('sim-discount-slider').value);
+  
+  // Standard prices per tier
+  let standardPrice = 52.00;
+  let formulaText = "Base Rate: ₹35 + (₹4 × 4.2 km)";
+  
+  if (currentSimTier === 2) {
+    standardPrice = 50.00;
+    formulaText = "Base Rate: ₹35 + (₹4 × 3.8 km)";
+  } else if (currentSimTier === 3) {
+    standardPrice = 55.00;
+    formulaText = "Base Rate: ₹35 + (₹4 × 5.1 km)";
+  }
+  
+  document.getElementById('sim-standard-formula').textContent = formulaText;
+  const totalStandardPrice = standardPrice * 2;
+  document.getElementById('sim-standard-quote-card').textContent = `Standard Quote (2 Orders): ₹${totalStandardPrice.toFixed(2)}`;
+  document.getElementById('sim-ledger-standard').textContent = `₹${totalStandardPrice.toFixed(2)}`;
+
+  const midasQuoteEl = document.getElementById('sim-midas-quote');
+  const savingsNoteEl = document.getElementById('sim-savings-note');
+  
+  const ledMidasEl = document.getElementById('sim-ledger-midas');
+  const ledCaptureEl = document.getElementById('sim-ledger-capture');
+  
+  const splitRunnerEl = document.getElementById('sim-split-runner');
+  const splitRiderEl = document.getElementById('sim-split-rider');
+  const splitGateEl = document.getElementById('sim-split-gate');
+  const formulaLabelEl = document.getElementById('sim-midas-formula');
+  
+  const itinProfile = document.getElementById('sim-itin-profile');
+  const itinSteps = document.getElementById('sim-itin-steps');
+  const itinTotalDist = document.getElementById('sim-itin-total-dist');
+
+  // If simulation is NOT running, show "Awaiting Checkout"
+  if (!isSimRunning) {
+    midasQuoteEl.textContent = "MIDAS Quote: AWAITING CHECKOUT...";
+    midasQuoteEl.style.color = "var(--t3)";
+    savingsNoteEl.textContent = "Waiting for checkout simulation run...";
+    savingsNoteEl.style.color = "var(--t2)";
+    ledMidasEl.textContent = "Pending checkout...";
+    ledCaptureEl.textContent = "Pending checkout...";
+    splitRunnerEl.textContent = "₹0.00";
+    splitRiderEl.textContent = "₹0.00";
+    splitGateEl.textContent = "₹0.00";
+    formulaLabelEl.textContent = "Consolidated rate: pending match scan";
+    
+    // Reset itinerary
+    itinProfile.textContent = "Awaiting simulation...";
+    itinSteps.innerHTML = "<div>--</div>";
+    itinTotalDist.textContent = "-- km";
+    return;
+  }
+  
+  // If simulation is running but we are before step 50, show "Scanning"
+  if (isSimRunning && simCurrentStep < 50) {
+    midasQuoteEl.textContent = "MIDAS Quote: SCANNING...";
+    midasQuoteEl.style.color = "var(--amb)";
+    savingsNoteEl.textContent = "Scanning active neighbors...";
+    savingsNoteEl.style.color = "var(--t2)";
+    ledMidasEl.textContent = "Evaluating match...";
+    ledCaptureEl.textContent = "Pending capture...";
+    splitRunnerEl.textContent = "₹0.00";
+    splitRiderEl.textContent = "₹0.00";
+    splitGateEl.textContent = "₹0.00";
+    formulaLabelEl.textContent = "Evaluating corridor batching options...";
+    
+    itinProfile.textContent = "Scanning neighborhood coordinates...";
+    itinSteps.innerHTML = "<div>⏳ Analyzing geohashes to map itinerary...</div>";
+    itinTotalDist.textContent = "-- km";
+    return;
+  }
+  
+  // If simulation is running and we are step 50+
+  if (simMatchStatus) {
+    document.getElementById('sim-slider-label').textContent = `${discount}% Discount (Consolidated Rate)`;
+    document.getElementById('sim-slider-label').style.color = 'var(--grn)';
+    
+    const midasQuoteVal = standardPrice + (standardPrice * (1 - discount / 100)); 
+    const savingsVal = totalStandardPrice - midasQuoteVal;
+    
+    formulaLabelEl.textContent = `Consolidated Rate: 1 Rider batching both orders (Reduced Fare)`;
+    midasQuoteEl.textContent = `MIDAS Quote: ₹${midasQuoteVal.toFixed(2)}`;
+    midasQuoteEl.style.color = "var(--grn)";
+    savingsNoteEl.textContent = `Net Buyer Saving: ₹${savingsVal.toFixed(2)} (${(100 * savingsVal / totalStandardPrice).toFixed(0)}% Saved Upfront)`;
+    savingsNoteEl.style.color = "var(--grn)";
+    
+    ledMidasEl.textContent = `₹${midasQuoteVal.toFixed(2)}`;
+    
+    if (currentSimTier === 3) {
+      ledCaptureEl.textContent = `₹${totalStandardPrice.toFixed(2)} (₹${savingsVal.toFixed(2)} Cashback Issued)`;
+    } else {
+      ledCaptureEl.textContent = `₹${midasQuoteVal.toFixed(2)} (Captured at Checkout)`;
+    }
+    
+    // MIDAS splits: Runner 0% (no relay hub swap, single rider loop!), Rider gets 92% of consolidated rate, Platform 8%
+    const rideSplit = midasQuoteVal * 0.92;
+    const gateSplit = midasQuoteVal * 0.08;
+    
+    splitRunnerEl.textContent = `₹0.00 (0% - No Relay Swap)`;
+    splitRiderEl.textContent = `₹${rideSplit.toFixed(2)} (92%)`;
+    splitGateEl.textContent = `₹${gateSplit.toFixed(2)} (8%)`;
+    
+    // Set consolidated itinerary
+    itinProfile.textContent = "MIDAS Consolidated Multi-Stop Run (1 Rider)";
+    itinSteps.innerHTML = `
+      <div style="color:var(--grn)">🏪 Seller 1 ➔ 🏪 Seller 2 (1.2 km collection corridor)</div>
+      <div style="color:var(--grn)">🏪 Seller 2 ➔ 📍 Buyer 1 (3.4 km transit drop)</div>
+      <div style="color:var(--grn)">📍 Buyer 1 ➔ 📍 Buyer 2 (1.6 km neighborhood drop)</div>
+    `;
+    itinTotalDist.textContent = "6.2 km (Saved 1.8 km)";
+  } else {
+    document.getElementById('sim-slider-label').textContent = "N/A - Standard P2P active";
+    document.getElementById('sim-slider-label').style.color = 'var(--t3)';
+    
+    formulaLabelEl.textContent = "Siloed Deliveries: 2 separate couriers dispatched separately (Not Reduced)";
+    midasQuoteEl.textContent = `₹${totalStandardPrice.toFixed(2)}`;
+    midasQuoteEl.style.color = "var(--red)";
+    savingsNoteEl.textContent = "₹0.00 Saved (Not Reduced)";
+    savingsNoteEl.style.color = "var(--t3)";
+    
+    ledMidasEl.textContent = `₹${totalStandardPrice.toFixed(2)} (No discount)`;
+    ledCaptureEl.textContent = `₹${totalStandardPrice.toFixed(2)} (Standard Captured)`;
+    
+    const rideSplit = totalStandardPrice * 0.92;
+    const gateSplit = totalStandardPrice * 0.08;
+    
+    splitRunnerEl.textContent = `₹0.00 (0%)`;
+    splitRiderEl.textContent = `₹${rideSplit.toFixed(2)} (92%)`;
+    splitGateEl.textContent = `₹${gateSplit.toFixed(2)} (8%)`;
+    
+    // Set standard itinerary
+    itinProfile.textContent = "Traditional Siloed Runs (2 Riders)";
+    itinSteps.innerHTML = `
+      <div style="color:var(--red)">🛵 Rider 1: Seller 1 ➔ Buyer 1 directly (4.2 km)</div>
+      <div style="color:var(--red)">🛵 Rider 2: Seller 2 ➔ Buyer 2 directly (3.8 km)</div>
+    `;
+    itinTotalDist.textContent = "8.0 km (No savings)";
+  }
+}
+
+// Animate an SVG circle from (x1,y1) to (x2,y2) over durationMs, with optional delayMs
+// Uses requestAnimationFrame for smooth motion along a straight line
+function simAnimateDot(el, x1, y1, x2, y2, durationMs, delayMs) {
+  delayMs = delayMs || 0;
+  if (el._animTimer) clearTimeout(el._animTimer);
+  if (el._animRaf) cancelAnimationFrame(el._animRaf);
+  el._animTimer = setTimeout(() => {
+    const start = performance.now();
+    function step(now) {
+      const t = Math.min((now - start) / durationMs, 1);
+      el.setAttribute('cx', x1 + (x2 - x1) * t);
+      el.setAttribute('cy', y1 + (y2 - y1) * t);
+      if (t < 1) {
+        el._animRaf = requestAnimationFrame(step);
+      } else {
+        // Loop: restart from origin
+        el._animTimer = setTimeout(() => simAnimateDot(el, x1, y1, x2, y2, durationMs), 400);
+      }
+    }
+    el._animRaf = requestAnimationFrame(step);
+  }, delayMs);
+}
+
+// Animate an SVG circle through multiple waypoints [[x,y], ...] over totalMs, with optional delayMs
+function simAnimateDotPath(el, points, totalMs, delayMs) {
+  delayMs = delayMs || 0;
+  if (el._animTimer) clearTimeout(el._animTimer);
+  if (el._animRaf) cancelAnimationFrame(el._animRaf);
+  el._animTimer = setTimeout(() => {
+    // Compute segment lengths to distribute time proportionally
+    const segs = [];
+    let totalLen = 0;
+    for (let i = 0; i < points.length - 1; i++) {
+      const dx = points[i+1][0] - points[i][0];
+      const dy = points[i+1][1] - points[i][1];
+      const len = Math.sqrt(dx*dx + dy*dy);
+      segs.push(len);
+      totalLen += len;
+    }
+    const start = performance.now();
+    function step(now) {
+      const elapsed = now - start;
+      const frac = Math.min(elapsed / totalMs, 1);
+      // Find which segment we're in
+      let dist = frac * totalLen;
+      let segIdx = 0;
+      for (let i = 0; i < segs.length; i++) {
+        if (dist <= segs[i]) { segIdx = i; break; }
+        dist -= segs[i];
+        segIdx = i + 1;
+      }
+      segIdx = Math.min(segIdx, segs.length - 1);
+      const t = segs[segIdx] > 0 ? Math.min(dist / segs[segIdx], 1) : 1;
+      const px = points[segIdx][0] + (points[segIdx+1][0] - points[segIdx][0]) * t;
+      const py = points[segIdx][1] + (points[segIdx+1][1] - points[segIdx][1]) * t;
+      el.setAttribute('cx', px);
+      el.setAttribute('cy', py);
+      if (frac < 1) {
+        el._animRaf = requestAnimationFrame(step);
+      } else {
+        // Loop
+        el._animTimer = setTimeout(() => simAnimateDotPath(el, points, totalMs), 600);
+      }
+    }
+    el._animRaf = requestAnimationFrame(step);
+  }, delayMs);
+}
+
+function selectTierSim(tier) {
+
+  if (simInterval) {
+    clearInterval(simInterval);
+    simInterval = null;
+  }
+  currentSimTier = tier;
+  isSimRunning = false;
+  simCurrentStep = 0;
+  
+  // Highlight card
+  document.getElementById('btn-t1').style.borderColor = tier === 1 ? 'var(--acc)' : 'var(--border)';
+  document.getElementById('btn-t1').style.background = tier === 1 ? 'rgba(0,217,255,0.03)' : 'var(--bg3)';
+  document.getElementById('btn-t1').querySelector('.w-title').style.color = tier === 1 ? 'var(--acc)' : '#fff';
+  
+  document.getElementById('btn-t2').style.borderColor = tier === 2 ? 'var(--acc)' : 'var(--border)';
+  document.getElementById('btn-t2').style.background = tier === 2 ? 'rgba(0,217,255,0.03)' : 'var(--bg3)';
+  document.getElementById('btn-t2').querySelector('.w-title').style.color = tier === 2 ? 'var(--acc)' : '#fff';
+  
+  document.getElementById('btn-t3').style.borderColor = tier === 3 ? 'var(--acc)' : 'var(--border)';
+  document.getElementById('btn-t3').style.background = tier === 3 ? 'rgba(0,217,255,0.03)' : 'var(--bg3)';
+  document.getElementById('btn-t3').querySelector('.w-title').style.color = tier === 3 ? 'var(--acc)' : '#fff';
+
+  const title = document.getElementById('sim-scenario-title');
+  const tag = document.getElementById('sim-scenario-tag');
+  const windowVal = document.getElementById('sim-window-value');
+  const tagVal = document.getElementById('sim-tag-value');
+  
+  const consoleEl = document.getElementById('sim-trace-logs');
+  consoleEl.innerHTML = `<div style="color:var(--t3)">[SIM] Switched to Tier ${tier} profile. Click "⚡ Run Simulation" to start.</div>`;
+  
+  // Reset visualizer progress
+  document.getElementById('sim-progress-bar').style.width = '0%';
+  document.getElementById('sim-progress-label').textContent = '0% COMPLETE';
+  document.getElementById('sim-timer-label').textContent = 'STATUS: IDLE';
+  
+  // Hide active path lines in SVG
+  document.getElementById('sim-active-trad1').style.display = 'none';
+  document.getElementById('sim-active-trad2').style.display = 'none';
+  document.getElementById('sim-active-midas1').style.display = 'none';
+  document.getElementById('sim-active-midas2').style.display = 'none';
+  document.getElementById('sim-active-midas3').style.display = 'none';
+
+  // Hide riders
+  document.getElementById('sim-rider-trad1').style.display = 'none';
+  document.getElementById('sim-rider-trad2').style.display = 'none';
+  document.getElementById('sim-rider-midas2').style.display = 'none';
+  
+  // Hide scanners, and neighborhood orders
+  document.getElementById('sim-radar1').style.display = 'none';
+  document.getElementById('sim-radar2').style.display = 'none';
+  document.getElementById('sim-radar3').style.display = 'none';
+  document.getElementById('sim-order-dot1').style.display = 'none';
+  document.getElementById('sim-order-lbl1').style.display = 'none';
+  document.getElementById('sim-order-dot2').style.display = 'none';
+  document.getElementById('sim-order-lbl2').style.display = 'none';
+  // Reset dot to start position
+  document.getElementById('sim-order-dot1').setAttribute('cx','112');
+  document.getElementById('sim-order-dot1').setAttribute('cy','53');
+  document.getElementById('sim-order-dot2').setAttribute('cx','112');
+  document.getElementById('sim-order-dot2').setAttribute('cy','163');
+  
+  // Reset Seller Node borders
+  document.getElementById('sim-node-seller1').style.borderColor = 'var(--amb)';
+  document.getElementById('sim-node-seller1').style.boxShadow = 'none';
+  document.getElementById('sim-node-seller2').style.borderColor = 'var(--amb)';
+  document.getElementById('sim-node-seller2').style.boxShadow = 'none';
+  
+  // Reset awareness portals
+  document.getElementById('sim-aware-lsp1').textContent = '--';
+  document.getElementById('sim-aware-queue1').textContent = '--';
+  document.getElementById('sim-aware-eta1').textContent = '--';
+  document.getElementById('sim-aware-lsp2').textContent = '--';
+  document.getElementById('sim-aware-queue2').textContent = '--';
+  document.getElementById('sim-aware-eta2').textContent = '--';
+
+  if (tier === 1) {
+    title.textContent = "Tier 1 Example: Paradise Biryani & Grocery to Hitech City";
+    tag.textContent = "SCENARIO PROFILE: DUAL BASKET FOOD & PHARMA (4.2 KM DISTANCE)";
+    windowVal.textContent = "60 Seconds Hold";
+    tagVal.textContent = "STANDARD";
+  } else if (tier === 2) {
+    title.textContent = "Tier 2 Example: Ratnadeep Groceries & Meat to Madhapur";
+    tag.textContent = "SCENARIO PROFILE: THERMAL & QUICK BATCH (3.8 KM DISTANCE)";
+    windowVal.textContent = "12 Minutes Cooking ETA";
+    tagVal.textContent = "THERMAL (QUICK)";
+  } else if (tier === 3) {
+    title.textContent = "Tier 3 Example: Vijaya Dairy Milk & Medicines to Gachibowli";
+    tag.textContent = "SCENARIO PROFILE: COLD-CHAIN & APOTHECARY (5.1 KM DISTANCE)";
+    windowVal.textContent = "In-Transit Routing Window";
+    tagVal.textContent = "COLD-CHAIN";
+  }
+
+  // Update path guides display
+  updatePathGuides();
+  // Update dynamic values immediately (shows Awaiting Checkout)
+  updateSimPrices();
+}
+
+function runSimulation() {
+  if (simInterval) clearInterval(simInterval);
+  
+  isSimRunning = true;
+  simCurrentStep = 0;
+  
+  const consoleEl = document.getElementById('sim-trace-logs');
+  consoleEl.innerHTML = '';
+  
+  const sellerNode1 = document.getElementById('sim-node-seller1');
+  const sellerNode2 = document.getElementById('sim-node-seller2');
+  
+  // Hide active path lines in SVG
+  document.getElementById('sim-active-trad1').style.display = 'none';
+  document.getElementById('sim-active-trad2').style.display = 'none';
+  document.getElementById('sim-active-midas1').style.display = 'none';
+  document.getElementById('sim-active-midas2').style.display = 'none';
+  document.getElementById('sim-active-midas3').style.display = 'none';
+
+  // Hide riders initially
+  document.getElementById('sim-rider-trad1').style.display = 'none';
+  document.getElementById('sim-rider-trad2').style.display = 'none';
+  document.getElementById('sim-rider-midas2').style.display = 'none';
+  
+  // Hide scanners and neighborhood orders at start
+  document.getElementById('sim-radar1').style.display = 'none';
+  document.getElementById('sim-radar2').style.display = 'none';
+  document.getElementById('sim-radar3').style.display = 'none';
+  document.getElementById('sim-order-dot1').style.display = 'none';
+  document.getElementById('sim-order-lbl1').style.display = 'none';
+  document.getElementById('sim-order-dot2').style.display = 'none';
+  document.getElementById('sim-order-lbl2').style.display = 'none';
+  document.getElementById('sim-order-dot1').setAttribute('cx','112');
+  document.getElementById('sim-order-dot1').setAttribute('cy','53');
+  document.getElementById('sim-order-dot2').setAttribute('cx','112');
+  document.getElementById('sim-order-dot2').setAttribute('cy','163');
+  
+  // Reset Seller nodes borders
+  sellerNode1.style.borderColor = 'var(--amb)';
+  sellerNode1.style.boxShadow = 'none';
+  sellerNode2.style.borderColor = 'var(--amb)';
+  sellerNode2.style.boxShadow = 'none';
+  
+  // Reset awareness portal UI
+  const awareLsp1 = document.getElementById('sim-aware-lsp1');
+  const awareQueue1 = document.getElementById('sim-aware-queue1');
+  const awareEta1 = document.getElementById('sim-aware-eta1');
+  const awareLsp2 = document.getElementById('sim-aware-lsp2');
+  const awareQueue2 = document.getElementById('sim-aware-queue2');
+  const awareEta2 = document.getElementById('sim-aware-eta2');
+  
+  awareLsp1.textContent = 'Broadcasting...';
+  awareQueue1.textContent = 'Standard P2P Queue';
+  awareEta1.textContent = 'Searching...';
+  awareLsp2.textContent = 'Broadcasting...';
+  awareQueue2.textContent = 'Standard P2P Queue';
+  awareEta2.textContent = 'Searching...';
+  
+  let step = 0;
+  const maxSteps = 100;
+  const tier = currentSimTier;
+  const isMatch = simMatchStatus;
+  
+  // Trigger card update to show "Scanning/Pending" state
+  updateSimPrices();
+  
+  function addLog(msg, color='var(--grn)') {
+    const logLine = document.createElement('div');
+    const d = new Date();
+    const tm = d.toLocaleTimeString('en-IN', { hour12: false });
+    logLine.innerHTML = `<span style="color:var(--t3)">[${tm}]</span> <span style="color:${color}">${msg}</span>`;
+    consoleEl.appendChild(logLine);
+    consoleEl.scrollTop = consoleEl.scrollHeight;
+  }
+  
+  addLog(`[SIM] Initializing Tier ${tier} order lifecycle...`, 'var(--acc)');
+  document.getElementById('sim-timer-label').textContent = 'STATUS: ORDER RECEIVED';
+  
+  simInterval = setInterval(() => {
+    step++;
+    simCurrentStep = step;
+    document.getElementById('sim-progress-bar').style.width = step + '%';
+    document.getElementById('sim-progress-label').textContent = step + '% COMPLETE';
+    
+    // --- Phase 1: Order Received (Step 1 to 20) ---
+    if (step === 2) {
+      addLog("📡 ONDC Broadcast: 2 concurrent checkout requests received in same neighborhood geohash.", "var(--amb)");
+      // Flash Seller nodes
+      sellerNode1.style.borderColor = 'var(--grn)';
+      sellerNode1.style.boxShadow = '0 0 12px var(--grn)';
+      sellerNode2.style.borderColor = 'var(--grn)';
+      sellerNode2.style.boxShadow = '0 0 12px var(--grn)';
+      
+      awareLsp1.textContent = 'Pending Match';
+      awareLsp1.style.color = 'var(--amb)';
+      awareLsp2.textContent = 'Pending Match';
+      awareLsp2.style.color = 'var(--amb)';
+    }
+    
+    // --- Phase 2: Scan active neighbors (Step 21 to 50) ---
+    if (step === 21) {
+      document.getElementById('sim-timer-label').textContent = 'STATUS: SCANNING NEIGHBORHOOD';
+      addLog("💾 MIDAS checking ONDC registries for overlapping routes to batch and consolidate...", "var(--acc)");
+      
+      // Show order dots on their route lines & start animating them
+      const dot1 = document.getElementById('sim-order-dot1');
+      const dot2 = document.getElementById('sim-order-dot2');
+      const lbl1 = document.getElementById('sim-order-lbl1');
+      const lbl2 = document.getElementById('sim-order-lbl2');
+      dot1.style.display = 'inline';
+      lbl1.style.display = 'inline';
+      dot2.style.display = 'inline';
+      lbl2.style.display = 'inline';
+      // Dim color = scanning (on S1→B1 straight line, on S2→B2 straight line)
+      dot1.setAttribute('fill','rgba(255,255,255,0.25)');
+      dot1.setAttribute('stroke','rgba(255,255,255,0.4)');
+      dot2.setAttribute('fill','rgba(255,255,255,0.25)');
+      dot2.setAttribute('stroke','rgba(255,255,255,0.4)');
+      // Animate dot1 from S1(112,53) → B1(656,53) — scanning motion
+      simAnimateDot(dot1, 112, 53, 656, 53, 2800);
+      // Animate dot2 from S2(112,163) → B2(656,163) — scanning motion
+      simAnimateDot(dot2, 112, 163, 656, 163, 2800, 1400);
+      
+      document.getElementById('sim-radar1').style.display = 'block';
+      document.getElementById('sim-radar2').style.display = 'block';
+      document.getElementById('sim-radar3').style.display = 'block';
+      
+      document.getElementById('sim-radar1').className = 'sim-radar-wave';
+      document.getElementById('sim-radar2').className = 'sim-radar-wave';
+      document.getElementById('sim-radar3').className = 'sim-radar-wave';
+      
+      awareLsp1.textContent = 'Scanning...';
+      awareLsp2.textContent = 'Scanning...';
+      
+      updateSimPrices(); // updates cards to show scanning
+    }
+    
+    // --- Phase 3: Match & Consolidation Check (Step 50 / 55) ---
+    const checkStep = (tier === 2) ? 55 : 50;
+    if (step === checkStep) {
+      // STOP SCANNERS
+      document.getElementById('sim-radar1').style.display = 'none';
+      document.getElementById('sim-radar2').style.display = 'none';
+      document.getElementById('sim-radar3').style.display = 'none';
+      
+      if (isMatch) {
+        document.getElementById('sim-timer-label').textContent = 'STATUS: ROUTE CONSOLIDATED';
+        addLog(`🔄 MIDAS Proximity Match Confirmed! Consolidated into 1 unified rider sweep loop.`, "var(--grn)");
+        
+        // Dot1 turns green & rides MIDAS consolidated loop: S1→S2→B1→B2
+        const dot1 = document.getElementById('sim-order-dot1');
+        const dot2 = document.getElementById('sim-order-dot2');
+        dot1.setAttribute('fill','#00ff76');
+        dot1.setAttribute('stroke','#00ff76');
+        dot1.setAttribute('r','7');
+        // MIDAS: dot1 travels S1(112,53)→S2(112,163)→B1(656,53)→B2(656,163)
+        simAnimateDotPath(dot1, [[112,53],[112,163],[656,53],[656,163]], 3200);
+        // dot2 also turns green and follows after
+        dot2.setAttribute('fill','#00ff76');
+        dot2.setAttribute('stroke','#00ff76');
+        dot2.setAttribute('r','6');
+        simAnimateDotPath(dot2, [[112,163],[656,53],[656,163]], 2400, 800);
+        
+        // Make Sellers aware of assigned LSP & match status
+        awareLsp1.textContent = 'Shadowfax (SF-902)';
+        awareLsp1.style.color = 'var(--grn)';
+        awareQueue1.textContent = 'Consolidated Run (Batch #12)';
+        awareEta1.textContent = 'At store (Pick-up)';
+        
+        awareLsp2.textContent = 'Shadowfax (SF-902)';
+        awareLsp2.style.color = 'var(--grn)';
+        awareQueue2.textContent = 'Consolidated Run (Batch #12)';
+        awareEta2.textContent = 'ETA 2 min (Proximity Match)';
+        
+        addLog("🛵 Dispatching: 1 consolidated Rider (S1 ➔ S2 ➔ B1 ➔ B2). Fast & cheap handover in sync.", "var(--acc)");
+        document.getElementById('sim-rider-midas2').style.display = 'block';
+        
+        document.getElementById('sim-active-midas1').style.display = 'block';
+        document.getElementById('sim-active-midas2').style.display = 'block';
+        document.getElementById('sim-active-midas3').style.display = 'block';
+      } else {
+        document.getElementById('sim-timer-label').textContent = 'STATUS: SILOED ROUTING (NO MATCH)';
+        addLog("⚠️ MIDAS OFF: No matches identified. Dispatches split into 2 separate traditional runs.", "var(--amb)");
+        
+        // Dot1 and Dot2 turn red, travel separately (MIDAS OFF)
+        const dot1 = document.getElementById('sim-order-dot1');
+        const dot2 = document.getElementById('sim-order-dot2');
+        dot1.setAttribute('fill','#ff4466');
+        dot1.setAttribute('stroke','#ff4466');
+        dot2.setAttribute('fill','#ff4466');
+        dot2.setAttribute('stroke','#ff4466');
+        // Traditional: each rides own straight line S→B
+        simAnimateDot(dot1, 112, 53, 656, 53, 3500);
+        simAnimateDot(dot2, 112, 163, 656, 163, 3500, 700);
+        
+        // Sellers aware of distinct siloed LSPs
+        awareLsp1.textContent = 'Dunzo (DZ-405)';
+        awareLsp1.style.color = 'var(--red)';
+        awareQueue1.textContent = 'Siloed P2P (Non-reduced)';
+        awareEta1.textContent = 'At store';
+        
+        awareLsp2.textContent = 'Shadowfax (SF-915)';
+        awareLsp2.style.color = 'var(--red)';
+        awareQueue2.textContent = 'Siloed P2P (Non-reduced)';
+        awareEta2.textContent = 'At store';
+        
+        addLog("🛵 Dispatching: 2 riders separately (Rider 1: S1 ➔ B1; Rider 2: S2 ➔ B2).", "var(--amb)");
+        document.getElementById('sim-rider-trad1').style.display = 'block';
+        document.getElementById('sim-rider-trad2').style.display = 'block';
+        
+        document.getElementById('sim-active-trad1').style.display = 'block';
+        document.getElementById('sim-active-trad2').style.display = 'block';
+      }
+      
+      // Update pricing cards - populates the fare and displays if reduced or not
+      updateSimPrices();
+    }
+    
+    // Map scooter position & line progress during transit phase (step 51+)
+    if (step > checkStep) {
+      document.getElementById('sim-timer-label').textContent = 'STATUS: RIDER IN TRANSIT';
+      
+      if (isMatch) {
+        // --- MIDAS Direct Consolidated Loop Animate (S1 -> S2 -> B1 -> B2) ---
+        if (step <= 65) {
+          // Leg 1: S1 (14%, 22%) ➔ S2 (14%, 68%)
+          const p = (step - checkStep) / (65 - checkStep);
+          const cx = 14;
+          const cy = 22 + p * (68 - 22);
+          
+          document.getElementById('sim-rider-midas2').style.left = cx + '%';
+          document.getElementById('sim-rider-midas2').style.top = (cy - 8) + '%';
+          document.getElementById('sim-active-midas1').setAttribute('x2', cx + '%');
+          document.getElementById('sim-active-midas1').setAttribute('y2', cy + '%');
+        } else if (step <= 85) {
+          // Leg 2: S2 (14%, 68%) ➔ B1 (82%, 22%)
+          if (step === 66) {
+            addLog("📦 Rider arrived at Seller 2 storefront. Collected Order #915 (Grocery) in 1.2km loop.", "var(--grn)");
+            awareEta2.textContent = 'Collected & Dispatched';
+            awareEta2.style.color = 'var(--grn)';
+          }
+          const p = (step - 66) / (85 - 66);
+          const cx = 14 + p * (82 - 14);
+          const cy = 68 + p * (22 - 68);
+          
+          document.getElementById('sim-rider-midas2').style.left = cx + '%';
+          document.getElementById('sim-rider-midas2').style.top = (cy - 8) + '%';
+          document.getElementById('sim-active-midas2').setAttribute('x2', cx + '%');
+          document.getElementById('sim-active-midas2').setAttribute('y2', cy + '%');
+        } else {
+          // Leg 3: B1 (82%, 22%) ➔ B2 (82%, 68%)
+          if (step === 86) {
+            addLog("✓ Delivered Package 1 to Buyer 1. Proceeding to Buyer 2.", "var(--grn)");
+          }
+          const p = (step - 86) / (100 - 86);
+          const cx = 82;
+          const cy = 22 + p * (68 - 22);
+          
+          document.getElementById('sim-rider-midas2').style.left = cx + '%';
+          document.getElementById('sim-rider-midas2').style.top = (cy - 8) + '%';
+          document.getElementById('sim-active-midas3').setAttribute('x2', cx + '%');
+          document.getElementById('sim-active-midas3').setAttribute('y2', cy + '%');
+        }
+      } else {
+        // --- Traditional separate runs coordinates (Engine OFF) ---
+        const p = (step - checkStep) / (100 - checkStep);
+        const cx = 14 + p * (82 - 14);
+        
+        // Rider 1: S1 ➔ B1 directly
+        document.getElementById('sim-rider-trad1').style.left = cx + '%';
+        document.getElementById('sim-active-trad1').setAttribute('x2', cx + '%');
+        
+        // Rider 2: S2 ➔ B2 directly
+        document.getElementById('sim-rider-trad2').style.left = cx + '%';
+        document.getElementById('sim-active-trad2').setAttribute('x2', cx + '%');
+      }
+    }
+
+    if (tier === 3 && step === 92 && isMatch) {
+      addLog("🎁 Surprise cashback trigger: Wallet rebate capture initialized.");
+    }
+    
+    // --- Phase 5: Delivery Complete (Step 100) ---
+    if (step === 100) {
+      if (isMatch) {
+        addLog("✓ Both packages delivered. Consolidated loop saved 22.5% road mileage.", 'var(--grn)');
+        document.getElementById('sim-timer-label').textContent = 'STATUS: COMPLETED (SAVED)';
+      } else {
+        addLog("✓ Both packages delivered separately by two riders. Duplicate mileage paid.", 'var(--amb)');
+        document.getElementById('sim-timer-label').textContent = 'STATUS: COMPLETED (STANDARD)';
+      }
+      clearInterval(simInterval);
+      simInterval = null;
+      isSimRunning = false;
+    }
+  }, 60);
+}
+
+function downloadPatentDoc() {
+  const content = `
+================================================================================
+                                    FORM 2
+           THE PATENTS ACT, 1970 (39 OF 1970) & THE PATENT RULES, 2003
+                          PROVISIONAL SPECIFICATION
+================================================================================
+
+TITLE OF INVENTION:
+MULTI-PLATFORM DELIVERY ORDER CONSOLIDATION SYSTEM WITH STRUCTURED TRACE IDENTIFIERS,
+RETURN-ORDER MATCHING, AND QR-VERIFIED INTER-CARRIER HANDOVER
+
+APPLICANT / INVENTOR 1:
+Vootla Gokul Prabhu | Nationality: Indian | Address: Hyderabad, Telangana, India
+
+APPLICANT / INVENTOR 2:
+Rallabandi Sarala Kumari | Nationality: Indian | Address: Hyderabad, Telangana, India
+
+PATENT OFFICE:
+CHENNAI
+
+--------------------------------------------------------------------------------
+CONFIDENTIAL -- PATENT PENDING -- DO NOT DISCLOSE
+--------------------------------------------------------------------------------
+
+ABSTRACT:
+A computer-implemented middleware system that sits between multiple competing
+e-commerce delivery platforms and their delivery networks. When an order arrives,
+the system reads the platform code, creation time, destination zone, and cart weight
+supplied by the platform and assembles them into a single structured identifier
+called a Trace ID. The system then assigns a processing label to that identifier --
+such as HEAVY_WEIGHT, INTRA_CONSOLIDATED, INTER_CONSOLIDATED, RETURN_PENDING,
+SPAN_DETECTED, or DIRECT_ASSIGNED -- based solely on reading the identifier string,
+without querying a database. Each label determines the processing path: heavy orders
+go directly to dispatch; eligible orders are matched by weight with other orders going
+to the same zone, within the same platform first and across platforms second; a recently
+dispatched partner still near the hub is notified if a same-zone order arrives shortly
+after dispatch; customers may add forgotten items before packing starts, paying a fee
+that grows with time; return orders from completed deliveries are held in a dedicated
+section and matched against outbound orders going to the same origin zone within a set
+time window, eliminating separate return trips; when an order must change hands between
+partners from different platforms, a handover identifier called a SPAN_ID is created,
+and the receiving partner receives only the delivery address and a masked phone number
+through a session that ends when delivery is confirmed. Every order is guaranteed to
+reach a dispatched state. No customer personal data crosses platform boundaries at any point.
+
+FIELD OF THE INVENTION:
+This invention relates to a computer-implemented logistics coordination system that
+manages delivery orders across multiple independent e-commerce platforms. The system
+generates structured order identifiers, assigns processing labels based on those
+identifiers, matches outbound and return orders for combined trips, notifies recently
+dispatched partners of late same-zone orders, supports controlled order changes
+before dispatch, handles authenticated transfers between partners from different
+platforms, and keeps customer personal data isolated throughout.
+
+BACKGROUND AND TECHNICAL PROBLEM STATEMENT:
+Quick-commerce platforms operate independent delivery fleets covering the same city
+zones at the same time. The following technically distinct problems exist:
+- Problem 1: Duplicate route coverage.
+- Problem 2: Underused vehicle capacity.
+- Problem 3: No fast cross-platform order identification.
+- Problem 4: Empty return trips.
+- Problem 5: No way to reach a dispatched partner for a late same-zone order.
+- Problem 6: No order modification after placement.
+- Problem 7: No authenticated inter-carrier order transfer.
+- Problem 8: Customer data exposed to a relay partner.
+
+OBJECTS OF THE INVENTION:
+To provide a structured order identifier encoding platform, time, zone, and weight;
+to assign processing labels based on identifier segments without database queries;
+to match outbound/return orders; to notify recently dispatched partners of nearby
+late orders; to execute inter-carrier transfers securely via SPAN_ID QR verification;
+and to protect customer personal data.
+
+DETAILED DESCRIPTION OF THE INVENTION:
+Structured Order Identifier -- Trace ID:
+TRACE_ID = [PLATFORM_CODE]_[HHMMSS]_[ZONE_CODE]_[WEIGHT_KG]
+Example: SHF_123045_500081_03.50
+
+Return order format:
+RETURN_TRACE_ID = RTN_[PLATFORM_CODE]_[HHMMSS]_[ORIGIN_ZONE]_[WEIGHT_KG]
+
+Processing Steps:
+1. Intake & Cart Modification Window (Time-scaled fees: INR 1 within 60s, INR 2 within 120s).
+2. Weight Check (HEAVY_WEIGHT bypass if weight > 45kg).
+3. Parallel Order Matching (Same-platform and different-platform candidates).
+4. Return Order Matching (Outbound match within 3-4 hours time window).
+5. Predictive Transaction Hold (PREDICTIVE_HOLD up to 90s).
+6. Forced Proximity Hold (HOLD_PENDING up to 60s for nearby dispatched riders).
+7. Handover Identifier and QR-Verified Transfer (SPAN_ID verified via QR scan).
+8. Direct Assignment Fallback (DIRECT_ASSIGNED standard routing).
+
+DELIVERY FEE CALCULATION & CONSOLIDATION:
+- Standard Delivery Fee = INR 35.00 + (INR 4.00 * Distance in km)
+- Consolidated MIDAS Fee = 45% of combined standard fees (55% Saved Upfront)
+- Fractional splits: 8% platform gateway, 92% primary last-mile rider (direct loop),
+  or 32% runner / 60% rider if street relay swap occurs.
+
+STATEMENT OF CLAIMS:
+1. A computer-implemented system for delivery order consolidation across multiple platforms...
+2. The system of Claim 1, wherein the pipeline searches same-platform and cross-platform...
+3. The system of Claim 1, further comprising return-order matching...
+4. The system of Claim 1, further comprising proximity-gated hold notification...
+5. The system of Claim 1, further comprising modification module...
+6. The system of Claim 1, further comprising handover identifier SPAN_ID...
+7. The system of Claim 6, further comprising QR-scan handover module...
+8. The system of Claims 6 or 7, further comprising temporary data delivery module...
+9. The system of Claim 1, wherein custody logs are in append-only ledger...
+10. A computer-implemented method executing the steps of Claims 1 to 9.
+11. A non-transitory computer-readable medium storing instructions carrying out the system.
+
+SIGNATURES:
+Inventor 1: Vootla Gokul Prabhu
+Inventor 2: Rallabandi Sarala Kumari
+Filing Date: 22/04/2026
+Place: Hyderabad, Telangana, India
+================================================================================
+`;
+  const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = "MIDAS_Patent_Provisional_Form_2.txt";
+  link.click();
+}
+
+// Zone-to-sellers mapping so new orders land inside an existing hub zone
+const ZONE_SELLERS = {
+  1: [
+    { name: 'Paradise', loc: 'Jubilee Hills', sx: 20, sy: 15 },
+    { name: 'Ratnadeep', loc: 'Secunderabad', sx: 15, sy: 30 },
+    { name: 'Vijaya Dairy', loc: 'Nizampet', sx: 18, sy: 45 },
+    { name: 'Cream Stone', loc: 'Miyapur', sx: 28, sy: 85 },
+    { name: 'Sarvana Bhavan', loc: 'Jubilee Hills', sx: 22, sy: 18 },
+    { name: 'Heritage Fresh', loc: 'Ameerpet', sx: 25, sy: 38 }
+  ],
+  2: [
+    { name: 'Pragathi Tiffins', loc: 'Mehdipatnam', sx: 25, sy: 60 },
+    { name: 'Absolute BBQ', loc: 'Begumpet', sx: 20, sy: 75 },
+    { name: 'Concu', loc: 'Banjara Hills', sx: 23, sy: 95 },
+    { name: 'FreshMart', loc: 'Kothaguda', sx: 28, sy: 68 },
+    { name: 'Sangeetha Hotel', loc: 'Kondapur', sx: 22, sy: 82 }
+  ],
+  3: [
+    { name: 'Third Wave', loc: 'Kondapur', sx: 30, sy: 20 },
+    { name: 'Pulp Press', loc: 'Kukatpally', sx: 33, sy: 38 },
+    { name: 'Apollo Pharmacy', loc: 'Ameerpet', sx: 36, sy: 55 },
+    { name: 'Smart Lockar', loc: 'VNR-119', sx: 35, sy: 45 },
+    { name: 'FreshLeaf', loc: 'Gachibowli', sx: 32, sy: 62 }
+  ]
+};
+
+const ZONE_PRODUCTS = [
+  { name: 'Veg Biryani', tag: 'STANDARD FOOD', crit: 'STANDARD' },
+  { name: 'Butter Naan + Dal', tag: 'STANDARD FOOD', crit: 'STANDARD' },
+  { name: 'Fresh Fruits Basket', tag: 'STANDARD FOOD', crit: 'STANDARD' },
+  { name: 'Dolo 650mg', tag: 'CRITICAL RUSH', crit: 'EMERGENCY' },
+  { name: 'Organic Cow Milk', tag: 'COLD-CHAIN', crit: 'COLD-CHAIN' },
+  { name: 'Artisan Ice Cream', tag: 'COLD-CHAIN', crit: 'COLD-CHAIN' },
+  { name: 'Filter Coffee', tag: 'HOT FOOD', crit: 'STANDARD' },
+  { name: 'Cold Brew + Pastry', tag: 'LIQUID', crit: 'STANDARD' },
+  { name: 'USB-C Cable', tag: 'STANDARD FOOD', crit: 'STANDARD' },
+  { name: 'Atta 5kg', tag: 'STANDARD FOOD', crit: 'STANDARD' },
+  { name: 'Coriander 100g', tag: 'STANDARD FOOD', crit: 'STANDARD' }
+];
+
+const ZONE_APPS = ['Paytm', 'Pincode', 'Tata Neu', 'Mystore', 'Magicpin', 'PhonePe', 'Craftsvilla', 'Snapdeal'];
+const ZONE_BUYERS = {
+  1: [
+    { name: 'My Home Bhooja', loc: 'Hitech City', bx: 83, by: 25 },
+    { name: 'Aparna Sarovar', loc: 'Miyapur Area', bx: 78, by: 12 },
+    { name: 'Prestige High', loc: 'Madhapur', bx: 91, by: 10 },
+    { name: 'SLN Terminus', loc: 'Banjara Hills Area', bx: 73, by: 32 },
+    { name: 'Karachi - Hitech', loc: 'Hitech City', bx: 86, by: 8 }
+  ],
+  2: [
+    { name: 'Lodha Bellezza', loc: 'Kukatpally', bx: 78, by: 60 },
+    { name: 'Aliens Space', loc: 'Begumpet Area', bx: 92, by: 70 },
+    { name: 'My Home Avatar', loc: 'Gachibowli', bx: 85, by: 45 },
+    { name: 'Raheja Mind Space', loc: 'Hitech City', bx: 80, by: 50 }
+  ],
+  3: [
+    { name: 'Rainbow Vistas', loc: 'Kondapur Area', bx: 93, by: 85 },
+    { name: 'Lanco Hills', loc: 'Manikonda', bx: 80, by: 82 },
+    { name: 'Sky View Apartments', loc: 'Ameerpet Area', bx: 95, by: 95 },
+    { name: 'Prestige Ivy', loc: 'Gachibowli', bx: 88, by: 90 }
+  ]
+};
+
+// Tracks last injected order for the toast
+let _lastInjectedOrderId = null;
+
+function showMidasToast(msg, color) {
+  let toast = document.getElementById('midas-toast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'midas-toast';
+    toast.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(30px);background:rgba(4,10,14,0.97);border:1.5px solid var(--acc);border-radius:8px;padding:10px 22px;font-family:var(--fm);font-size:0.7rem;color:#fff;z-index:9999;transition:all 0.3s;opacity:0;pointer-events:none;max-width:620px;text-align:center;box-shadow:0 0 20px rgba(0,217,255,0.3);';
+    document.body.appendChild(toast);
+  }
+  toast.style.borderColor = color || 'var(--acc)';
+  toast.style.boxShadow = `0 0 20px ${color ? color.replace('var(--grn)', 'rgba(0,255,118,0.35)').replace('var(--amb)', 'rgba(255,200,0,0.35)').replace('var(--red)', 'rgba(255,68,102,0.35)') : 'rgba(0,217,255,0.3)'}`;
+  toast.innerHTML = msg;
+  toast.style.opacity = '1';
+  toast.style.transform = 'translateX(-50%) translateY(0)';
+  clearTimeout(toast._timer);
+  toast._timer = setTimeout(() => {
+    toast.style.opacity = '0';
+    toast.style.transform = 'translateX(-50%) translateY(30px)';
+  }, 5000);
+}
+
+function addRandomOrderSim() {
+  // Choose a random zone (1, 2, or 3)
+  const zone = Math.ceil(Math.random() * 3);
+  
+  // 70% chance: try to place buyer near an EXISTING buyer in the same zone
+  // for higher consolidation probability
+  const existingInZone = ORDERS.filter(o => o.h === zone);
+  let bx, by, buyerName, buyerLoc;
+  
+  const zoneBuyers = ZONE_BUYERS[zone];
+  
+  if (existingInZone.length > 0 && Math.random() < 0.70) {
+    // Pick an existing buyer in this zone and place the new one VERY close
+    const refOrder = existingInZone[Math.floor(Math.random() * existingInZone.length)];
+    const offsetX = (Math.random() - 0.5) * 8;  // ±4% offset = ~400m proximity
+    const offsetY = (Math.random() - 0.5) * 8;
+    bx = Math.max(65, Math.min(98, Math.round(refOrder.bx + offsetX)));
+    by = Math.max(5, Math.min(98, Math.round(refOrder.by + offsetY)));
+    const rb = zoneBuyers[Math.floor(Math.random() * zoneBuyers.length)];
+    buyerName = rb.name + ' Wing-' + String.fromCharCode(65 + Math.floor(Math.random()*6));
+    buyerLoc = refOrder.bLoc;
+  } else {
+    // Fresh placement inside zone buyer pool
+    const rb = zoneBuyers[Math.floor(Math.random() * zoneBuyers.length)];
+    const offsetX = (Math.random() - 0.5) * 6;
+    const offsetY = (Math.random() - 0.5) * 6;
+    bx = Math.max(65, Math.min(98, Math.round(rb.bx + offsetX)));
+    by = Math.max(5, Math.min(98, Math.round(rb.by + offsetY)));
+    buyerName = rb.name;
+    buyerLoc = rb.loc;
+  }
+
+  const zoneSellers = ZONE_SELLERS[zone];
+  const randSeller = zoneSellers[Math.floor(Math.random() * zoneSellers.length)];
+  
+  // Products — 80% non-emergency so consolidation is allowed most of the time
+  const weightedProducts = ZONE_PRODUCTS.filter(p => p.crit !== 'EMERGENCY');
+  const useEmergency = Math.random() < 0.15;
+  const productPool = useEmergency ? ZONE_PRODUCTS.filter(p => p.crit === 'EMERGENCY') : weightedProducts;
+  const randProd = productPool[Math.floor(Math.random() * productPool.length)];
+  
+  const randApp = ZONE_APPS[Math.floor(Math.random() * ZONE_APPS.length)];
+  const partners = ['Shadowfax', 'Dunzo', 'Rapido'];
+  const randPartner = partners[zone - 1];
+  
+  const orderIdNum = 920 + ORDERS.length;
+  const orderId = 'TR-' + orderIdNum;
+  
+  const dx = bx - randSeller.sx;
+  const dy = by - randSeller.sy;
+  const distVal = Math.max(1.5, Math.sqrt(dx*dx + dy*dy) * 0.09);
+  const distStr = distVal.toFixed(1) + ' km';
+  
+  const traceId = Array.from({length: 32}, () => Math.floor(Math.random()*16).toString(16)).join('');
+  const spanId = Array.from({length: 16}, () => Math.floor(Math.random()*16).toString(16)).join('');
+
+  const newOrder = {
+    id: orderId,
+    app: randApp,
+    prod: randProd.name,
+    s: randSeller.name,
+    sLoc: randSeller.loc,
+    b: buyerName,
+    bLoc: buyerLoc,
+    eta: Math.round(3 + Math.random() * 18),
+    sx: randSeller.sx,
+    sy: randSeller.sy,
+    bx: bx,
+    by: by,
+    h: zone,
+    dist: distStr,
+    tag: randProd.tag,
+    partner: randPartner,
+    user: 'Customer ' + orderIdNum,
+    sDist: (distVal * 0.3).toFixed(1) + ' km',
+    bDist: (distVal * 0.7).toFixed(1) + ' km',
+    gateway: 'ONDC-GW-' + randSeller.loc.replace(/ /g, ''),
+    tempSlot: randProd.tag === 'COLD-CHAIN' ? 'Active Cold Slot D' + Math.floor(Math.random()*9) :
+              randProd.crit === 'EMERGENCY' ? 'Medical Secure Slot M' + Math.floor(Math.random()*5) :
+              'Ambient Locker Box C' + Math.floor(Math.random()*20),
+    assignedRider: null,
+    traceId: traceId,
+    spanId: spanId,
+    criticality: randProd.crit,
+    isRandom: true   // flag so drawFeed can highlight it
+  };
+
+  ORDERS.push(newOrder);
+  _lastInjectedOrderId = orderId;
+  
+  drawFeed();
+  computeConsolidation();
+  
+  // After consolidation runs, check if this order got consolidated
+  const batch = BATCHES.find(b => b.orders.some(bo => bo.id === orderId));
+  const isConsolid = batch && batch.orders.length > 1;
+  const peers = batch ? batch.orders.filter(x => x.id !== orderId) : [];
+  
+  if (randProd.crit === 'EMERGENCY') {
+    showMidasToast(
+      `🚨 <strong>${orderId}</strong> — <strong>${randProd.name}</strong> from <strong>${randSeller.name}</strong> → <strong>${buyerName}</strong><br>` +
+      `<span style="color:var(--red)">EMERGENCY TAG detected. MIDAS bypassed all consolidation holds. Direct point-to-point solo dispatch. Zero wait.</span>`,
+      'var(--red)'
+    );
+  } else if (isConsolid) {
+    showMidasToast(
+      `✅ <strong>${orderId}</strong> — <strong>${randProd.name}</strong> CONSOLIDATED into <strong>${batch.id}</strong> (Zone ${zone})<br>` +
+      `Peer orders: ${peers.map(p => p.id).join(', ')} → <strong>${buyerName}</strong> &amp; peers share 1 rider.<br>` +
+      `<span style="color:var(--grn)">Fee discounted 55%. Tap the order trace line to inspect the Decision Engine.</span>`,
+      'var(--grn)'
+    );
+  } else {
+    const reason = existingInZone.length === 0
+      ? `No other orders in Zone ${zone} — Zero candidates`
+      : `Zone ${zone} has ${existingInZone.length} order(s) but route angle divergence too high (>25°). No match.`;
+    showMidasToast(
+      `🔶 <strong>${orderId}</strong> — <strong>${randProd.name}</strong> from <strong>${randSeller.name}</strong> → <strong>${buyerName}</strong><br>` +
+      `<span style="color:var(--amb)">SOLO dispatch. MIDAS Decision: ${reason}</span><br>` +
+      `<span style="color:var(--t3); font-size:0.6rem;">Tap the order trace line on the map for full MIDAS Pipeline analysis.</span>`,
+      'var(--amb)'
+    );
+  }
+
+  const mOrdersTotal = document.getElementById('metric-orders-total');
+  if (mOrdersTotal) mOrdersTotal.textContent = ORDERS.length;
+}
+
+function clearRandomOrdersSim() {
+  ORDERS.length = 10;
+  _lastInjectedOrderId = null;
+  drawFeed();
+  computeConsolidation();
+  showMidasToast('🔄 Network reset. 10 baseline orders restored.', 'var(--acc)');
+  
+  const mOrdersTotal = document.getElementById('metric-orders-total');
+  if (mOrdersTotal) mOrdersTotal.textContent = ORDERS.length;
+}
+
 window.onload = () => {
   drawFeed();
   computeConsolidation();
@@ -1813,6 +3846,8 @@ window.onload = () => {
   populateFractionalSettlements(); // Initial settlement splits
   appendConsoleLog(); // Initial console log
   setInterval(appendConsoleLog, 2500); // Live console stream
+  renderSlide(0); // Initial Slide Render
+  toggleSimMatch(true); // Set default match status & prices
 };
 </script>
 </body>
